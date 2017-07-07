@@ -1,0 +1,17 @@
+<template name="nav">
+    <view class="topbar">
+      <image src="/image/nav.png"></image>
+      <view class="classname">
+        <text>MOUMOU SNACK FOOD</text>
+        <text>某某零食汇</text>
+      </view>
+    </view>
+</template>
+      <!--<view wx-if={{navShow}}>
+        <image src="../../nav-"+navImgNum+".png"></image>
+      </view>-->
+      <!--<block wx:for="{{ navList }}" wx:key="">
+        <view data-type="{{ item._id }}" data-index="{{ index }}" class="weui-flex__item" catchtap="onTapTag">
+        	<view class="topbar-item {{ index == activeIndex ? 'active' : '' }}">{{ item.name }}</view>
+        </view>
+      </block>-->

@@ -1,0 +1,58 @@
+/**app.wxss**/
+page {
+  background-color: #F8F8F8;
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+}
+/* lib */
+.strong{
+  font-weight: bold;
+}
+.tc{
+  text-align: center;
+}
+.color{ color: #BF2D2D;}
+.bor_color{border-color: #BF2D2D }
+.bg_color{background-color: #BF2D2D;color:#fff;}
+.small_font{font-size: 26rpx;}
+.medium_font{
+  font-size: 28rpx;
+}
+.normal_font{
+  font-size: 32rpx;
+}
+.fl{float: left;}
+.fr{float: right;}
+/* page */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: space-between;
+  font-size: 32rpx;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+.topbar {
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.topbar image {
+  width: 110px;
+  height: 81px;
+}
+.topbar text {
+  display: block;
+  font-size: 50rpx;
+  color: rgb(199, 31, 59);
+  font-weight: bold;
+  text-align: right;
+  padding-top: 20rpx;
+}
+.topbar text:last-child {
+  font-size: 30rpx;
+  color:#000;
+  padding-top: 0;
+}

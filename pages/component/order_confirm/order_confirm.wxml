@@ -1,0 +1,107 @@
+<view class="main">
+  <view class="orders-list confirm-box">
+      <view class="orders-number">订单编号：{{oid}}</view>
+      <navigator wx:for="{{carts}}" url="../details/details?id={{item.cid}}" class="orders-detail">
+          <image src="{{item.image}}"></image>
+          <view class="">{{item.title}}</view>
+          <view class="">{{item.num}}</view>
+          <text class="orders-status">待付款</text>
+      </navigator>
+      <view class="orders-footer">
+          <text class="fl">{{nowtime}}</text>
+          <text class="fr">应付:<text class="color strong">￥{{item.price*item.num}}</text></text>
+      </view>
+  </view>
+
+  <view class="delivery-box confirm-box">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{delivery_mode}}">
+      <view class="delivery-top">
+        <text class="fl">配送方式</text>
+        <view class="picker fr"><text>{{delivery_mode[index]}}</text><text wx:if="{{index==2}}" class="color">+￥{{delivery_money}}</text></view>
+      </view>
+    </picker>
+    <view class="delivery-middle">
+      <view wx:if="{{delivery_addr}}" bindtap="addAddr" class="delivery_addr-no-content">
+        <view class="delivery_addr-no-list">
+            <image src="../../../image/local.jpg" style="width:50px; heigh:50px;"></image>
+            <view class="addr_name">收货人:<text class="color">{{address.name}}</text></view>
+            <view class="addr_phone">电话:{{address.phone}}</view>
+            <view class="addr_detail">{{address.detail}}</view>
+        </view>
+      </view>
+      <view wx:else class="delivery_addr-no-content" bindtap="addAddr">
+        <text class="delivery_addr-no-tex"><text>+</text>添加收货人信息</text>
+      </view>
+    </view>
+    <picker mode="date" value="{{date}}" start="((start_date))" end="2017-09-01" bindchange="bindDateChange">
+      <view class="delivery-top delivery-bottom">
+        <text class="fl">配送日期</text>
+        <view class="picker fr">{{date}}</view>
+      </view>
+    </picker>
+    <picker bindchange="bindTimeChange" value="{{index}}" range="{{delivery_time}}">
+      <view class="delivery-top delivery-bottom">
+        <text class="fl">配送时间</text>
+        <view class="picker fr">{{delivery_time[index_time]}}</view>
+      </view>
+    </picker>
+  </view>
+
+  <view class="confirm-pay confirm-box">
+    <picker bindchange="bindPayChange" value="{{index}}" range="{{pay_mode}}">
+      <view class="delivery-top">
+        <text class="fl">支付方式</text>
+        <view class="picker fr">{{pay_mode[index_pay]}}</view>
+      </view>
+    </picker>
+    <view wx:if="{{index_pay==0}}" class="pay_way">
+      <view class="pay_way_list"wx:for="{{pay_ways}}">
+         <image  src="{{item.src}}" class="{{item.way_id==pay_way_id?'active':''}}" data-id="{{item.way_id}}" bindtap="changePay"></image>
+         <icon wx:if="{{item.way_id==pay_way_id}}" type="success_no_circle" size="10" color="#fff"/>
+      </view>
+     
+    </view>
+    <picker bindchange="bindCouponChange" value="{{index}}" range="{{coupon_mode}}">
+      <view class="delivery-top delivery-bottom coupon-list" >
+        <text class="fl">优惠券:<text class="color">{{coupon}}张</text></text>
+        <view class="picker fr">{{coupon_mode[index_coupon]}}</view>      
+      </view>
+    </picker>
+    <picker bindchange="bindIntegralChange" value="{{index}}" range="{{integral_mode}}">
+      <view class="delivery-top delivery-bottom integral-list">
+        <text class="fl">可用积分:<text class="color">{{integral}}</text></text>
+        <view class="picker fr small">已用{{integral_mode[index_integral]}}积分,<text class="color medium">-￥0.00</text></view>      
+      </view>
+    </picker>
+    <picker bindchange="bindBalanceChange" value="{{index}}" range="{{balance_mode}}">
+      <view class="delivery-top delivery-bottom balance-list">
+        <text class="fl">余额:<text class="color">￥{{balance}}</text></text>
+        <view class="picker fr color">-￥{{balance_mode[index_balance]}}</view> 
+      </view>
+    </picker>
+  </view>
+
+  <view class="confirm-invoice confirm-box">
+    <picker bindchange="bindInvoiceChange" value="{{index}}" range="{{invoice_mode}}">
+      <view class="delivery-top">
+        <text class="fl">发票</text>
+        <view class="picker fr">{{invoice_mode[index_invoice]}}</view>
+      </view>
+    </picker>
+  </view>
+
+
+  <view class="confirm-msg confirm-box">
+    <view class="confirm-msg-box">
+      <image src="../../../image/msg.jpg"></image>
+      <input placeholder="给商家留言（限50字以内）" type="text" />
+    </view>
+  </view>
+
+  <view class="confirm-footer">
+      <text class="cart-toatl-price">实付款:<text class="color strong">￥{{total_price}}</text></text>
+      <text class="confirm-pay bg_color" bindtap="lastPay">确认支付</text>
+  </view>
+
+
+</view>

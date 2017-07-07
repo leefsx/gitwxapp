@@ -1,0 +1,128 @@
+<import src="../../common/nav.wxml" />
+<view class="main">
+  <template is="nav" />
+  <view class="good-box">
+    <view class="good-tab-box">
+      <text class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">
+        <text>商品信息</text>
+      </text>
+      <text class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">
+        <text>顾客评价</text>
+      </text>
+      <text class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">
+        <text>购买记录</text>
+      </text>
+      <text class="goods-tab-nav {{curIndex === 3 ?'on':''}}" bindtap="bindTap" data-index="3">
+        <text>买家回答</text>
+      </text>
+    </view>
+    <view class="good-content">
+      <swiper duration="{{duration}}" bindchange="currentChange" current="{{curIndex}}" style="height:800px;">
+        <swiper-item class="good-info">
+          <image src="{{detail_data.feature_img}}" class="food-image" mode="widthFix" />
+          <view class="food-content">
+            <text class="food-name">{{detail_data.name}}</text>
+            <text class="food-price">价格：<text>{{detail_data.price}}</text></text>
+            <text class="food-old_price">市场价：<text>{{detail_data.mark_price}}</text></text>
+          </view>
+          <view class="food-xq" bindtap="changState">
+            <text>产品规格</text>
+            <view class="navigator-arrow"></view>
+          </view>
+          <view class="food-para">
+            <view class="food-dec">
+              <text>商品信息</text>
+              <scroll-view scroll-y class="details">
+              <import src="../../../common/wxParse.wxml"/>
+<template is="wxParse" data="{{wxParseData:detail_desc.nodes}}"/>
+              </scroll-view>
+            </view>
+            <view class="foot-dec_detail">
+              <text>产品参数</text>
+              <view class="dec_detail-all">
+                <text wx:for="{{food.dec_detail}}" class="dec_detail">{{index}}:{{item}}</text>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item class="good-rating">
+          <view class="good-rating-content">
+            <text class="good-rating-list">暂无评价信息</text>
+            <text class="good-rating-last">总共<text>0</text>条记录</text>
+          </view>
+        </swiper-item>
+        <swiper-item class="good-rec">
+          <view class="good-rec-content">
+            <view class="table">
+              <view class="tr bg-w">
+                <view class="th">购买人</view>
+                <view class="th">数量</view>
+                <view class="th ">属性</view>
+                <view class="th ">购买时间</view>
+              </view>
+              <!--<block wx:for="{{}}" wx:key="{{code}}">
+                <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+                  <view class="td">{{item.code}}</view>
+                  <view class="td">{{item.text}}</view>
+                  <view class="td">{{item.type}}</view>
+                </view>
+                <view class="tr" wx:else>
+                  <view class="td">{{item.code}}</view>
+                  <view class="td">{{item.text}}</view>
+                  <view class="td">{{item.type}}</view>
+                </view>
+              </block>-->
+            </view>
+            <text class="good-rating-last">总共<text>0</text>条记录</text>
+          </view>
+        </swiper-item>
+        <swiper-item class="good-ans">
+          <view class="good-ans-content good-rating-content">
+            <view class="good-ans-list">
+              <text class="good-ans-jl">总共<text>0</text>条记录</text>
+              <text class="good-ans-tw">我要提问</text>
+            </view>
+            <text class="good-rating-list">暂无评价信息</text>
+
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="detail_tj">
+      <text class="detail_tj-list">上一个：
+        <text>奥尔良烤鸡翅</text>
+      </text>
+      <text class="detail_tj-list">下一个：
+        <text>山椒风爪</text>
+      </text>
+    </view>
+  </view>
+  <view class="detail-foot">
+    <view url="../cart/cart" class="purchase" bindtap="toConfirm">立即购买</view>
+    <view url="../cart/cart" class="shoppingdetail-cart" bindtap="toCart">加入购物车</view>
+  </view>
+  <view>
+    <view class="mask" wx-if="{{currentState}}" bindtap="changState"></view>
+    <view class="dig" wx-if="{{currentState}}">
+      <view class="detail-cart-box">
+        <view class="detail-cart-list">
+          <view class="detail-cart-list-top">
+            <image class="detail-cart-thumb" src="{{detail_data.feature_img}}" mode="widthFix" />
+            <view>
+              <text class="detail-cart-pro-name">{{detail_data.name}}</text>
+              <text class="detail-cart-pro-price">价格：<text>{{detail_data.price}}</text></text>
+            </view>
+            <icon class="digClose" size="23" type="cancel" color="#aaa" bindtap="changState"></icon>
+          </view>
+          <view class="detail-cart-count-box">
+            <text class="detail-cart-count-tex">数量:</text>
+            <text class="detail-cart-count-down" bindtap="minusCount">-</text>
+            <text class="detail-cart-count-num">{{food.num}}</text>
+            <text class="detail-cart-count-add" bindtap="addCount">+</text>
+            <text class="detail-cart-count-surplus">库存:<text>{{detail_data.num}}</text></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
