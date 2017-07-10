@@ -2,6 +2,7 @@
     <view class="header">
         <image src="{{userInfo.avatarUrl}}" class="thumb"></image>
         <text class="nickname">{{userInfo.nickName}}</text>
+        <text class="account_money">余额：{{cuserInfo.account_money}}</text>
         <!--<text class="about">关于我们</text>-->
     </view>
     <view class="address-box">
@@ -28,7 +29,7 @@
             </navigator>
             <view class="orders-footer">
                 <text><text wx:if="{{item.order_status_no==1||item.pay_status==1}}">应付：</text><text wx:if="{{item.order_status_no==3}}">实付：</text>￥{{order_pro_rel[item.id][0].price}}</text>
-                <view wx:if="{{item.order_status_no==1}}"  class="orders-btn" bindtap="payOrders">付款</view>
+                <view wx:if="{{item.order_status_no==1}}"  class="orders-btn" data-oid="{{item.oid}}" bindtap="payOrders">付款</view>
                 <navigator url="../details/details?id={{order_pro_rel[item.id][0].product_id}}" wx:if="{{item.order_status_no==2||item.pay_status==2}}" class="orders-btn">再次购买</navigator>
             </view>
         </view>

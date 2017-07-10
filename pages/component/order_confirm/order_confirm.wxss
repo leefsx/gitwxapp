@@ -146,6 +146,7 @@
 .pay_way{
   padding-top: 30rpx;
   padding-bottom: 30rpx;
+  display: none;
 }
 .pay_way image{
   width: 114px;

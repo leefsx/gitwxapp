@@ -3,7 +3,7 @@
       <image src="/image/nav.png"></image>
       <view class="classname">
         <text>MOUMOU SNACK FOOD</text>
-        <text>某某零食汇</text>
+        <text>{{website_name}}</text>
       </view>
     </view>
 </template>

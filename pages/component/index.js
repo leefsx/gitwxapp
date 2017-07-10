@@ -1,4 +1,5 @@
 var comm = require('../../common/common.js');
+var config = require('../../common/config.js');
 var WxParse = require('../../common/wxParse.js');
 var app = getApp();
 Page({
@@ -13,6 +14,7 @@ Page({
     autoplay: false,
     interval: 3000,
     duration: 800,
+    website_name: ''
   },
   onLoad() {
     var that = this;
@@ -26,7 +28,8 @@ Page({
       success: function (res) {
         var resdata = res.data.data
         that.setData({
-          products: resdata
+          products: resdata,
+          website_name: config.website_name
         })
         if (resdata.length>0){
           app.globalData.firstPid = resdata[0].id

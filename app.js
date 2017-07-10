@@ -26,11 +26,11 @@ App({
               method: 'GET',
               success: function (res) {
                 if (!res.data.errcode) {
-                  console.log('launch_get:' + res.data.openid);
+                  //console.log('launch_get:' + res.data.openid);
                   wx.setStorageSync('openid', res.data.openid);
                   wx.setStorageSync('session_key', res.data.session_key);
                 } else {
-                  console.log(res.data);
+                  //console.log(res.data);
                 }
               },
               fail: function () {
@@ -68,7 +68,7 @@ App({
   request: function (obj) {
     var that = this;
     obj.data.APISESSID = this.globalData.APISESSID || ''
-    console.log(obj.data);
+    //console.log(obj.data);
     //obj.data.APISESSID = '123';
 
     // This must be wx.request !
@@ -80,7 +80,7 @@ App({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res);
+        //console.log(res);
         typeof obj.success == "function" && obj.success(res)
         if (!that.globalData.APISESSID && res.data.APISESSID) that.globalData.APISESSID = res.data.APISESSID;
       },

@@ -9,7 +9,7 @@
       </navigator>
       <view class="orders-footer">
           <text class="fl">{{nowtime}}</text>
-          <text class="fr">应付:<text class="color strong">￥{{item.price*item.num}}</text></text>
+          <text class="fr">应付:<text class="color strong">￥{{total_price}}</text></text>
       </view>
   </view>
 
@@ -55,7 +55,7 @@
       </view>
     </picker>
     <view wx:if="{{index_pay==0}}" class="pay_way">
-      <view class="pay_way_list"wx:for="{{pay_ways}}">
+      <view class="pay_way_list" wx:for="{{pay_ways}}">
          <image  src="{{item.src}}" class="{{item.way_id==pay_way_id?'active':''}}" data-id="{{item.way_id}}" bindtap="changePay"></image>
          <icon wx:if="{{item.way_id==pay_way_id}}" type="success_no_circle" size="10" color="#fff"/>
       </view>
@@ -75,8 +75,8 @@
     </picker>
     <picker bindchange="bindBalanceChange" value="{{index}}" range="{{balance_mode}}">
       <view class="delivery-top delivery-bottom balance-list">
-        <text class="fl">余额:<text class="color">￥{{balance}}</text></text>
-        <view class="picker fr color">-￥{{balance_mode[index_balance]}}</view> 
+        <text class="fl">余额:<text class="color">￥{{cuser.account_money}}</text></text>
+        <view class="picker fr color">-￥{{total_price}}</view> 
       </view>
     </picker>
   </view>

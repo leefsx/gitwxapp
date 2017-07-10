@@ -10,7 +10,6 @@ Page({
     totleNum: 0
   },
   onShow() {
-    console.log(app.globalData.carts)
     this.setData({
       foods: app.globalData.carts,
       hasList: app.globalData.carts.length
@@ -40,7 +39,7 @@ Page({
       return
     }
     var cuser = comm.get_cuser();
-    if (this.data.hasList && cuser){
+    if (this.data.hasList){
       app.request({
         url: comm.parseToURL('order','addcart'),
         data: { data: JSON.stringify(cartItems)},
@@ -52,7 +51,6 @@ Page({
               data: [],
               method: 'GET',
               success: function(ress){
-                console.log(ress.data)
                 if(ress.data.result=='OK'){
                   var oid = ress.data.oid
                   wx.navigateTo({
@@ -60,7 +58,7 @@ Page({
                   })
                 }else{
                   wx.showToast({
-                    title: '请求失败！'
+                    title: ress.data.errmsg
                   })
                 }
               }

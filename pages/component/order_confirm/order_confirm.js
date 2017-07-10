@@ -13,6 +13,7 @@ Page({
     total_price:0,
     nowtime: '',
     oid: '',
+    cuser: [],
     order:{
       "id": 1,
       "number": "A4501354410893725",
@@ -24,10 +25,6 @@ Page({
       "time": "2017-7-5 17:30"
     },
     pay_ways:[
-      {
-        way_id: 0,
-        src: "../../../image/wx.png"
-      },
     ],
     pay_way_id:0,
     delivery_mode:["无需配送(虚拟物品)","用户自提","中国邮政"],
@@ -55,15 +52,51 @@ Page({
     balance:0.00,
     invoice_mode: ["不需要","需要"],
     index_invoice: 0,
-    pay_mode:["在线支付","货到付款"],
+    pay_mode:["货到付款"],
     index_pay:0,
     lastPrice:0
     
   },
   lastPay(){
-    wx.navigateTo({
-      url: '../pay/pay',
-    })
+    var oid = this.data.oid
+    if(oid){
+      var order_data = {
+        delivery_mode: this.data.delivery_mode,
+        delivery_time: this.data.delivery_time,
+        address: this.data.address,
+        invoice_mode: this.data.invoice_mode,
+        total_price: this.data.total_price
+      }
+      app.request({
+        url: comm.parseToURL('order','dopayment'),
+        data:{
+          oid: oid,
+          order_data: JSON.stringify(order_data)
+          
+          
+        },
+        method: 'POST',
+        success: function(res){
+          console.log(res)
+          if(res.data.result=='OK'){
+            wx.showToast({
+              title: '支付成功'
+            })
+          }else{
+            wx.showToast({
+              title: '支付失败'
+            })
+          }
+          wx.switchTab({
+            url: '../user/user',
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '请求失败'
+      })
+    }
   },
   bindPickerChange(e){
     this.setData({
@@ -103,23 +136,25 @@ Page({
   },
   onLoad: function (options) {
     var carts = app.globalData.carts
+    var cuser = comm.get_cuser();
     if(carts.length>0){
       var total_price = 0
-      for (var key in carts){
-        total_price += carts[key]['price'] * carts[key]['num']
+      for(var i=0;i<carts.length;i++){
+        total_price += carts[i].price * carts[i].num
       }
       var now = comm.get_now()
       this.setData({
         carts: carts,
-        total_price: total_price,
+        total_price: total_price.toFixed(2),
         nowtime: now,
-        oid: options.oid
+        oid: options.oid,
+        cuser: cuser
       })
     }
   },
   onShow: function () {
     let start_date=util.formatTime2(new Date);
-    console.log(start_date)
+    //console.log(start_date)
     this.setData({
       start_date: start_date,
       date: start_date

@@ -8,7 +8,9 @@ Page({
     orders:[],
     hasAddress:false,
     address:{},
-    order_pro_rel:[]
+    order_pro_rel:[],
+    userInfo: [],
+    cuserInfo: []
   },
   onLoad(){
   },
@@ -26,6 +28,7 @@ Page({
         method: 'GET',
         success: function (res) {
           if (res.data.result == 'OK') {
+            self.setData({cuserInfo:res.data})
             if (app.globalData.userInfo) {
               self.setData({
                 userInfo: app.globalData.userInfo
@@ -70,11 +73,45 @@ Page({
   /**
    * 发起支付请求
    */
-  payOrders() {
+  payOrders(opt) {
     wx.showToast({
       title: '请求中...',
       icon: 'loading',
       duration: 5000
     })
+    var oid = opt.target.dataset.oid
+    if(oid){
+      app.request({
+        url: comm.parseToURL('order', 'dopayment'),
+        data: {
+          oid: oid
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.result == 'OK') {
+            
+            wx.showToast({
+              title: '支付成功'
+            })
+            wx.switchTab({
+              url: '../user/user',
+            })
+          } else {
+            wx.showToast({
+              title: '支付失败'
+            })
+          }
+          
+        }
+      })
+
+    }else{
+      wx.showToast({
+        title: '请求失败',
+        icon: 'loading',
+        duration: 5000
+      })
+    }
+
   }
 })
