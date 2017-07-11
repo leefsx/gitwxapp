@@ -1,6 +1,6 @@
 <import src="../common/nav.wxml" />
 <view class="main">
-  <template is="nav" />
+  <template is="nav" data="{{website_name}}" />
   <view class="index-top">
     <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
       <block wx:for="{{imgUrls}}" wx:key="{{index}}">

@@ -4,6 +4,7 @@ Page({
   data: {
     products:[],
     category: [],
+    website_name: '',
     goods: [
       {
         "first_level_category": "坚果炒货2",
@@ -75,7 +76,10 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        var resdata = res.data.data
+        var resdata = []
+        if (res.data.result=='OK'){
+          resdata = res.data.data
+        }
         that.setData({
           products: resdata
         })

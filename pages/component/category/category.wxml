@@ -1,7 +1,7 @@
 <import src="../../common/nav.wxml" />
 
 <view class="main">
-  <template is="nav" />
+  <template is="nav" data="{{website_name}}" />
   <view class="categroy-top bg_color">
     <view class="categroy-fir-list" wx:for="{{goods}}" wx:for-item="first_level"  data-index="{{index}}">
       <view class="categroy-fir-list-name">
