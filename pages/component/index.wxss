@@ -118,6 +118,7 @@ swiper-item image {
   top: 0;
   right: 15rpx;
   height: 52rpx;
+  display: none;
 }
 .subtit_cate navigator{
   float: left;
@@ -126,6 +127,12 @@ swiper-item image {
   padding: 0 10rpx;
   line-height: 50rpx;
 }
-
+.load_more{
+  border: 1px solid #eee;
+  font-size: 30rpx;
+  padding: 10rpx;
+  line-height: 80rpx;
+  width: 100%;
+}
 
 

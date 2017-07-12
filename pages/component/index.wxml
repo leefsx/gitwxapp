@@ -16,7 +16,7 @@
     </view>
   </view>
   <view class="recom">
-    <text class="fubiao color">全网坚果NO1</text>
+    <text class="fubiao color">全网NO1</text>
     <text class="title">销量领先</text>
     <view class="recom-top">
       <navigator url="details/details">
@@ -61,6 +61,7 @@
           <text class="good-dec">{{item.intro}}</text>
         </navigator>
       </block>
+      <view class="load_more" bindtap="load_more">加载更多</view>
     </view>
   </view>
  </view>

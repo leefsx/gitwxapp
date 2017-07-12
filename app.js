@@ -10,12 +10,12 @@ App({
 
     var openid = wx.getStorageSync('openid');
     if (openid) {
-      console.log('oid:' + openid);
+      //console.log('oid:' + openid);
     } else {
       wx.login({
         success: function (res) {
           if (res.code) {
-            console.log('res_code:' + res.code);
+            //console.log('res_code:' + res.code);
             //发起网络请求
             wx.request({
               url: config.domain + '/api/weixin/get_wxaopenid',
@@ -37,7 +37,7 @@ App({
                 console.log('request fail!');
               },
               complete: function () {
-                console.log('request complete!');
+                //console.log('request complete!');
               }
             })
           } else {
