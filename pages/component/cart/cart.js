@@ -116,6 +116,7 @@ Page({
     this.setData({
       foods: foods
     });
+    app.globalData.carts = foods
     if(!foods.length){
       this.setData({
         hasList: false
@@ -156,6 +157,7 @@ Page({
     this.setData({
       foods: foods
     });
+    app.globalData.carts = foods
     this.getTotalPrice();
   },
 
@@ -174,6 +176,7 @@ Page({
     this.setData({
       foods: foods
     });
+    app.globalData.carts = foods
     this.getTotalPrice();
   },
 /**

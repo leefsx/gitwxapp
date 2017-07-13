@@ -83,8 +83,9 @@ Page({
               title: '支付成功'
             })
           }else{
+            var err = res.data.errmsg || '支付失败'
             wx.showToast({
-              title: '支付失败'
+              title: err
             })
           }
           wx.switchTab({
