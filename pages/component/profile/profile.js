@@ -1,5 +1,5 @@
 
-var comm = require('../../common/common.js');
+var comm = require('../../../common/common.js');
 
 // 获取全局应用程序实例对象
 var app = getApp();
@@ -45,7 +45,7 @@ Page({
         success: function(res){
           if(res.data.result=='OK'){
             wx.switchTab({
-              url: `../signin/signin`
+              url: `../user/user`
             })
           }else{
             console.log(res.data)
@@ -71,9 +71,10 @@ Page({
         console.log(res)
         if(res.data.result=='OK'){
           app.globalData.APISESSID = res.data.APISESSID
-          wx.switchTab({
-            url: `../signin/signin`
+          wx.showToast({
+            title: '注册成功'
           })
+          wx.navigateBack()
         }else{
           wx.showToast({
             title: '请求失败！'

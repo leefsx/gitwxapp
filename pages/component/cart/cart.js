@@ -10,6 +10,7 @@ Page({
     totleNum: 0
   },
   onShow() {
+    console.log(app.globalData.carts.length)
     this.setData({
       foods: app.globalData.carts,
       hasList: app.globalData.carts.length
@@ -38,40 +39,57 @@ Page({
       })
       return
     }
-    var cuser = comm.get_cuser();
-    if (this.data.hasList){
-      app.request({
-        url: comm.parseToURL('order','addcart'),
-        data: { data: JSON.stringify(cartItems)},
-        method: 'GET',
-        success: function(res){
-          if(res.data.result=='OK'){
-            app.request({
-              url: comm.parseToURL('order','createOrder'),
-              data: [],
-              method: 'GET',
-              success: function(ress){
-                if(ress.data.result=='OK'){
-                  var oid = ress.data.oid
-                  wx.navigateTo({
-                    url: '../order_confirm/order_confirm?oid=' + oid
-                  })
-                }else{
-                  wx.showToast({
-                    title: ress.data.errmsg
-                  })
-                }
+    comm.get_cuser({
+      success:function(cuser){
+        var that = this
+        if (cuser == false) {
+          wx.showToast({
+            title: '请先登录'
+          })
+          wx.navigateTo({
+            url: '../profile/profile'
+          })
+        } else if (app.globalData.carts) {
+          app.request({
+            url: comm.parseToURL('order', 'addcart'),
+            data: { data: JSON.stringify(cartItems) },
+            method: 'GET',
+            success: function (res) {
+              if (res.data.result == 'OK') {
+                app.request({
+                  url: comm.parseToURL('order', 'createOrder'),
+                  data: [],
+                  method: 'GET',
+                  success: function (ress) {
+                    if (ress.data.result == 'OK') {
+                      var oid = ress.data.oid
+                      wx.navigateTo({
+                        url: '../order_confirm/order_confirm?oid=' + oid
+                      })
+                    } else {
+                      wx.showToast({
+                        title: ress.data.errmsg
+                      })
+                    }
+                  }
+                })
+
+              } else {
+                wx.showToast({
+                  title: '请求失败'
+                })
               }
-            })
-            
-          }else{
-            wx.showToast({
-              title: '请求失败'
-            })
-          }
+            }
+          })
         }
-      })
-    }
+      }
+    })
+    
+    
+    
+      
+    
+    
   },
   /**
    * 当前商品选中事件

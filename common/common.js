@@ -15,27 +15,26 @@ function parseToURL(m,a,arr){
   return url;
 }
 
-function get_cuser(){
+function get_cuser(obj){
   if (app.globalData.cuser){
     return app.globalData.cuser
   }else{
     var openid = wx.getStorageSync('openid');
     if (openid) {
-      app.request({
+      wx.request({
         url: parseToURL('weixin', 'signin'),
         method: 'GET',
         data: { openid: openid },
         success: function (res) {
           if (res.data.result == 'OK') {
             app.globalData.cuser = res.data
-            return res.data
+            typeof obj.success == "function" && obj.success(res.data)
           } else {
-            return false
+            typeof obj.success == "function" && obj.success(false)
           }
         },
         fail: function () {
-          console.log('get_cuser fail!')
-          return false
+          typeof obj.success == "function" && obj.success(false)
         }
       })
     }

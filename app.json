@@ -9,7 +9,9 @@
     "pages/component/details/details",
     "pages/component/list/list",
     "pages/component/order_confirm/order_confirm",
-    "pages/component/pay/pay"
+    "pages/component/pay/pay",
+    "pages/component/profile/profile",
+    "pages/component/login/login"
   ],
   "window": {
     "navigationBarTextStyle": "#ffffff",

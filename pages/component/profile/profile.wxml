@@ -32,10 +32,10 @@
         </swiper-item>
     </swiper>
     <view class="c-minheight wx-view_JjAvLE" data-c_e_id="wx_view_7ac6c7cf">
-        <navigator class="wx-navigator_91rIxS" url = "/page/login/login" data-c_e_id="wx_navigator_f466d04e" hover-class="navigator-hover">
+        <navigator class="wx-navigator_91rIxS" url = "../login/login" data-c_e_id="wx_navigator_f466d04e" hover-class="navigator-hover">
             <text class="c-block wx-text_T7Ctll" data-c_e_id="wx_text_85b91d3b">绑定帐号</text>
         </navigator>
-        <navigator class="wx-navigator_91rIxS" data-c_e_id="wx_navigator44bab4ab" url = "/page/signin/signin" bindtap="auto_registered" hover-class="navigator-hover">
+        <navigator class="wx-navigator_91rIxS" data-c_e_id="wx_navigator44bab4ab" url = "" bindtap="auto_registered" hover-class="navigator-hover">
             <text class="c-block wx-text_T7Ctll" data-c_e_id="wx_text403f7ded">自动注册</text>
         </navigator>
     </view>
