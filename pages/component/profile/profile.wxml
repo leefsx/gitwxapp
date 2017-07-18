@@ -20,16 +20,6 @@
                 </view>
             </view>
         </swiper-item>
-        <swiper-item class="c-full wx-swiper-item_TR9yQI" data-c_e_id="wx_swiper_item_1814a816">
-            <view class="wx-view_9AHgoU" data-c_e_id="wx_view369e101c">
-                <text class="c-block wx-text_lun8Np" data-c_e_id="wx_text43080aba">发现，购物正能量</text>
-                <text class="c-block wx-text_56NxjL" data-c_e_id="wx_text119e88d3">热门商品懒人包，寻找好物不再盲目。     
-                    工作再忙，也要跟紧潮流。</text>
-                <view class="c-minheight wx-view_eJpe4z" data-c_e_id="wx_view310897ec">
-                    <image class="wx-image_rxdS0O" data-c_e_id="wx_image04b7b983" mode="aspectFit" src="http://qty83k.creatby.com/materials/origin/4e3675d307eb837f998dd5cad22ebe83_origin.jpg" style="background-size: 100% 100%; background-position: 0% 0%; background-repeat: no-repeat; background-image: url(http://qty83k.creatby.com/materials/origin/4e3675d307eb837f998dd5cad22ebe83_origin.jpg); "/>
-                </view>
-            </view>
-        </swiper-item>
     </swiper>
     <view class="c-minheight wx-view_JjAvLE" data-c_e_id="wx_view_7ac6c7cf">
         <navigator class="wx-navigator_91rIxS" url = "../login/login" data-c_e_id="wx_navigator_f466d04e" hover-class="navigator-hover">

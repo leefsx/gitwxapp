@@ -1,6 +1,6 @@
 <import src="../../common/prompt.wxml" />
 <view class="main">
-    <view wx:if="{{hasList}}">
+    <view wx:if="{{foods.length}}">
         <view class="cart-box">
             <view class="cart-list" wx:for="{{foods}}" wx:key="{{index}}">
                 <icon wx:if="{{item.selected}}" type="success" color="#f00" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
