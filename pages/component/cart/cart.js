@@ -27,17 +27,20 @@ Page({
     })
   },
   onShow() {
-    console.log(app.globalData.carts.length)
-    this.setData({
-      foods: app.globalData.carts,
-      hasList: app.globalData.carts.length,
+
+    
+    if (app.globalData.carts.length){
+      var cart_num = app.globalData.carts.length
+      if (cart_num > 0) {
+        this.setData({
+          foods: app.globalData.carts,
       'prompt.hidden': app.globalData.carts.length
-    });
-    if (this.data.hasList==0){
-      wx.navigateBack()
+        });
+        this.isSelectAll();
+        this.getTotalPrice();
+      }
+
     }
-    this.isSelectAll();
-    this.getTotalPrice();
   },
 
   toConfirm(){
