@@ -18,7 +18,7 @@
   <view class="categroy-bottom">
     <view class="good-all">
       <view wx:for="{{products}}" class="good smallFoodContainer">
-        <navigator url="details/details?id={{item.id}}" >
+        <navigator url="../details/details?id={{item.id}}" >
           <image mode="aspectFit" src="{{item.doc_image}}" class="good-img smallImg"></image>
           <text class="good-name tooLong">{{item.title}}</text>
           <text class="good-dec tooLong">{{item.intro}}</text>
