@@ -21,6 +21,7 @@
   display: inline-block;
   margin-right: 1%;
   margin-bottom: 10rpx;
+  overflow: hidden;
 }
 .good-nav:nth-child(even){
   margin-right: 0;
@@ -28,20 +29,24 @@
 .good-nav:hover{
   border-color: rgb(199, 31, 59);
 }
-.good-img{
-  /*display: block;*/
-  width:100%;
-}
 .good-lb text{
   display: block;
   text-align: left;
   font-size: 26rpx;
   padding-top: 6rpx;
 }
+.good-name{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 .good-dec{
-  font-size: 24rpx;
-  color: #8c8c8c;
-  padding-bottom: 10rpx;
+  color:#8c8c8c;
+  padding-bottom:10rpx;
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .main{text-align: center;margin: 0 10rpx}

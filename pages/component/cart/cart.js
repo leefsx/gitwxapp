@@ -7,13 +7,31 @@ Page({
     totalPrice:0,           // 总价，初始为0
     selectAllStatus:true,    // 全选状态，默认全选
     jsStatus: false,
-    totleNum: 0
+    totleNum: 0,
+    prompt: {
+      hidden: false,
+      icon: '../../../image/asset-img/iconfont-cart-empty.png',
+      title: '购物车空空如也',
+      text: '来挑几件好货吧',
+      buttons: [
+        {
+          text: '随便逛',
+          bindtap: 'bindtap',
+        },
+      ],
+    },
+  },
+  bindtap(){
+    wx.switchTab({
+      url: '../category/category',
+    })
   },
   onShow() {
     console.log(app.globalData.carts.length)
     this.setData({
       foods: app.globalData.carts,
-      hasList: app.globalData.carts.length
+      hasList: app.globalData.carts.length,
+      'prompt.hidden': app.globalData.carts.length
     });
     if (this.data.hasList==0){
       wx.navigateBack()
@@ -119,7 +137,8 @@ Page({
     app.globalData.carts = foods
     if(!foods.length){
       this.setData({
-        hasList: false
+        hasList: false,
+        'prompt.hidden': false
       });
     }else{
       this.isSelectAll();

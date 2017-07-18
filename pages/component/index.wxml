@@ -31,6 +31,7 @@
       <image mode="widthFix" src="/image/tj-1.jpg"></image>
       <view class="recom-bottom-list medium_font bg_color">马上抢购</view>
     </view>
+    <!-- <template is="pmd" data="{{pmdAll}}" /> -->
     <!--<view class="recom-slider">
       <swiper indicator-dots="false" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
         <block wx:for="{{imgUrls}}" wx:key="{{index}}">
@@ -55,8 +56,8 @@
     </view>
     <view class="good-lb">
       <block wx:for="{{products}}" wx:key="{{index}}">
-        <navigator url="details/details?id={{item.id}}" class="good-nav">
-          <image style="width:100%;" mode="widthFix" class="good-img" src="{{item.doc_image}}" class="" />
+        <navigator url="details/details?id={{item.id}}" class="good-nav smallFoodContainer">
+          <image mode="aspectFit" class="good-img smallImg" src="{{item.doc_image}}"/>
           <text class="good-name color">{{item.title}}</text>
           <text class="good-dec">{{item.intro}}</text>
         </navigator>

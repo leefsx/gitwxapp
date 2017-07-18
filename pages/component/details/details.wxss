@@ -57,9 +57,7 @@
 .good-content,.good-content swiper,.good-info{
   width: 100%;
 }
-.food-image{
-  width: 100%;
-}
+
 .food-content{
   padding: 0 20rpx;
 }
@@ -272,6 +270,12 @@
     z-index: 14;
     bottom: 100rpx;
     height: 500rpx;
+    animation: action 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes action{
+  0%{bottom:-500rpx;}
+  100%{bottom:100rpx;}
 }
 .detail-cart-box{
   padding: 20rpx 20rpx 40rpx 20rpx;
@@ -293,6 +297,8 @@
 }
 .detail-cart-thumb{
   width: 220rpx;
+  height: 220rpx;
+  background-color: #eee;
   border: 1rpx solid #aaa;
   border-radius: 10rpx;
   margin-right: 20rpx;
@@ -351,6 +357,16 @@
   padding-left: 20rpx;
 }
 
+
+
+
+.good-info,.good-rating,.good-rec,.good-ans{
+  animation: opacity 2s;
+}
+@keyframes opacity{
+  0%{opacity:0;}
+  100%{opacity:1;}
+}
 
 
 

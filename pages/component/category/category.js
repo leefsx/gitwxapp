@@ -21,6 +21,9 @@ Page({
     detail: [],
     curFirIndex: 0,
     curSecIndex: 0,
+    prompt:{
+      hidden:true,
+    }
   },
   onShow(){
     if (this.data.products.length<1){
@@ -44,7 +47,8 @@ Page({
           resdata = res.data.data
         }
         that.setData({
-          products: resdata
+          products: resdata,
+          'prompt.hidden': resdata.length
         })
       },
       fail: function () {

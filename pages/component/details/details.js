@@ -168,7 +168,33 @@ Page({
     this.setData({
       curIndex: e.detail.current
     })
-  }
+  },
+
+
+  oTs: function (e) {
+    var m = this;
+    console.log(e)
+    m._x = e.touches[0].clientX;
+  },
+  oTe: function (e) {
+    console.log(e)
+    var m = this;
+    var curIndex = parseInt(this.data.curIndex);
+
+    m._new_x = e.changedTouches[0].clientX;
+
+    if (m._new_x - m._x > 8 && curIndex > 0) {
+      curIndex = curIndex - 1;
+    }
+
+    if (m._new_x - m._x < -8 && curIndex < 3) {
+      curIndex += 1;
+    }
+
+    this.setData({
+      curIndex: curIndex
+    });
+  },
 
 
 })

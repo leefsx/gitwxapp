@@ -1,3 +1,4 @@
+<import src="../../common/prompt.wxml" />
 <view class="main">
     <view wx:if="{{hasList}}">
         <view class="cart-box">
@@ -26,7 +27,9 @@
             <text wx:else class="cart-toatl-qjs">请选购</text>
         </view>
     </view>
-    <view wx:else>
+    
+    <!-- <view wx:else>
         <view class="cart-no-data">购物车是空的哦~</view>
-    </view>
+    </view> -->
 </view>
+<template is="prompt" data="{{prompt}}"></template>
