@@ -10,16 +10,17 @@ Page({
     totleNum: 0
   },
   onShow() {
-    console.log(app.globalData.carts.length)
-    this.setData({
-      foods: app.globalData.carts,
-      hasList: app.globalData.carts.length
-    });
-    if (this.data.hasList==0){
-      wx.navigateBack()
+    
+    if (app.globalData.carts.length){
+      var cart_num = app.globalData.carts.length
+      if (cart_num > 0) {
+        this.setData({
+          foods: app.globalData.carts
+        });
+        this.isSelectAll();
+        this.getTotalPrice();
+      }
     }
-    this.isSelectAll();
-    this.getTotalPrice();
   },
 
   toConfirm(){
@@ -118,9 +119,7 @@ Page({
     });
     app.globalData.carts = foods
     if(!foods.length){
-      this.setData({
-        hasList: false
-      });
+      
     }else{
       this.isSelectAll();
       this.getTotalPrice();

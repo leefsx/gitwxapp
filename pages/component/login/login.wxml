@@ -4,11 +4,11 @@
       <text class="user-motto">{{motto}}</text>
       <view class="cp-input">
         <view class="inline-block">
-          <image src="../../resources/sno.png" class="loginicon"></image>
+          <image src="/image/sno.png" class="loginicon"></image>
           <input type="text" bindinput="userNameInput" style="float:right;" placeholder="请输入帐号" />
         </view>
         <view>
-          <image src="../../resources/pasw.png" class="loginicon"></image>
+          <image src="/image/pasw.png" class="loginicon"></image>
           <input type="text" bindinput="userPasswordInput" password="true" style="float:right;" placeholder="请输入密码" />
         </view>
         <button bindtap="logIn">确认绑定</button>

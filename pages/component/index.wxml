@@ -19,16 +19,12 @@
     <text class="fubiao color">全网NO1</text>
     <text class="title">销量领先</text>
     <view class="recom-top">
-      <navigator url="details/details">
-        <image mode="widthFix" src="/image/tj-2.png"></image>
-      </navigator>
-      <navigator url="details/details">
-        <image mode="widthFix" src="/image/tj-3.png"></image>
-        <view class="classname"></view>
+      <navigator wx:for="{{index_middle_img}}" url="{{item.url}}">
+        <image mode="widthFix" src="{{item.src}}"></image>
       </navigator>
     </view>
     <view class="recom-bottom" bindtap="toCategory">
-      <image mode="widthFix" src="/image/tj-1.jpg"></image>
+      <image mode="widthFix" src="{{index_middle2_img}}"></image>
       <view class="recom-bottom-list medium_font bg_color">马上抢购</view>
     </view>
     <!--<view class="recom-slider">

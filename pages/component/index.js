@@ -4,10 +4,7 @@ var WxParse = require('../../common/wxParse.js');
 var app = getApp();
 Page({
   data: {
-    imgUrls: [
-      '/image/bg-1.jpg',
-      '/image/bg-2.jpg'
-    ],
+    imgUrls: [],
     products:[],
     goodsXX: [],
     indicatorDots: false,
@@ -15,10 +12,17 @@ Page({
     interval: 3000,
     duration: 800,
     website_name: '',
-    list_page: 1
+    list_page: 1,
+    index_middle_img: [],
+    index_middle2_img: ''
   },
   onLoad() {
-    this.getProductsFromServer(6,1)
+    this.getProductsFromServer(6,1),
+    this.setData({
+      imgUrls: config.index_autoplay_img,
+      index_middle_img: config.index_middle_img,
+      index_middle2_img: config.index_middle2_img
+    })
   },
   toCategory(){
     wx.switchTab({
