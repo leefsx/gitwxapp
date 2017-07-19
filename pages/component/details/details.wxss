@@ -93,7 +93,7 @@
   background-color: #fff;
 }
 .food-dec .details{
-  height: 1400rpx;
+  /* height: 1400rpx; */
 }
 .food-dec text{
   display: block;
