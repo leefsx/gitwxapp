@@ -21,6 +21,8 @@ Page({
     detail: [],
     curFirIndex: 0,
     curSecIndex: 0,
+    product_category: 0,
+    list_page: 1
   },
   onShow(){
     if (this.data.products.length<1){
@@ -44,7 +46,8 @@ Page({
           resdata = res.data.data
         }
         that.setData({
-          products: resdata
+          products: resdata,
+          product_category: cateid
         })
       },
       fail: function () {
@@ -62,16 +65,15 @@ Page({
     wx.stopPullDownRefresh()
   },
   getProductsFromServer(list_num, page) {
-
     var that = this;
+    var product_category = that.data.product_category
     app.request({
       url: app.domain + '/api/product/catelist',
       data: {
-
+        
       },
       method: 'GET',
       success: function (res) {
-        console.log(res)
         if (res.data.result == 'OK') {
           that.setData({
             category: res.data.data
@@ -87,15 +89,22 @@ Page({
       url: app.domain + '/api/product/list',
       data: {
         list_num: list_num,
-        product_category: 0,
+        product_category: product_category,
         p: page
       },
       method: 'GET',
       success: function (res) {
         var resdata = res.data.data
+        if (page > 1 && resdata.length > 0) {
+          var this_products = that.data.products
+          this_products = this_products.concat(resdata)
+        }else{
+          var this_products = resdata
+        }
         that.setData({
-          products: resdata,
-          website_name: config.website_name
+          products: this_products,
+          website_name: config.website_name,
+          list_page: page
         })
       },
       fail: function () {
@@ -105,6 +114,12 @@ Page({
         console.log('complete!');
       }
     })
+  },
+  load_more() {
+    var this_page = this.data.list_page
+    if (this_page > 0) {
+      this.getProductsFromServer(4, this_page + 1)
+    }
   }
 
 })

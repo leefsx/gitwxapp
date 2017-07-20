@@ -36,7 +36,7 @@ Page({
     })
   },
   addCount() {
-    // console.log(e.target)
+    
     let food = this.data.food;
     let num = food.num;
     const count = food.total_count;
@@ -99,7 +99,6 @@ Page({
   toConfirm(){
     
     var that = this
-    //var cuser = comm.get_cuser(); 
     var detail_data = that.data.detail_data
     var carts = [{
       cid: detail_data.id,
@@ -111,7 +110,7 @@ Page({
       selected: true,
       max_kc: detail_data.num
     }]
-    console.log(carts)
+    
     app.globalData.carts = carts
     wx.switchTab({
       url: '../cart/cart',
@@ -157,14 +156,14 @@ Page({
 
   bindTap(e) {
     const index = parseInt(e.currentTarget.dataset.index);
-    console.log(index)
+    
     this.setData({
       curIndex: index
     })
   },
 
   currentChange(e) {
-    console.log(e.detail.current)
+    
     this.setData({
       curIndex: e.detail.current
     })

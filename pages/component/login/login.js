@@ -40,7 +40,6 @@ Page({
       success: function(res){
         if (res.data.result=='OK'){
           app.globalData.APISESSID = res.data.APISESSID;
-          console.log(res.data)
           wx.switchTab({
             url: `../user/user`
           })

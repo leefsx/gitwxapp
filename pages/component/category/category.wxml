@@ -9,7 +9,7 @@
         <view class="navigator-arrow"></view>
       </view>
       <view class="categroy-sec-list">
-        <view wx:for="{{category}}" data-id="{{item.id}}" url="second_level.url" class="categroy-sec-list-name"  bindtap="switchTab">
+        <view wx:for="{{category}}" data-id="{{item.id}}" class="categroy-sec-list-name"  bindtap="switchTab">
           
           {{item.name}}
         </view>
@@ -19,13 +19,14 @@
   <view class="categroy-bottom">
     <view class="good-all">
       <view wx:for="{{products}}" class="good">
-        <navigator url="details/details?id={{item.id}}">
+        <navigator url="../details/details?id={{item.id}}">
           <image mode="widthFix" src="{{item.doc_image}}" class="good-img"></image>
           <text class="good-name">{{item.title}}</text>
           <text class="good-dec">{{item.intro}}</text>
           <text class="good-price bg_color">价格：{{item.price}}</text>
         </navigator>
       </view>
+      <view class="load_more" bindtap="load_more">加载更多</view>
     </view>
   </view>
 </view>

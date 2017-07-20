@@ -15,7 +15,6 @@ App({
       wx.login({
         success: function (res) {
           if (res.code) {
-            //console.log('res_code:' + res.code);
             //发起网络请求
             wx.request({
               url: config.domain + '/api/weixin/get_wxaopenid',
@@ -26,18 +25,15 @@ App({
               method: 'GET',
               success: function (res) {
                 if (!res.data.errcode) {
-                  //console.log('launch_get:' + res.data.openid);
                   wx.setStorageSync('openid', res.data.openid);
                   wx.setStorageSync('session_key', res.data.session_key);
                 } else {
-                  //console.log(res.data);
                 }
               },
               fail: function () {
                 console.log('request fail!');
               },
               complete: function () {
-                //console.log('request complete!');
               }
             })
           } else {
@@ -68,10 +64,12 @@ App({
   request: function (obj) {
     var that = this;
     obj.data.APISESSID = this.globalData.APISESSID || ''
-    //console.log(obj.data);
-    //obj.data.APISESSID = '123';
-
+    obj.data.APITOKEN = config.APITOKEN
     // This must be wx.request !
+    var method = 'application/json'
+    if(obj.method&&obj.method=='POST'){
+      method = 'application/x-www-form-urlencoded'
+    }
     wx.request({
       url: obj.url,
       data: obj.data,

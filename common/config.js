@@ -15,6 +15,7 @@ module.exports = {
       "url": "details/details",
       "src": "/image/tj-3.png"
   }],
-  "index_middle2_img": "/image/tj-1.jpg"
-  
+  "index_middle2_img": "/image/tj-1.jpg",
+  "APITOKEN": "xxxxsss",
+  "appid": "wx24b2b2feed56da32"
 }
