@@ -9,11 +9,6 @@
         </swiper-item>
       </block>
     </swiper>
-    <view class="index-top-list">
-      <view class="index-top-one color strong">天然健康食品    营养价值丰富</view>
-      <view class="index-top-two color medium_font">各类坚果炒货新鲜上市</view>
-      <view class="index-top-three bg_color medium_font" bindtap="toCategory">立即抢购</view>
-    </view>
   </view>
   <view class="recom">
     <text class="fubiao color">全网NO1</text>
@@ -41,7 +36,7 @@
 
   <view class="goodsxx">
     <view class="goodsxx-bt">
-      <text class="title">休闲零食</text>
+      <text class="title">产品列表</text>
       <view class="subtit_cate">
         <navigator url="url">开心果</navigator>
         <navigator url="url">点心面</navigator>

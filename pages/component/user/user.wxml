@@ -19,7 +19,7 @@
         <view class="orders">我的订单</view>
         <view class="orders-list" wx:for="{{orders}}" wx:key="index">
             <view class="orders-number">订单编号：{{item.oid}}</view>
-            <navigator url="/page/component/details/details" class="orders-detail">
+            <navigator url="../details/details" class="orders-detail">
                 <image src="{{order_pro_rel[item.id][0].picurl}}"></image>
                 <view class="">{{order_pro_rel[item.id][0].product_name}}</view>
                 <view class="">{{item.count}}</view>
@@ -28,7 +28,7 @@
                 <text wx:else="{{item.order_status_no==5}}" class="orders-status">订单取消</text>
             </navigator>
             <view class="orders-footer">
-                <text><text wx:if="{{item.order_status_no==1||item.pay_status==1}}">应付：</text><text wx:if="{{item.order_status_no==3}}">实付：</text>￥{{order_pro_rel[item.id][0].price}}</text>
+                <text><text wx:if="{{item.order_status_no==1||item.pay_status==1}}">应付：</text><text wx:if="{{item.order_status_no==3}}">实付：</text>￥{{item.total_amount}}</text>
                 <view wx:if="{{item.order_status_no==1}}"  class="orders-btn" data-oid="{{item.oid}}" bindtap="payOrders">付款</view>
                 <navigator url="../details/details?id={{order_pro_rel[item.id][0].product_id}}" wx:if="{{item.order_status_no==2||item.pay_status==2}}" class="orders-btn">再次购买</navigator>
             </view>

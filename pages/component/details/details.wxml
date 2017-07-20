@@ -6,6 +6,7 @@
       <text class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">
         <text>商品信息</text>
       </text>
+      
       <text class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">
         <text>顾客评价</text>
       </text>

@@ -49,6 +49,7 @@ Page({
       duration: 5000
     })
     var cartItems = this.data.foods
+    
     if (!cartItems || cartItems.length === 0) {
       wx.hideToast()
       wx.showModal({
@@ -62,7 +63,7 @@ Page({
     comm.get_cuser({
       success:function(cuser){
         var that = this
-        
+        console.log(cuser)
         if (cuser == false) {
           console.log('get cuser fail')
           wx.showToast({
