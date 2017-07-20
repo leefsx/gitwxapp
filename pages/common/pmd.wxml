@@ -1,0 +1,11 @@
+<template name="pmd">
+    <view class="pmd-all" >
+      <view class="pmd-content">
+        <scroll-view scroll-x style="width: 100%;white-space: nowrap;" scroll-left="{{pmdAll.scroll_left}}">
+          <view wx:for="{{pmdAll.pmdImgs}}" class="pmd-list" style="padding:{{pmdAll.a}}px;width:{{pmdAll.b}}px;height:{{pmdAll.b}}px;display:inline-block;box-sizing:border-box;" bindtap="jumpTodetail">
+            <image  src="{{item}}" mode="{{pmdAll.mode}}" style="width:{{pmdAll.c}}px;height:{{pmdAll.c}}px;background-color: #eeeeee;"></image>
+          </view>
+        </scroll-view>             
+      </view>
+    </view>
+</template>

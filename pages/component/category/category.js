@@ -22,7 +22,10 @@ Page({
     curFirIndex: 0,
     curSecIndex: 0,
     product_category: 0,
-    list_page: 1
+    list_page: 1,
+    prompt:{
+      hidden:true,
+    }
   },
   onShow(){
     if (this.data.products.length<1){
@@ -47,7 +50,8 @@ Page({
         }
         that.setData({
           products: resdata,
-          product_category: cateid
+          product_category: cateid,
+          'prompt.hidden': resdata.length
         })
       },
       fail: function () {

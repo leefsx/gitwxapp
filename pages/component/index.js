@@ -24,6 +24,10 @@ Page({
       index_middle2_img: config.index_middle2_img
     })
   },
+  onShow: function () {
+    // 页面显示
+    
+  },
   toCategory(){
     wx.switchTab({
       url: 'category/category',
@@ -55,6 +59,7 @@ Page({
       },
       method: 'GET',
       success: function (res) {
+        // console.log(res)
         var resdata = res.data.data
         if (page > 1 && resdata.length > 0) {
           var this_products = that.data.products
@@ -71,6 +76,7 @@ Page({
             website_name: config.website_name
           })
           if (resdata.length > 0) {
+            // console.log(resdata[0].id)
             app.globalData.firstPid = resdata[0].id
           }
         }

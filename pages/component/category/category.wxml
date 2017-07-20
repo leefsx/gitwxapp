@@ -1,5 +1,5 @@
 <import src="../../common/nav.wxml" />
-
+<import src="../../common/prompt.wxml" />
 <view class="main">
   <template is="nav" data="{{website_name}}" />
   <view class="categroy-top bg_color">
@@ -18,15 +18,16 @@
   </view>
   <view class="categroy-bottom">
     <view class="good-all">
-      <view wx:for="{{products}}" class="good">
-        <navigator url="../details/details?id={{item.id}}">
-          <image mode="widthFix" src="{{item.doc_image}}" class="good-img"></image>
-          <text class="good-name">{{item.title}}</text>
-          <text class="good-dec">{{item.intro}}</text>
+      <view wx:for="{{products}}" class="good smallFoodContainer">
+        <navigator url="../details/details?id={{item.id}}" >
+          <image mode="aspectFit" src="{{item.doc_image}}" class="good-img smallImg"></image>
+          <text class="good-name tooLong">{{item.title}}</text>
+          <text class="good-dec tooLong">{{item.intro}}</text>
           <text class="good-price bg_color">价格：{{item.price}}</text>
         </navigator>
       </view>
       <view class="load_more" bindtap="load_more">加载更多</view>
     </view>
+    <template is="prompt" data="{{prompt}}"></template>
   </view>
 </view>
