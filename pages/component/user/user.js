@@ -81,6 +81,10 @@ Page({
     })
     var oid = opt.target.dataset.oid
     if(oid){
+      wx.navigateTo({
+        url: '../order_confirm/order_confirm?fr=u&oid='+oid,
+      })
+      /*
       app.request({
         url: comm.parseToURL('order', 'dopayment'),
         data: {
@@ -104,6 +108,7 @@ Page({
           
         }
       })
+      */
 
     }else{
       wx.showToast({

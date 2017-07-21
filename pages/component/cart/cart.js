@@ -27,14 +27,13 @@ Page({
     })
   },
   onShow() {
-
-    
+    var openid = wx.getStorageSync('openid');
     if (app.globalData.carts.length){
       var cart_num = app.globalData.carts.length
       if (cart_num > 0) {
         this.setData({
           foods: app.globalData.carts,
-      'prompt.hidden': app.globalData.carts.length
+          'prompt.hidden': app.globalData.carts.length
         });
         this.isSelectAll();
         this.getTotalPrice();
@@ -50,6 +49,7 @@ Page({
       duration: 5000
     })
     var cartItems = this.data.foods
+    
     if (!cartItems || cartItems.length === 0) {
       wx.hideToast()
       wx.showModal({
@@ -63,7 +63,9 @@ Page({
     comm.get_cuser({
       success:function(cuser){
         var that = this
+        console.log(cuser)
         if (cuser == false) {
+          console.log('get cuser fail')
           wx.showToast({
             title: '请先登录'
           })
@@ -95,6 +97,11 @@ Page({
                   }
                 })
 
+              } else if (res.data.errmsg=='2'){
+                wx.navigateTo({
+                  url: '../profile/profile',
+                })
+                
               } else {
                 wx.showToast({
                   title: '请求失败'
@@ -102,6 +109,8 @@ Page({
               }
             }
           })
+        }else{
+          console.log('cart empty')
         }
       }
     })

@@ -29,6 +29,10 @@ Page({
       "dec_detail": {
       }
     },
+    tradeRate: [],
+    salesRecords: [],
+    productMessage: []
+
   },
   changState() {
     this.setData({
@@ -36,7 +40,7 @@ Page({
     })
   },
   addCount() {
-    // console.log(e.target)
+    
     let food = this.data.food;
     let num = food.num;
     const count = food.total_count;
@@ -68,9 +72,13 @@ Page({
     var cart_index = carts.length
     var detail_data = that.data.detail_data
     var hadInCart = false
+    
     if (cart_index > 0) {
       for (var i = 0; i < cart_index; i++) {
+        
         if (carts[i].cid == detail_data.id) {
+          carts[i].sum = detail_data.price;
+          carts[i].price = detail_data.price;
           carts[i].num += that.data.food.num;
           hadInCart = true
         }
@@ -99,7 +107,6 @@ Page({
   toConfirm(){
     
     var that = this
-    //var cuser = comm.get_cuser(); 
     var detail_data = that.data.detail_data
     var carts = [{
       cid: detail_data.id,
@@ -111,7 +118,7 @@ Page({
       selected: true,
       max_kc: detail_data.num
     }]
-    console.log(carts)
+    
     app.globalData.carts = carts
     wx.switchTab({
       url: '../cart/cart',
@@ -134,11 +141,15 @@ Page({
         },
         method: 'GET',
         success: function (res) {
+          console.log(res.data.productMessage)
           var detail = res.data.data.description;
           WxParse.wxParse('detail_desc', 'html', detail, that, 0);
           that.setData({
             detail_data: res.data.data,
-            product_id: options.id
+            product_id: options.id,
+            tradeRate: res.data.tradeRate,
+            salesRecords: res.data.salesRecords,
+            productMessage: res.data.productMessage
           })
         },
         fail: function () {
@@ -157,14 +168,14 @@ Page({
 
   bindTap(e) {
     const index = parseInt(e.currentTarget.dataset.index);
-    console.log(index)
+    
     this.setData({
       curIndex: index
     })
   },
 
   currentChange(e) {
-    console.log(e.detail.current)
+    
     this.setData({
       curIndex: e.detail.current
     })

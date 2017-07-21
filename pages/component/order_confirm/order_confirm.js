@@ -2,6 +2,8 @@
 // <import src ="utils/common/nav.wxml" />
 import util from "../../../utils/util.js"  
 var comm = require('../../../common/common.js');
+var config = require('../../../common/config.js');
+var md5 = require('../../../common/md5.js');
 var app = getApp()
 Page({
 
@@ -25,9 +27,13 @@ Page({
       "time": "2017-7-5 17:30"
     },
     pay_ways:[
+      {
+        way_id: 1,
+        src: "../../../image/wx.png"
+      }
     ],
-    pay_way_id:0,
-    delivery_mode:["无需配送(虚拟物品)","用户自提","中国邮政"],
+    pay_way_id:1,
+    delivery_mode:["快递物流"],
     delivery_time:["9:00-12:00","12:00-18:00","18:00-22:00"],
     coupon_mode:["未使用"],
     integral_mode:[0],
@@ -50,54 +56,74 @@ Page({
     coupon:0,
     integral:0,
     balance:0.00,
-    invoice_mode: ["不需要","需要"],
+    invoice_mode: ["不需要"],
     index_invoice: 0,
-    pay_mode:["货到付款"],
+    pay_mode: ["在线支付"],
     index_pay:0,
-    lastPrice:0
+    lastPrice:0,
+    openid: ''
     
   },
   lastPay(){
-    var oid = this.data.oid
-    if(oid){
+    var openid = wx.getStorageSync('openid');
+    //if (this.data.index_pay==0){
+      var oid = this.data.oid 
+      //var body = config.website_name;
+      var total_fee = this.data.total_price;
+      var temdata = {
+        oid: oid,
+        total_fee: total_fee,
+        openid: openid
+      }
+      var index_time = this.data.index_time
+      var delivery_time = this.data.delivery_time
       var order_data = {
-        delivery_mode: this.data.delivery_mode,
-        delivery_time: this.data.delivery_time,
+        delivery_date: this.data.date,
+        delivery_time: delivery_time[index_time],
         address: this.data.address,
         invoice_mode: this.data.invoice_mode,
-        total_price: this.data.total_price
+        total_price: this.data.total_price,
+
       }
       app.request({
-        url: comm.parseToURL('order','dopayment'),
-        data:{
+        url: comm.parseToURL('order', 'dopayment'),
+        data: {
           oid: oid,
-          order_data: JSON.stringify(order_data)
-          
-          
+          order_data: JSON.stringify(order_data),
+          method: 'POST'
         },
-        method: 'POST',
-        success: function(res){
-          console.log(res)
-          if(res.data.result=='OK'){
-            wx.showToast({
-              title: '支付成功'
-            })
-          }else{
+        success: function (res) {
+          if (res.data.result == 'OK') {
+          } else {
             var err = res.data.errmsg || '支付失败'
             wx.showToast({
               title: err
             })
           }
-          wx.switchTab({
-            url: '../user/user',
-          })
         }
       })
-    }else{
-      wx.showToast({
-        title: '请求失败'
+
+      //wx pay
+      app.request({
+        url: comm.parseToURL('order', 'getprepay_id'),
+        data: {
+          data: JSON.stringify(temdata),
+          method: 'POST'
+        },
+        success: function (res) {
+          if (res.data.result == 'OK') {
+            comm.pay(res.data)
+          } else {
+            var err = res.data.errmsg || '支付失败'
+            wx.showToast({
+              title: err
+            })
+          }
+        }
       })
-    }
+      
+    //}
+    
   },
   bindPickerChange(e){
     this.setData({
@@ -137,19 +163,44 @@ Page({
   },
   onLoad: function (options) {
     var carts = app.globalData.carts
-    var cuser = comm.get_cuser();
+    //var cuser = comm.get_cuser();
+    var openid = wx.getStorageSync('openid');
+    var now = comm.get_now()
+    if (options.fr=='u'){
+      var that = this
+      app.request({
+        url: comm.parseToURL('order','getorder'),
+        data: { oid: options.oid},
+        success: function(res){
+          if(res.data.result=='OK'){
+            console.log(res)
+            that.setData({
+              oid: options.oid,
+              total_price: res.data.total_amount,
+              openid: openid,
+              nowtime: now,
+            })
+          }else{
+            wx.showToast({
+              title: '参数错误！',
+            })
+          }
+        }
+      })
+    }
     if(carts.length>0){
       var total_price = 0
       for(var i=0;i<carts.length;i++){
         total_price += carts[i].price * carts[i].num
       }
-      var now = comm.get_now()
+      
       this.setData({
         carts: carts,
         total_price: total_price.toFixed(2),
         nowtime: now,
         oid: options.oid,
-        cuser: cuser
+        //cuser: cuser,
+        openid: openid
       })
     }
   },
@@ -175,71 +226,6 @@ Page({
     })
   },
 })
-// Page({
-
-//   /**
-//    * 页面的初始数据
-//    */
-//   data: {
-    
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面加载
-//    */
-//   onLoad: function (options) {
-    
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面初次渲染完成
-//    */
-//   onReady: function () {
-    
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面显示
-//    */
-//   onShow: function () {
-    
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面隐藏
-//    */
-//   onHide: function () {
-    
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面卸载
-//    */
-//   onUnload: function () {
-    
-//   },
-
-//   /**
-//    * 页面相关事件处理函数--监听用户下拉动作
-//    */
-//   onPullDownRefresh: function () {
-    
-//   },
-
-//   /**
-//    * 页面上拉触底事件的处理函数
-//    */
-//   onReachBottom: function () {
-    
-//   },
-
-//   /**
-//    * 用户点击右上角分享
-//    */
-//   onShareAppMessage: function () {
-    
-//   }
-// })
 
 
 

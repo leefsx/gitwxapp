@@ -203,6 +203,7 @@
     background: #f00;
     color: #fff;
     border-radius: 6rpx;
+    display: none;
 }
 .detail_tj{
     padding: 50rpx 20rpx;
@@ -367,7 +368,10 @@
   0%{opacity:0;}
   100%{opacity:1;}
 }
-
+.bg-g{
+  justify-content:flex-start;
+  height: 88rpx;
+}
 
 
 

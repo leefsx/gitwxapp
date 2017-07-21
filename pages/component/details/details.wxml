@@ -6,6 +6,7 @@
       <text class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">
         <text>商品信息</text>
       </text>
+      
       <text class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">
         <text>顾客评价</text>
       </text>
@@ -46,8 +47,16 @@
         </view>
         <view class="good-rating" wx:if = "{{curIndex==1? true : false}}" bindtouchstart="oTs" bindtouchend="oTe">
           <view class="good-rating-content">
-            <text class="good-rating-list">暂无评价信息</text>
-            <text class="good-rating-last">总共<text>0</text>条记录</text>
+          <view class="good-rating-list" wx:if="{{tradeRate.length>0}}">
+            <view class="good-rating" wx:for="{{tradeRate}}">
+              <text>{{item.content}}</text>
+              <text>{{item.created}}</text>
+              <text>{{item.usernick}}</text>
+            </view>
+          </view>
+            <text class="good-rating-list" wx:else>暂无评价信息</text>
+            
+            <text class="good-rating-last">总共<text>{{tradeRate.length}}</text>条记录</text>
           </view>
         </view>
         <view class="good-rec" wx:if = "{{curIndex==2? true : false}}" bindtouchstart="oTs" bindtouchend="oTe">
@@ -59,29 +68,36 @@
                 <view class="th ">属性</view>
                 <view class="th ">购买时间</view>
               </view>
-              <!--<block wx:for="{{}}" wx:key="{{code}}">
+              <block wx:for="{{salesRecords}}" wx:key="{{code}}">
                 <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-                  <view class="td">{{item.code}}</view>
-                  <view class="td">{{item.text}}</view>
-                  <view class="td">{{item.type}}</view>
+                  <view class="td">{{item.goumairen}}</view>
+                  <view class="td">{{item.amount}}</view>
+                  <view class="td">{{item.product_name}}</view>
+                  <view class="td">{{item.order_time}}</view>
                 </view>
                 <view class="tr" wx:else>
-                  <view class="td">{{item.code}}</view>
-                  <view class="td">{{item.text}}</view>
-                  <view class="td">{{item.type}}</view>
+                  <view class="td">{{item.goumairen}}</view>
+                  <view class="td">{{item.amount}}</view>
+                  <view class="td">{{item.product_name}}</view>
+                  <view class="td">{{item.order_time}}</view>
                 </view>
-              </block>-->
+              </block>
             </view>
-            <text class="good-rating-last">总共<text>0</text>条记录</text>
+            <text class="good-rating-last">总共<text>{{salesRecords.length}}</text>条记录</text>
           </view>
         </view>
         <view class="good-ans" wx:if = "{{curIndex==3? true : false}}" bindtouchstart="oTs" bindtouchend="oTe">
           <view class="good-ans-content good-rating-content">
             <view class="good-ans-list">
-              <text class="good-ans-jl">总共<text>0</text>条记录</text>
+              <view class="good-ans" wx:for="{{productMessage}}">
+                <text>{{item.content}}</text>
+                <text>{{item.created}}</text>
+                <text>{{item.goumairen}}</text>
+              </view>
+              <text class="good-ans-jl">总共<text>{{productMessage.length}}</text>条记录</text>
               <text class="good-ans-tw">我要提问</text>
             </view>
-            <text class="good-rating-list">暂无评价信息</text>
+            <text class="good-rating-list" wx:if = "{{productMessage.length == 0}}">暂无评价信息</text>
           </view>
         </view>
     </view>

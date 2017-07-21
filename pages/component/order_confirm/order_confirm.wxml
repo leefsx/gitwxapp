@@ -75,8 +75,8 @@
     </picker>
     <picker bindchange="bindBalanceChange" value="{{index}}" range="{{balance_mode}}">
       <view class="delivery-top delivery-bottom balance-list">
-        <text class="fl">余额:<text class="color">￥{{cuser.account_money}}</text></text>
-        <view class="picker fr color">-￥{{total_price}}</view> 
+        <text class="fl">可用余额:<text class="color">￥0</text></text>
+        <view class="picker fr color">-￥0.00</view> 
       </view>
     </picker>
   </view>

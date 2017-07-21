@@ -52,8 +52,60 @@ function get_now(){
   var minute = myDate.getMinutes();
   return year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
 }
-
-
+ /* 随机数 */
+function randomString(){
+  var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+  var maxPos = chars.length;
+  var pwd = '';
+  for (var i = 0; i < 32; i++) {
+    pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+  }
+  return pwd; 
+}
+/* 获取prepay_id */
+function getXMLNodeValue(node_name, xml) {
+  var tmp = xml.split("<" + node_name + ">")
+  var _tmp = tmp[1].split("</" + node_name + ">")
+  return _tmp[0]
+}
+/* 时间戳产生函数   */
+function createTimeStamp() {
+  return parseInt(new Date().getTime() / 1000) + ''
+}
+/* 支付   */
+function pay(param) {
+  console.log('pay:')
+  console.log(param)
+  wx.requestPayment({
+    timeStamp: param.timeStamp,
+    nonceStr: param.nonceStr,
+    package: param.package,
+    signType: param.signType,
+    paySign: param.paySign,
+    success: function (res) {
+      // success  
+      console.log(res)
+      
+      wx.switchTab({
+        url: '../user/user',
+      })
+       
+    },
+    fail: function (res) {
+      // fail  
+      console.log("支付失败")
+      console.log(res)
+    },
+    complete: function () {
+      // complete  
+      console.log("pay complete")
+    }
+  })
+}
 module.exports.parseToURL = parseToURL
 module.exports.get_cuser = get_cuser
 module.exports.get_now = get_now
+module.exports.randomString = randomString
+module.exports.getXMLNodeValue = getXMLNodeValue
+module.exports.createTimeStamp = createTimeStamp
+module.exports.pay = pay
