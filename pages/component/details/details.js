@@ -31,7 +31,8 @@ Page({
     },
     tradeRate: [],
     salesRecords: [],
-    productMessage: []
+    productMessage: [],
+    prevnext: []
 
   },
   changState() {
@@ -141,7 +142,6 @@ Page({
         },
         method: 'GET',
         success: function (res) {
-          console.log(res.data.productMessage)
           var detail = res.data.data.description;
           WxParse.wxParse('detail_desc', 'html', detail, that, 0);
           that.setData({
@@ -149,7 +149,8 @@ Page({
             product_id: options.id,
             tradeRate: res.data.tradeRate,
             salesRecords: res.data.salesRecords,
-            productMessage: res.data.productMessage
+            productMessage: res.data.productMessage,
+            prevnext: res.data.PrevNext
           })
         },
         fail: function () {
@@ -184,11 +185,9 @@ Page({
 
   oTs: function (e) {
     var m = this;
-    console.log(e)
     m._x = e.touches[0].clientX;
   },
   oTe: function (e) {
-    console.log(e)
     var m = this;
     var curIndex = parseInt(this.data.curIndex);
 
@@ -206,6 +205,13 @@ Page({
       curIndex: curIndex
     });
   },
-
+  prevnext(e) {
+    var id = e.target.dataset.id
+    if(id){
+      wx.navigateTo({
+        url: '../details/details?id=' + id
+      })
+    }
+  }
 
 })

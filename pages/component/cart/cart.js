@@ -63,7 +63,6 @@ Page({
     comm.get_cuser({
       success:function(cuser){
         var that = this
-        console.log(cuser)
         if (cuser == false) {
           console.log('get cuser fail')
           wx.showToast({

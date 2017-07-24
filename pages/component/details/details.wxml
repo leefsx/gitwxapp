@@ -174,11 +174,14 @@
       </swiper>
     </view>  -->
     <view class="detail_tj">
-      <text class="detail_tj-list">上一个：
-        <text>奥尔良烤鸡翅</text>
+      <text class="detail_tj-list" bindtap="prevnext" data-id="{{prevnext.prev.id}}">上一个：
+        <text wx:if="{{prevnext.prev.id}}">{{prevnext.prev.title}}</text>
+        <text wx:else>没有了</text>
+
       </text>
-      <text class="detail_tj-list">下一个：
-        <text>山椒风爪</text>
+      <text class="detail_tj-list" bindtap="prevnext" data-id="{{prevnext.next.id}}">下一个：
+        <text wx:if="{{prevnext.next.id}}">{{prevnext.next.title}}</text>
+        <text wx:else>没有了</text>
       </text>
     </view>
   </view>
