@@ -26,7 +26,7 @@
           <text class="good-price bg_color">价格：{{item.price}}</text>
         </navigator>
       </view>
-      <view class="load_more" bindtap="load_more">加载更多</view>
+      <view wx:if="{{products.length}}" class="load_more" bindtap="load_more">加载更多</view>
     </view>
     <template is="prompt" data="{{prompt}}"></template>
   </view>
