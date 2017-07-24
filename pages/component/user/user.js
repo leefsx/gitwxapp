@@ -17,6 +17,7 @@ Page({
   onShow() {
     var self = this;
     var openid = wx.getStorageSync('openid');
+    console.log('oi:'+openid)
     if (openid) {
       var url = comm.parseToURL('weixin', 'signin')
       var uinfo = self.data.userInfo

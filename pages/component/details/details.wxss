@@ -141,12 +141,29 @@
     background: #EDEDED;
 }
 .good-rating-content{
-    padding: 20rpx 10rpx 20rpx 20rpx;
+    /* padding: 20rpx 10rpx 20rpx 20rpx; */
     font-size: 28rpx;
 }
 .good-rating-list{
     display: block;
     min-height: 150rpx;
+}
+.good-rating-detail{
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+} 
+.good-rating-list .good-rating-detail:first-child{
+  margin-top: 0px;
+}
+.good-rating-detail view{
+  height:25px;
+  line-height: 25px;
+  border-bottom:1px solid #ededed;
+}
+.good-rating-detail view text.fr{
+  color:#848689;
 }
 .good-rating-last{
     display: block;
@@ -179,6 +196,9 @@
     width:25%;
     justify-content: center;
     text-align: center;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .th {
   width: 25%;
