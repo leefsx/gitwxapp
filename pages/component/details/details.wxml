@@ -213,13 +213,26 @@
             </view>
             <icon class="digClose" size="23" type="cancel" color="#aaa" bindtap="changState"></icon>
           </view>
-          <view class="detail-cart-count-box">
-            <text class="detail-cart-count-tex">数量:</text>
-            <text class="detail-cart-count-down" bindtap="minusCount">-</text>
-            <text class="detail-cart-count-num">{{food.num}}</text>
-            <text class="detail-cart-count-add" bindtap="addCount">+</text>
-            <text class="detail-cart-count-surplus">库存:<text>{{detail_data.num}}</text></text>
-          </view>
+          <!-- 可选无class
+          选中class为active
+          不可选class为disable -->
+          <scroll-view scroll-y style="height: 250px;">
+             <view class="detail-cart-property">
+              <view class="property-list" wx:for="{{propertys}}" wx:for-index="id">
+                <view class="property-list-name">{{item.name}}</view>
+                <view class="property-list-li">
+                  <text wx:for="{{item.details}}" data-id="{{id}}" data-index="{{index}}" wx:for-item="detail" bindtap="switchDetState" class="{{detail.detail_state}}">{{detail.detail_name}}</text>
+                </view>
+              </view>
+            </view> 
+            <view class="detail-cart-count-box">
+              <text class="detail-cart-count-tex">数量:</text>
+              <text class="detail-cart-count-down" bindtap="minusCount">-</text>
+              <text class="detail-cart-count-num">{{food.num}}</text>
+              <text class="detail-cart-count-add" bindtap="addCount">+</text>
+              <text class="detail-cart-count-surplus">库存:<text>{{detail_data.num}}</text></text>
+            </view>
+          </scroll-view>
         </view>
       </view>
     </view>

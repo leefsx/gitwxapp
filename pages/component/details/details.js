@@ -15,6 +15,111 @@ Page({
     curIndex: 0,
     duration: 500,
     currentState: false,
+    propertys:[
+      {
+        name:"年限",
+        details:[
+          {
+            detail_name:"一年",
+            detail_state:"active"
+          },
+          {
+            detail_name: "两年",
+            detail_state: "disable"
+          },
+          {
+            detail_name: "三年",
+            detail_state: ""
+          },
+          {
+            detail_name: "五年",
+            detail_state: ""
+          },
+        ]
+      },
+      {
+        name: "规格",
+        details: [
+          {
+            detail_name: "500g",
+            detail_state: "active"
+          },
+          {
+            detail_name: "1000g",
+            detail_state: "disable"
+          },
+          {
+            detail_name: "10000g",
+            detail_state: ""
+          },
+          {
+            detail_name: "1000000g",
+            detail_state: ""
+          },
+        ]
+      },
+      {
+        name: "颜色",
+        details: [
+          {
+            detail_name: "黑色",
+            detail_state: "active"
+          },
+          {
+            detail_name: "红色",
+            detail_state: "disable"
+          },
+          {
+            detail_name: "蓝色",
+            detail_state: ""
+          },
+          {
+            detail_name: "绿色",
+            detail_state: ""
+          },
+          {
+            detail_name: "藏青色",
+            detail_state: ""
+          },
+          {
+            detail_name: "白色",
+            detail_state: ""
+          },
+          {
+            detail_name: "粉红色",
+            detail_state: ""
+          },
+          {
+            detail_name: "黑色加红色",
+            detail_state: ""
+          },
+          {
+            detail_name: "青色",
+            detail_state: ""
+          },
+          {
+            detail_name: "青色",
+            detail_state: ""
+          },
+          {
+            detail_name: "青色",
+            detail_state: ""
+          },
+          {
+            detail_name: "青色",
+            detail_state: ""
+          },
+          {
+            detail_name: "青色",
+            detail_state: ""
+          },
+          {
+            detail_name: "青色",
+            detail_state: ""
+          },
+        ]
+      },
+    ],
     food: {
       "name": "坚果零食大礼包",
       "good_ord": "0",
@@ -34,6 +139,23 @@ Page({
     productMessage: [],
     prevnext: []
 
+  },
+  switchDetState(e){
+    let propertys = this.data.propertys;
+    const idx = parseInt(e.currentTarget.dataset.index);
+    const id = parseInt(e.currentTarget.dataset.id);
+    console.log(propertys[id].details[idx].detail_state);
+    if (propertys[id].details[idx].detail_state != "disable" && propertys[id].details[idx].detail_state != "active"){
+      propertys[id].details.forEach(function(e){
+        if (e.detail_state == "active"){
+          e.detail_state="";
+        }
+      })
+      propertys[id].details[idx].detail_state = "active"
+    }
+    this.setData({
+      propertys: propertys
+    })
   },
   changState() {
     this.setData({

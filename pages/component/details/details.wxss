@@ -92,9 +92,6 @@
   padding: 10rpx 20rpx;
   background-color: #fff;
 }
-.food-dec .details{
-  /* height: 1400rpx; */
-}
 .food-dec text{
   display: block;
 }
@@ -289,14 +286,14 @@
     position: fixed;
     left: 0;
     z-index: 14;
-    bottom: 100rpx;
-    height: 500rpx;
+    bottom: 0;
+    height: 816rpx; 
     animation: action 1s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards; 
 }
-@keyframes action{
-  0%{bottom:-500rpx;}
-  100%{bottom:100rpx;}
+  @keyframes action{
+  0%{bottom:-816rpx;}
+  100%{bottom:0rpx;}
 }
 .detail-cart-box{
   padding: 20rpx 20rpx 40rpx 20rpx;
@@ -341,7 +338,7 @@
   color: #f00;
 }
 .detail-cart-count-box{
-  margin-top: 50rpx;
+  margin-bottom: 40rpx;
 }
 .detail-cart-count-tex{
   display: block;
@@ -391,6 +388,40 @@
 .bg-g{
   justify-content:flex-start;
   height: 88rpx;
+}
+
+
+
+
+.detail-cart-property{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+.property-list{
+  padding-bottom: 10rpx;
+  border-bottom:1rpx solid #ececec;
+}
+.property-list-name{
+  display: inline-block;
+  margin: 12rpx 0px;
+  color: #9a9a9a;
+  font-size: 26rpx;
+}
+.property-list-li text{
+  display: inline-block;
+  padding:10rpx 20rpx;
+  font-size: 26rpx;
+  background-color: #ececec;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  border-radius: 10rpx;
+}
+.property-list-li text.active{
+  color:#fff;
+  background-color:#c71f3b;
+}
+.property-list-li text.disable{
+  color:#9a9a9a;
 }
 
 
