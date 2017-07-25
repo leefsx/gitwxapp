@@ -16,6 +16,6 @@ module.exports = {
       "src": "/image/tj-3.png"
   }],
   "index_middle2_img": "/image/tj-1.jpg",
-  "APITOKEN": "xxxxsss",
+  "APITOKEN": "Bpp9Sbx5rm9Y5zzQBbXGWS8h0i74kSJf",
   "appid": "wx24b2b2feed56da32"
 }

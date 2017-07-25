@@ -20,7 +20,8 @@ App({
               url: config.domain + '/api/weixin/get_wxaopenid',
               dataType: 'json',
               data: {
-                code: res.code
+                code: res.code,
+                apitoken: config.apitoken
               },
               method: 'GET',
               success: function (res) {
@@ -64,7 +65,7 @@ App({
   request: function (obj) {
     var that = this;
     obj.data.APISESSID = this.globalData.APISESSID || ''
-    obj.data.APITOKEN = config.APITOKEN
+    obj.data.apitoken = config.apitoken
     // This must be wx.request !
     var method = 'application/json'
     if(obj.method&&obj.method=='POST'){

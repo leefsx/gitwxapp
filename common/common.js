@@ -21,7 +21,7 @@ function get_cuser(obj){
   }else{
     var openid = wx.getStorageSync('openid');
     if (openid) {
-      wx.request({
+      app.request({
         url: parseToURL('weixin', 'signin'),
         method: 'GET',
         data: { openid: openid },
