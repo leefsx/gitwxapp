@@ -64,7 +64,7 @@ App({
   request: function (obj) {
     var that = this;
     obj.data.APISESSID = this.globalData.APISESSID || ''
-    obj.data.APITOKEN = config.APITOKEN
+    obj.data.apitoken = config.APITOKEN
     // This must be wx.request !
     var method = 'application/json'
     if(obj.method&&obj.method=='POST'){
