@@ -15,7 +15,7 @@
     <text class="title">销量领先</text>
     <view class="recom-top">
       <navigator wx:for="{{index_middle_img}}" url="{{item.url}}">
-        <image mode="widthFix" src="{{item.src}}"></image>
+        <image mode="aspectFit" src="{{item.src}}"></image>
       </navigator>
     </view>
     <view class="recom-bottom" bindtap="toCategory">

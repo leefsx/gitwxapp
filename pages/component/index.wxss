@@ -52,11 +52,12 @@
 .main{text-align: center;margin: 0 10rpx}
 swiper {
     width: 100%;
-    height: 250px;
+    height: 500rpx;
     margin: 0 auto 20rpx auto;
 }
 swiper-item image {
      width: 100%;
+     height: 100%;
 }
 
 .index-top{
@@ -101,6 +102,8 @@ swiper-item image {
 }
 .recom-top image{
   width: 100%;
+  height: 560rpx;
+  background-color:#eee;
 }
 .recom-bottom{
   position: relative;

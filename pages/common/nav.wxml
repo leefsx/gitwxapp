@@ -1,6 +1,6 @@
 <template name="nav">
     <view class="topbar">
-      <image src="/image/nav.png"></image>
+      <image mode="aspectFit" src="/image/nav.png"></image>
       <view class="classname">
         <text>MOUMOU SNACK FOOD</text>
         <text>{{website_name}}</text>
