@@ -3,7 +3,7 @@
     <view wx:if="{{foods.length}}">
         <view class="cart-box">
             <view class="cart-list" wx:for="{{foods}}" wx:key="{{index}}">
-                <icon wx:if="{{item.selected}}" type="success" color="#f00" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+                <icon wx:if="{{item.selected}}" type="success" color="#c71f3b" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
                 <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
                 <navigator url="../details/details?id={{item.cid}}"><image class="cart-thumb" src="{{item.image}}"></image></navigator>
                 <text class="cart-pro-name">{{item.title}}</text>
@@ -19,8 +19,8 @@
         </view>
 
         <view class="cart-footer">
-            <icon wx:if="{{selectAllStatus}}" type="success_circle" color="#fff" class="total-select" bindtap="selectAll"/>
-            <icon wx:else type="circle" color="#fff" class="total-select" bindtap="selectAll"/>
+            <icon wx:if="{{selectAllStatus}}" type="success" color="#c71f3b" class="total-select" bindtap="selectAll"/>
+            <icon wx:else type="circle" class="total-select" bindtap="selectAll"/>
             <text class="cart-toatl-tex">全选</text>
             <text class="cart-toatl-price">总共:<text>￥{{totalPrice}}</text><text>不含运费</text></text>
             <text wx:if="{{jsStatus}}" class="cart-toatl-qjs cart-toatl-js" bindtap="toConfirm">去结算<text>({{totleNum}})</text></text>

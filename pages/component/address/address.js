@@ -47,6 +47,11 @@ Page({
       'address.name' : e.detail.value
     })
   },
+  toBack(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   bindPhone(e){
     this.setData({
       'address.phone' : e.detail.value

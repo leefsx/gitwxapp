@@ -3,7 +3,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    color: #939393;
+    color: #959595;
 }
 
 .prompt-message {
@@ -19,7 +19,7 @@
 .prompt-message .prompt-title {
     font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: #707070;
     margin: 2px 0;
 }
 
@@ -38,6 +38,8 @@
     width: 100px;
     padding: 2px 0;
     border: 1px solid #eee;
+    color: #707070;
+    background-color: #e5e5e5;
 }
 
 .prompt-message .prompt-button-area .prompt-button:after {

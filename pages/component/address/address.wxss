@@ -16,7 +16,15 @@
     color: #aaa;
 }
 .form-box button{
-    margin:30rpx 0rpx 0 0;
+    display: inline-block;
+    width: 48%;
+    margin-right: 4%;
+    margin-top:30rpx;
+}
+.form-box button:last-child{
+    margin-right: 0;
+    color: #fff;
+    background-color: #898989;
 }
 /*.address{
   width: 80%;
