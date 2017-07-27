@@ -16,109 +16,6 @@ Page({
     duration: 500,
     currentState: false,
     propertys:[
-      {
-        name:"年限",
-        details:[
-          {
-            detail_name:"一年",
-            detail_state:"active"
-          },
-          {
-            detail_name: "两年",
-            detail_state: "disable"
-          },
-          {
-            detail_name: "三年",
-            detail_state: ""
-          },
-          {
-            detail_name: "五年",
-            detail_state: ""
-          },
-        ]
-      },
-      {
-        name: "规格",
-        details: [
-          {
-            detail_name: "500g",
-            detail_state: "active"
-          },
-          {
-            detail_name: "1000g",
-            detail_state: "disable"
-          },
-          {
-            detail_name: "10000g",
-            detail_state: ""
-          },
-          {
-            detail_name: "1000000g",
-            detail_state: ""
-          },
-        ]
-      },
-      {
-        name: "颜色",
-        details: [
-          {
-            detail_name: "黑色",
-            detail_state: "active"
-          },
-          {
-            detail_name: "红色",
-            detail_state: "disable"
-          },
-          {
-            detail_name: "蓝色",
-            detail_state: ""
-          },
-          {
-            detail_name: "绿色",
-            detail_state: ""
-          },
-          {
-            detail_name: "藏青色",
-            detail_state: ""
-          },
-          {
-            detail_name: "白色",
-            detail_state: ""
-          },
-          {
-            detail_name: "粉红色",
-            detail_state: ""
-          },
-          {
-            detail_name: "黑色加红色",
-            detail_state: ""
-          },
-          {
-            detail_name: "青色",
-            detail_state: ""
-          },
-          {
-            detail_name: "青色",
-            detail_state: ""
-          },
-          {
-            detail_name: "青色",
-            detail_state: ""
-          },
-          {
-            detail_name: "青色",
-            detail_state: ""
-          },
-          {
-            detail_name: "青色",
-            detail_state: ""
-          },
-          {
-            detail_name: "青色",
-            detail_state: ""
-          },
-        ]
-      },
     ],
     food: {
       "name": "坚果零食大礼包",
@@ -137,24 +34,42 @@ Page({
     tradeRate: [],
     salesRecords: [],
     productMessage: [],
-    prevnext: []
+    prevnext: [],
+    attr_data: [],
+    skulist: []
 
   },
   switchDetState(e){
     let propertys = this.data.propertys;
     const idx = parseInt(e.currentTarget.dataset.index);
     const id = parseInt(e.currentTarget.dataset.id);
-    console.log(propertys[id].details[idx].detail_state);
-    if (propertys[id].details[idx].detail_state != "disable" && propertys[id].details[idx].detail_state != "active"){
-      propertys[id].details.forEach(function(e){
-        if (e.detail_state == "active"){
-          e.detail_state="";
+    const pid = parseInt(e.currentTarget.dataset.pid);
+    const did = parseInt(e.currentTarget.dataset.did);
+    var attr_data = this.data.attr_data;
+    var skulist = this.data.skulist
+    var detail_data = this.data.detail_data
+    if (propertys[id].details[idx].detail_state != "disable" && propertys[id].details[idx].detail_state != "active") {
+      propertys[id].details.forEach(function (e) {
+        if (e.detail_state == "active") {
+          e.detail_state = "";
         }
       })
       propertys[id].details[idx].detail_state = "active"
     }
+    
+    attr_data[id] = pid+':'+did
+    if (attr_data.length > 0 && attr_data.length == propertys.length){
+      var attr_str = attr_data.join(';')
+      var skuid = skulist[attr_str]
+      detail_data.price = skuid.price
+      detail_data.num = skuid.quantity
+      detail_data.skuid = skuid.id
+    }
+    console.log(detail_data)
     this.setData({
-      propertys: propertys
+      propertys: propertys,
+      attr_data: attr_data,
+      detail_data: detail_data
     })
   },
   changState() {
@@ -203,6 +118,7 @@ Page({
           carts[i].sum = detail_data.price;
           carts[i].price = detail_data.price;
           carts[i].num += that.data.food.num;
+          carts[i].skuid = detail_data.skuid;
           hadInCart = true
         }
       }
@@ -217,7 +133,8 @@ Page({
         price: detail_data.price,
         sum: detail_data.price,
         selected: true,
-        max_kc: detail_data.num
+        max_kc: detail_data.num,
+        skuid: detail_data.skuid
       }
       carts.push(send_data)
     }
@@ -239,7 +156,8 @@ Page({
       price: detail_data.price,
       sum: detail_data.price,
       selected: true,
-      max_kc: detail_data.num
+      max_kc: detail_data.num,
+      skuid: detail_data.skuid
     }]
     
     app.globalData.carts = carts
@@ -266,14 +184,18 @@ Page({
         success: function (res) {
           var detail = res.data.data.description;
           WxParse.wxParse('detail_desc', 'html', detail, that, 0);
+          
           that.setData({
             detail_data: res.data.data,
             product_id: options.id,
             tradeRate: res.data.tradeRate,
             salesRecords: res.data.salesRecords,
             productMessage: res.data.productMessage,
-            prevnext: res.data.PrevNext
+            prevnext: res.data.PrevNext,
+            propertys: res.data.newsku,
+            skulist: res.data.skulist
           })
+          
         },
         fail: function () {
           console.log('fail');

@@ -219,9 +219,12 @@
           <scroll-view scroll-y style="height: 250px;">
              <view class="detail-cart-property">
               <view class="property-list" wx:for="{{propertys}}" wx:for-index="id">
+                
                 <view class="property-list-name">{{item.name}}</view>
                 <view class="property-list-li">
-                  <text wx:for="{{item.details}}" data-id="{{id}}" data-index="{{index}}" wx:for-item="detail" bindtap="switchDetState" class="{{detail.detail_state}}">{{detail.detail_name}}</text>
+                  
+                  <text wx:for="{{item.details}}" data-pid="{{item.id}}" data-did="{{detail.id}}" data-id="{{id}}" data-index="{{index}}" wx:for-item="detail" bindtap="switchDetState" class="{{detail.detail_state}}">{{detail.detail_name}}</text>
+                  
                 </view>
               </view>
             </view> 
