@@ -25,13 +25,20 @@ Page({
     list_page: 1,
     prompt:{
       hidden:true,
-    }
+    },
+    config: []
   },
   onShow(){
     if (this.data.products.length<1){
       this.getProductsFromServer(4, 1)
       wx.stopPullDownRefresh()
     }
+    this.setData({
+      config: {
+        'website_name': config.website_name,
+        'logo': config.logo
+      }
+    })
   },
   switchTab(e) {
     var that = this

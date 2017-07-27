@@ -30,13 +30,13 @@ Page({
         success: function (res) {
           if (res.data.result == 'OK') {
             self.setData({cuserInfo:res.data})
+            app.globalData.cuserInfo = res.data
             if (app.globalData.userInfo) {
               self.setData({
                 userInfo: app.globalData.userInfo
               })
             } else {
               app.getUserInfo(function (userInfo) {
-                console.log(userInfo)
                 self.setData({
                   userInfo: userInfo
                 })
@@ -47,7 +47,6 @@ Page({
               method: 'GET',
               data: [],
               success: function (res) {
-                console.log(res.data)
                 if (res.data.result == 'OK') {
                   self.setData({
                     orders: res.data.data,

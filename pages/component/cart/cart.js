@@ -49,7 +49,6 @@ Page({
       duration: 5000
     })
     var cartItems = this.data.foods
-    
     if (!cartItems || cartItems.length === 0) {
       wx.hideToast()
       wx.showModal({

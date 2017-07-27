@@ -14,14 +14,19 @@ Page({
     website_name: '',
     list_page: 1,
     index_middle_img: [],
-    index_middle2_img: ''
+    index_middle2_img: '',
+    config: []
   },
   onLoad() {
     this.getProductsFromServer(6,1),
     this.setData({
       imgUrls: config.index_autoplay_img,
       index_middle_img: config.index_middle_img,
-      index_middle2_img: config.index_middle2_img
+      index_middle2_img: config.index_middle2_img,
+      config: {
+        'website_name': config.website_name,
+        'logo': config.logo
+      }
     })
   },
   onShow: function () {

@@ -1,6 +1,7 @@
 // page/component/details/details.js
 var WxParse = require('../../../common/wxParse.js');
 var comm = require('../../../common/common.js');
+var config = require('../../../common/config.js');
 var app = getApp();
 Page({
   data: {
@@ -36,7 +37,8 @@ Page({
     productMessage: [],
     prevnext: [],
     attr_data: [],
-    skulist: []
+    skulist: [],
+    config: []
 
   },
   switchDetState(e){
@@ -61,11 +63,11 @@ Page({
     if (attr_data.length > 0 && attr_data.length == propertys.length){
       var attr_str = attr_data.join(';')
       var skuid = skulist[attr_str]
+      
       detail_data.price = skuid.price
       detail_data.num = skuid.quantity
       detail_data.skuid = skuid.id
     }
-    console.log(detail_data)
     this.setData({
       propertys: propertys,
       attr_data: attr_data,
@@ -109,23 +111,60 @@ Page({
     var carts = that.data.carts
     var cart_index = carts.length
     var detail_data = that.data.detail_data
+    var skulist = that.data.skulist
+    var attr_data = that.data.attr_data;
     var hadInCart = false
-    
-    if (cart_index > 0) {
-      for (var i = 0; i < cart_index; i++) {
-        
-        if (carts[i].cid == detail_data.id) {
-          carts[i].sum = detail_data.price;
-          carts[i].price = detail_data.price;
-          carts[i].num += that.data.food.num;
-          carts[i].skuid = detail_data.skuid;
-          hadInCart = true
+    if (skulist && Object.keys(skulist).length > 0 && attr_data.length == 0){
+      that.setData({
+        currentState: (!that.data.currentState)
+      })
+    }else{
+      if (cart_index > 0) {
+        for (var i = 0; i < cart_index; i++) {
+
+          if (carts[i].cid == detail_data.id) {
+            carts[i].sum = detail_data.price;
+            carts[i].price = detail_data.price;
+            carts[i].num += that.data.food.num;
+            carts[i].skuid = detail_data.skuid;
+            hadInCart = true
+          }
         }
+
+      }
+      if (hadInCart == false) {
+        var send_data = {
+          cid: detail_data.id,
+          title: detail_data.name,
+          image: detail_data.feature_img,
+          num: that.data.food.num,
+          price: detail_data.price,
+          sum: detail_data.price,
+          selected: true,
+          max_kc: detail_data.num,
+          skuid: detail_data.skuid
+        }
+        carts.push(send_data)
       }
 
+      app.globalData.carts = carts
+      wx.switchTab({
+        url: '../cart/cart',
+      })
     }
-    if (hadInCart == false) {
-      var send_data = {
+    
+  },
+  toConfirm(){
+    var that = this
+    var detail_data = that.data.detail_data
+    var skulist = that.data.skulist
+    var attr_data = that.data.attr_data;
+    if (skulist && Object.keys(skulist).length > 0 && attr_data.length == 0) {
+      that.setData({
+        currentState: (!that.data.currentState)
+      })
+    } else {
+      var carts = [{
         cid: detail_data.id,
         title: detail_data.name,
         image: detail_data.feature_img,
@@ -135,36 +174,13 @@ Page({
         selected: true,
         max_kc: detail_data.num,
         skuid: detail_data.skuid
-      }
-      carts.push(send_data)
+      }]
+      
+      app.globalData.carts = carts
+      wx.switchTab({
+        url: '../cart/cart',
+      })
     }
-    
-    app.globalData.carts = carts
-    wx.switchTab({
-      url: '../cart/cart',
-    })
-  },
-  toConfirm(){
-    
-    var that = this
-    var detail_data = that.data.detail_data
-    var carts = [{
-      cid: detail_data.id,
-      title: detail_data.name,
-      image: detail_data.feature_img,
-      num: that.data.food.num,
-      price: detail_data.price,
-      sum: detail_data.price,
-      selected: true,
-      max_kc: detail_data.num,
-      skuid: detail_data.skuid
-    }]
-    
-    app.globalData.carts = carts
-    wx.switchTab({
-      url: '../cart/cart',
-    })
-    
     
   },
   onLoad(options){
@@ -172,7 +188,11 @@ Page({
     if (options.id) {
       var that = this;
       that.setData({
-        carts: app.globalData.carts
+        carts: app.globalData.carts,
+        config: {
+          'website_name': config.website_name,
+          'logo': config.logo
+        }
       })
       app.request({
         url: app.domain + '/api/product/detail',
