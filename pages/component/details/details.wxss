@@ -52,7 +52,7 @@
 }
 .goods-tab-nav.on{
   border-top: 6rpx solid #c71f3b;
-  color: red;
+  color: #c71f3b;
 }
 .good-content,.good-content swiper,.good-info{
   width: 100%;
@@ -69,7 +69,7 @@
   color: #372119;
 }
 .food-price{
-  color: #f00;
+  color: #c71f3b;
   font-size: 26rpx;
   padding: 8rpx 0;
 }
@@ -167,7 +167,7 @@
     text-align: right;
 }
 .good-rating-last text{
-    color: #f00;
+    color: #c71f3b;
 }
 .good-rec,.good-ans{
     background: #EDEDED;
@@ -213,11 +213,11 @@
     padding-bottom: 10rpx;
 }
 .good-ans-jl text{
-    color: #f00;
+    color: #c71f3b;
 }
 .good-ans-tw{
     padding: 8rpx;
-    background: #f00;
+    background: #c71f3b;
     color: #fff;
     border-radius: 6rpx;
     display: none;
@@ -249,22 +249,47 @@
   height: 100rpx;
   width: 100%;
   z-index: 100;
-}
-.detail-foot view{
-  display: inline-block;
-  width: 50%;
-  text-align: center;
-  line-height: 100rpx;
-  background-color: #f00;
-  color: #fff;
-}
-.detail-foot view:last-child{
-  background-color: #eed610;
-}
-.detail-foot view:hover{
-  background-color: #913a12
+  overflow: hidden;
 }
 
+.detail-foot view{
+  float: left;
+  width: 40%;
+  text-align: center;
+  background-color: #c71f3b;
+  color: #fff;
+  height: 100rpx;
+}
+.detail-foot view:first-child{
+  width: 20%;
+  background-color: #fff;
+  color: #adadad;
+  align-items:center; 
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+}
+.detail-foot view:first-child image{
+  width: 40rpx;
+  height: 40rpx;
+
+}
+.detail-foot view:first-child text{
+  font-size: 26rpx;
+}
+.detail-foot view:nth-child(2){
+  line-height: 100rpx;
+}
+.detail-foot view:last-child{
+  background-color: #f39800;
+  line-height: 100rpx;
+}
+/*.detail-foot view:hover{
+  background-color: #913a12
+}*/
+.details{
+  padding-left: 30rpx;
+}
 
 
 
@@ -335,7 +360,7 @@
   display: block;
   font-size: 26rpx;
   max-width: 370rpx;
-  color: #f00;
+  color: #c71f3b;
 }
 .detail-cart-count-box{
   margin-bottom: 40rpx;

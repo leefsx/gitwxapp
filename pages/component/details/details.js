@@ -41,6 +41,11 @@ Page({
     config: []
 
   },
+  comeBackToFirst(){
+    wx.switchTab({
+      url: '../index',
+    })
+  },
   switchDetState(e){
     let propertys = this.data.propertys;
     const idx = parseInt(e.currentTarget.dataset.index);
@@ -257,11 +262,11 @@ Page({
 
     m._new_x = e.changedTouches[0].clientX;
 
-    if (m._new_x - m._x > 8 && curIndex > 0) {
+    if (m._new_x - m._x > 20 && curIndex > 0) {
       curIndex = curIndex - 1;
     }
 
-    if (m._new_x - m._x < -8 && curIndex < 3) {
+    if (m._new_x - m._x < -20 && curIndex < 3) {
       curIndex += 1;
     }
 

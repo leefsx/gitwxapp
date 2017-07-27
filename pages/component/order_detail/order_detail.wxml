@@ -1,0 +1,79 @@
+<view class="main">
+  <view class="delivery-box confirm-box">
+    <view class="delivery-top">
+      <text class="fl">配送地址</text>
+    </view>
+    <view class="delivery-middle">
+      <view class="delivery_addr-no-content">
+        <view class="delivery_addr-no-list">
+            <image src="../../../image/local.jpg" style="width:50px; height:50px;"></image>
+            <view class="addr_name">收货人:<text class="color">{{address.name}}</text></view>
+            <view class="addr_phone">电话:{{address.phone}}</view>
+            <view class="addr_detail">{{address.detail}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!--<view class="delivery-top delivery-bottom">
+      <text class="fl">配送日期</text>
+      <view class="picker fr">2017/7/27</view>
+    </view>
+
+    <view class="delivery-top delivery-bottom">
+      <text class="fl">配送时间</text>
+      <view class="picker fr">9:00-12:00</view>
+    </view>-->
+
+  </view>
+
+  <view class="orders-list confirm-box">
+    <view class="orders-number">订单编号：{{order.number}}</view>
+    <navigator url="/page/component/details/details" class="orders-detail">
+        <image src="{{order.url}}"></image>
+        <view class="">{{order.name}}</view>
+        <view class="">{{order.count}}</view>
+        <text wx:if="{{order.status==0}}" class="orders-status">待付款</text>
+        <text wx:elif="{{order.status==1}}" class="orders-status">已支付</text>
+        <text wx:else="{{order.status==1}}" class="orders-status">订单取消</text>
+    </navigator>
+    <view class="orders-footer">
+        <text><text wx:if="{{order.status==0||order.status==2}}">应付：</text><text wx:if="{{order.status==1}}">实付：</text>￥{{order.money}}</text>
+        <view wx:if="{{order.status==0}}"  class="orders-btn" bindtap="payOrders">付款</view>
+        <view wx:if="{{order.status==1||order.status==2}}" class="orders-btn" bindtap="buyAgain">再次购买</view>
+    </view>
+  </view>
+
+  
+
+  <view class="confirm-pay confirm-box" style="border-bottom:none;">
+      <view class="delivery-top">
+        <text class="fl">支付方式</text>
+        <view class="picker fr">在线支付</view>
+      </view>
+
+    <view wx:if="{{index_pay==0}}" class="pay_way">
+      <view class="pay_way_list" wx:for="{{pay_ways}}">
+         <image  src="{{item.src}}" class="{{item.way_id==pay_way_id?'active':''}}" data-id="{{item.way_id}}" bindtap="changePay"></image>
+         <icon wx:if="{{item.way_id==pay_way_id}}" type="success_no_circle" size="10" color="#fff"/>
+      </view>
+    </view>
+
+    <view class="delivery-top delivery-bottom coupon-list" >
+      <text class="fl">优惠券</text>
+      <view class="picker fr">未使用</view>      
+    </view>
+
+    <view class="delivery-top delivery-bottom integral-list">
+      <text class="fl">积分</text>
+      <view class="picker fr small"><text class="color medium">-￥0.00</text></view>      
+    </view>
+  </view>
+
+  <view class="confirm-invoice confirm-box" style="border-bottom:none;">
+    <view class="delivery-top">
+      <text class="fl">发票</text>
+      <view class="picker fr">未开</view>
+    </view>
+  </view>
+
+</view>

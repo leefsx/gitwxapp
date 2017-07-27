@@ -1,6 +1,6 @@
 <import src="../../common/nav.wxml" />
 <view class="main">
-  <template is="nav" />
+  <template is="nav" data="{{website_name}}"/>
   <view class="good-box">
     <view class="good-tab-box">
       <text class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">
@@ -197,6 +197,10 @@
     </view>
   </view>
   <view class="detail-foot">
+    <view bindtap="comeBackToFirst">
+      <image mode="aspectFit" src="../../../image/12.png"></image>
+      <text>首页</text>
+    </view>
     <view url="../cart/cart" class="purchase" bindtap="toConfirm">立即购买</view>
     <view url="../cart/cart" class="shoppingdetail-cart" bindtap="toCart">加入购物车</view>
   </view>

@@ -12,3 +12,4 @@ module.exports = {
   "appsecret":"5d5c052719093405f6df5e4ae9684254","mch_id":"1248985201",
   "logo":["http://lishifeng2.mywopop.com/template/default/images/wxapplet/style1/logo/nav.png"]
   };
+

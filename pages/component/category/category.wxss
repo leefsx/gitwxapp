@@ -59,41 +59,7 @@
 .categroy-bottom{
   padding-top: 20rpx;
 }
-/*.good-all{
-  paading
-}*/
-.good{
-  box-sizing: border-box;
-  width: 48%;
-  margin: 10rpx 1% 10rpx 1%;
-  display: inline-block;
-  text-align: left;
-  border: 4rpx solid #f0ecec;
-  background-color: rgb(90, 90, 90);
-  position: relative;
-}
-.good-img{
-  width: 100%;
-}
-.good-name{
-  color: #fff;
-  font-size: 24rpx;
-  display: block;
-  padding: 6rpx 0 6rpx 6rpx;
-}
-.good-dec{
-  color: #777;
-  font-size: 24rpx;
-  display: block;
-}
-.good-price{
-  padding: 6rpx 10rpx 6rpx 4rpx;
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #fff;
-  font-size: 26rpx;
-}
+
 .load_more{
   text-align: center;
   border: 1px solid #eee;

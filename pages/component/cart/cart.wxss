@@ -35,7 +35,7 @@
     display: block;
     height: 50rpx;
     line-height: 50rpx;
-    color: #f00;
+    color: #c71f3b;
 }
 .cart-list .cart-count-box{
     position: absolute;
@@ -71,9 +71,10 @@
     line-height: 90rpx;
     padding:0 0rpx 0 80rpx;
     box-sizing: border-box;
-    background: #AB956D;
-    color: #fff;
+    /*background: #AB956D;*/
+    /*color: #fff;*/
     display: flex;
+    border-top: 1rpx solid #ddd;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -102,7 +103,7 @@
     width: 120rpx;
 }*/
 .cart-toatl-price text{
-  color:#f00;
+  color:#c71f3b;
   font-weight: bold;
 }
 .cart-toatl-price text:last-child{
@@ -116,15 +117,16 @@
   line-height: 90rpx;
   /*padding-left: 25rpx;
   padding-right: 25rpx;*/
-  background-color: #666;
+  background-color: #898989;
   width: 175rpx;
   text-align: center;
 }
 .cart-toatl-js{
-  background-color: #f00;
+  background-color: #c71f3b;
+  color: #fff;
 }
 .cart-no-data{
     padding:40rpx 0;
-    color: #999;
+    color: #707070;
     text-align: center;
 }
