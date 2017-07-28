@@ -4,25 +4,25 @@
     "pages/component/category/category",
     "pages/component/cart/cart",
     "pages/component/user/user",
+    "pages/component/user_new/user_new",
     "pages/component/address/address",
-    "pages/component/orders/orders",
+    "pages/component/order-list/order-list",
+    "pages/component/order_detail/order_detail",
     "pages/component/details/details",
-    "pages/component/list/list",
     "pages/component/order_confirm/order_confirm",
-    "pages/component/pay/pay",
     "pages/component/profile/profile",
     "pages/component/login/login"
   ],
   "window": {
     "navigationBarTextStyle": "#ffffff",
     "navigationBarTitleText": "零食汇商城",
-    "navigationBarBackgroundColor": "#AB956D",
+    "navigationBarBackgroundColor": "#c71f3b",
     "backgroundColor": "#eeeeee",
     "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#b7b7b7",
-    "selectedColor": "#AB956D",
+    "selectedColor": "#c71f3b",
     "borderStyle": "#f5f5f5",
     "backgroundColor": "#f5f5f5",
     "list": [
