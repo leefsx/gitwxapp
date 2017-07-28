@@ -1,8 +1,29 @@
 <view class="main">
     <view class="header">
-        <image src="{{userInfo.avatarUrl}}" class="thumb"></image>
+        <view class="header-top">
+          <view class="header-title">
+            <image src="{{userInfo.avatarUrl}}" class="thumb"></image>
+            <text class="nickname">{{userInfo.nickName}}</text>
+          </view>
+          <view class="account_money">
+            <image mode="widthFix" src="../../../image/money.png"></image>
+            <text>￥{{cuserInfo.account_money}}</text>    
+          </view>
+        </view>
+        
+        <view class="header-bottom small_font">
+          <view>
+            <text>5000</text>
+            <text>积分</text>
+          </view>
+          <view>
+            <text>20</text>
+            <text>购物车</text>
+          </view>
+        </view>
+        <!--<image src="{{userInfo.avatarUrl}}" class="thumb"></image>
         <text class="nickname">{{userInfo.nickName}}</text>
-        <text class="account_money">余额：{{cuserInfo.account_money}}</text>
+        <text class="account_money">余额：{{cuserInfo.account_money}}</text>-->
         <!--<text class="about">关于我们</text>-->
     </view>
     <view class="address-box">
@@ -16,6 +37,9 @@
         </view>-->
     </view>
     <view class="orders-box">
+        <!-- <view class="orders">
+            <navigator>我的订单</navigator>
+        </view> -->
         <view class="orders">我的订单</view>
         <view class="orders-list" wx:for="{{orders}}" wx:key="index">
             <view class="orders-number">订单编号：{{item.oid}}</view>
