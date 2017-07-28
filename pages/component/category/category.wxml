@@ -3,7 +3,7 @@
 <import src="../../common/productList2.wxml" />
 <view class="main">
   <template is="nav" data="{{config}}" />
-  <view class="categroy-top bg_color">
+  <!--<view class="categroy-top bg_color">
     <view class="categroy-fir-list" wx:for="{{goods}}" wx:for-item="first_level"  data-index="{{index}}">
       <view class="categroy-fir-list-name">
         <view class="navigator-text">产品分类</view>
@@ -11,16 +11,25 @@
       </view>
       <view class="categroy-sec-list">
         <view wx:for="{{category}}" data-id="{{item.id}}" class="categroy-sec-list-name"  bindtap="switchTab">
-          
           {{item.name}}
         </view>
       </view>
     </view>
+  </view>-->
+
+  <view class="categroy-content">
+    <view class="categroy-content-list {{curIndex == index ? 'on' : ''}}" wx:for="{{category}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchTab">
+      <view class="navigator-text">{{item.name}}</view>
+      <view class="navigator-arrow"></view>
+    </view>
   </view>
+
+
+
   <view class="categroy-bottom">
     <view class="good-all">
       <template is="product_list2" data="{{products}}" />
-      <view wx:if="{{products.length}}" class="load_more" bindtap="load_more">加载更多</view>
+      <!--<view wx:if="{{products.length}}" class="load_more" bindtap="load_more">加载更多</view>-->
     </view>
     <template is="prompt" data="{{prompt}}"></template>
   </view>

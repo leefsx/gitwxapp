@@ -23,6 +23,7 @@ Page({
     curSecIndex: 0,
     product_category: 0,
     list_page: 1,
+    curIndex: 0,
     prompt:{
       hidden:true,
     },
@@ -43,6 +44,11 @@ Page({
   switchTab(e) {
     var that = this
     var cateid = e.target.dataset.id;
+    var curIndex = e.currentTarget.dataset.index;
+    console.log(curIndex)
+    that.setData({
+      curIndex: curIndex
+    })
     app.request({
       url: app.domain + '/api/product/list',
       data: {
@@ -58,6 +64,7 @@ Page({
         that.setData({
           products: resdata,
           product_category: cateid,
+          curIndex: curIndex,
           'prompt.hidden': resdata.length
         })
       },
@@ -131,6 +138,9 @@ Page({
     if (this_page > 0) {
       this.getProductsFromServer(4, this_page + 1)
     }
+  },
+  onReachBottom() {
+    this.load_more()
   }
 
 })

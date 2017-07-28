@@ -48,10 +48,10 @@ Page({
     var this_page = this.data.list_page
     if (this_page>0){
       var new_list = this.getProductsFromServer(6, this_page+1)
-      
-      
     }
-    
+  },
+  onReachBottom() {
+        this.load_more()
   },
   getProductsFromServer(list_num, page) {
     var that = this;

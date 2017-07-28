@@ -37,7 +37,7 @@
     </view>
     <view class="good-lb">
       <template is="product_list" data="{{products}}" />
-      <view class="load_more" bindtap="load_more">加载更多</view>
+      <!--<view class="load_more" bindtap="load_more">加载更多</view>-->
     </view>
   </view>
  </view>

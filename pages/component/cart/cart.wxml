@@ -28,7 +28,7 @@
             <icon wx:else type="circle" class="total-select" bindtap="selectAll"/>
             <text class="cart-toatl-tex fl">全选</text>
             
-            <text class="cart-toatl-qjs cart-toatl-js fr" bindtap="toConfirm">去结算<text>({{totleNum}})</text></text>
+            <text class="cart-toatl-qjs {{totleNum>0 ? 'cart-toatl-js' : ''}} fr" bindtap="toConfirm">去结算<text>({{totleNum}})</text></text>
             <!--<text wx:else class="cart-toatl-qjs fr">请选购</text>-->
             <view class="cart-toatl-js-price fr">
                 <view class="cart-toatl-price">合计:<text class="color">￥{{totalPrice}}</text></view>

@@ -105,13 +105,13 @@
   display: inline-block;
   height: 100rpx;
   line-height: 100rpx;
-  background-color: #898989;
+  background-color: #d3d3d3;
   width: 190rpx;
   text-align: center;
+  color: #fff;
 }
 .cart-toatl-js{
   background-color: #c71f3b;
-  color: #fff;
 }
 .cart-no-data{
     padding:40rpx 0;
