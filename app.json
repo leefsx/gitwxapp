@@ -2,7 +2,6 @@
   "pages": [
     "pages/component/index",
     "pages/component/category/category",
-    "pages/component/category2/category2",
     "pages/component/cart/cart",
     "pages/component/user/user",
     "pages/component/user_new/user_new",

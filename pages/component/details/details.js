@@ -208,7 +208,7 @@ Page({
         success: function (res) {
           var detail = res.data.data.description;
           WxParse.wxParse('detail_desc', 'html', detail, that, 0);
-          
+          console.log(res.data.data)
           that.setData({
             detail_data: res.data.data,
             product_id: options.id,
@@ -261,11 +261,11 @@ Page({
 
     m._new_x = e.changedTouches[0].clientX;
 
-    if (m._new_x - m._x > 20 && curIndex > 0) {
+    if (m._new_x - m._x > 100 && curIndex > 0) {
       curIndex = curIndex - 1;
     }
 
-    if (m._new_x - m._x < -20 && curIndex < 3) {
+    if (m._new_x - m._x < -100 && curIndex < 3) {
       curIndex += 1;
     }
 
