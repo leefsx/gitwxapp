@@ -50,9 +50,9 @@ Page({
       var new_list = this.getProductsFromServer(6, this_page+1)
     }
   },
-  onReachBottom() {
-        this.load_more()
-  },
+  // onReachBottom() {
+  //       this.load_more()
+  // },
   getProductsFromServer(list_num, page) {
     var that = this;
     app.request({
