@@ -1,5 +1,6 @@
 
 //获取应用实例
+var comm = require('../../../common/common.js');
 var app = getApp()
 Page({
   data: {
@@ -52,6 +53,35 @@ Page({
       }
     })
 
+  },
+  auto_registered: function(opt){
+    var that = this
+    var openid = wx.getStorageSync('openid');
+    console.log(that.data.userInfo.avatarUrl)
+    app.request({
+      url: comm.parseToURL('weixin','auto_registered'),
+      data: {
+        openid: openid,
+        headphoto: that.data.userInfo.avatarUrl
+      },
+      method: 'POST',
+      success: function(res){
+        console.log(res)
+        if(res.data.result=='OK'){
+          app.globalData.APISESSID = res.data.APISESSID
+          wx.showToast({
+            title: '注册成功'
+          })
+          wx.navigateBack({
+            delta: 2
+          })
+        }else{
+          wx.showToast({
+            title: '请求失败！'
+          })
+        }
+      }
+    })
   },
   onLoad: function () {
     var that = this

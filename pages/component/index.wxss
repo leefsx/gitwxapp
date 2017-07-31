@@ -11,7 +11,6 @@
   padding: 20rpx 0;
 }
 
-
 .main{text-align: center;margin: 0 10rpx;}
 swiper {
     width: 100%;
