@@ -18,26 +18,20 @@
         <image mode="aspectFit" src="{{item}}"></image>
       </navigator>
     </view>
-    <view class="recom-bottom" bindtap="toCategory">
-      <image mode="widthFix" src="{{index_middle2_img}}"></image>
-      <view class="recom-bottom-list medium_font bg_color">马上抢购</view>
-    </view>
   </view>
 
   <view class="goodsxx">
     <view class="goodsxx-bt">
       <view class="title">产品展示</view>
-      <view class="subtit_cate">
-        <navigator url="url">开心果</navigator>
-        <navigator url="url">点心面</navigator>
-        <navigator url="url">松子</navigator>
-        <navigator url="url">碧根果</navigator>
-        <navigator url="url">卤味</navigator>
-      </view>
     </view>
     <view class="good-lb">
       <template is="product_list" data="{{products}}" />
-      <!--<view class="load_more" bindtap="load_more">加载更多</view>-->
+      <view class="load_more medium_font" bindtap="load_more">加载更多</view>
     </view>
   </view>
+
+  
+ </view>
+ <view class="copyright small_font">
+   版权所有@某某商城
  </view>
