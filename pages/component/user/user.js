@@ -22,10 +22,13 @@ Page({
     if (openid) {
       var url = comm.parseToURL('weixin', 'signin')
       var uinfo = self.data.userInfo
+      console.log(uinfo)
       app.request({
         url: url,
         data: {
-          openid: openid
+          openid: openid,
+          nickName: uinfo.nickName || '',
+          avatarUrl: uinfo.avatarUrl || ''
         },
         method: 'GET',
         success: function (res) {
@@ -120,5 +123,14 @@ Page({
       })
     }
 
+  },
+  onPullDownRefresh: function () {
+    this.onShow()
+    wx.stopPullDownRefresh()
+  },
+  toCart(e){
+    wx.switchTab({
+      url: '../cart/cart',
+    })
   }
 })

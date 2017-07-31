@@ -1,6 +1,6 @@
 <import src="../../common/nav.wxml" />
 <view class="main">
-  <template is="nav" data="{{website_name}}"/>
+  <template is="nav" data="{{config}}"/>
   <view class="good-box">
     <view class="good-tab-box">
       <text class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">

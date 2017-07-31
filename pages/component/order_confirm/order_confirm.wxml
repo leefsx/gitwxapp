@@ -33,7 +33,7 @@
         <text class="delivery_addr-no-tex"><text>+</text>添加收货人信息</text>
       </view>
     </view>
-    <picker mode="date" value="{{date}}" start="((start_date))" end="2017-09-01" bindchange="bindDateChange">
+    <picker mode="date" value="{{date}}" start="((start_date))" end="{{end_date}}" bindchange="bindDateChange">
       <view class="delivery-top delivery-bottom">
         <text class="fl">配送日期</text>
         <view class="picker fr">{{date}}</view>

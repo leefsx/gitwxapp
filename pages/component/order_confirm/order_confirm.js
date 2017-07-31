@@ -46,6 +46,7 @@ Page({
     integral_money: 0.00,//使用的积分抵扣金额
     delivery_addr: false,
     start_date:"",
+    end_date: '',
     date:"",
     time: "9:00-12:00",
     message: '',
@@ -396,10 +397,12 @@ Page({
   },
   onShow: function () {
     let start_date=util.formatTime2(new Date);
+    let end_date = util.formatTime3(new Date);
     //console.log(start_date)
     this.setData({
       start_date: start_date,
-      date: start_date
+      date: start_date,
+      end_date: end_date
     })
     var self = this;
     /**

@@ -250,6 +250,10 @@ Page({
       foods: foods,
       totalPrice: totalPri.toFixed(2)
     });
+  },
+  onPullDownRefresh: function () {
+    this.onShow()
+    wx.stopPullDownRefresh()
   }
 
 })

@@ -32,7 +32,6 @@ Page({
         })
       })
     }
-    console.log(that.data.userInfo.avatarUrl)
     if(openid){
       var url = comm.parseToURL('weixin','signin')
       var uinfo = that.data.userInfo
@@ -59,7 +58,6 @@ Page({
   auto_registered: function(opt){
     var that = this
     var openid = wx.getStorageSync('openid');
-    console.log(that.data.userInfo.avatarUrl)
     app.request({
       url: comm.parseToURL('weixin','auto_registered'),
       data: {
@@ -68,7 +66,6 @@ Page({
       },
       method: 'POST',
       success: function(res){
-        console.log(res)
         if(res.data.result=='OK'){
           app.globalData.APISESSID = res.data.APISESSID
           wx.showToast({
