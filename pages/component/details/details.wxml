@@ -3,8 +3,8 @@
   <template is="nav" data="{{config}}"/>
   <view class="food-detail-xq">
     <swiper indicator-dots="true" autoplay="true">
-      <swiper-item>
-        <image src="{{detail_data.feature_img}}" class="food-image bigImg" mode="aspectFit" />
+      <swiper-item wx:for="{{detail_data.feature_img}}">
+        <image src="{{item}}" class="food-image bigImg" mode="aspectFit" />
       </swiper-item>
     </swiper>
     <view class="food-content">
