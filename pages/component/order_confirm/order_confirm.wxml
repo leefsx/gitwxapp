@@ -9,7 +9,7 @@
       </navigator>
       <view class="orders-footer">
           <text class="fl">{{nowtime}}</text>
-          <text class="fr">应付:<text class="color strong">￥{{total_price}}</text></text>
+          <text class="fr">应付:<text class="color strong">￥{{lastPrice}}</text></text>
       </view>
   </view>
 
@@ -61,22 +61,22 @@
       </view>
      
     </view>
-    <picker bindchange="bindCouponChange" value="{{index}}" range="{{coupon_mode}}">
+    <picker bindchange="bindCouponChange" value="{{index}}" range="{{coupon_mode}}" range-key="name">
       <view class="delivery-top delivery-bottom coupon-list" >
         <text class="fl">优惠券:<text class="color">{{coupon}}张</text></text>
-        <view class="picker fr">{{coupon_mode[index_coupon]}}</view>      
+        <view class="picker fr">{{coupon_mode[index_coupon]['name']}}</view>      
       </view>
     </picker>
     <picker bindchange="bindIntegralChange" value="{{index}}" range="{{integral_mode}}">
       <view class="delivery-top delivery-bottom integral-list">
-        <text class="fl">可用积分:<text class="color">{{integral}}</text></text>
-        <view class="picker fr small">已用{{integral_mode[index_integral]}}积分,<text class="color medium">-￥0.00</text></view>      
+        <text class="fl">可用积分:<text class="color">{{ujfdata.account_points || 0}}</text></text>
+        <view class="picker fr small">已用{{integral || integral_mode[index_integral] || 0}}积分,<text class="color medium">-￥{{integral_money}}</text></view>      
       </view>
     </picker>
     <picker bindchange="bindBalanceChange" value="{{index}}" range="{{balance_mode}}">
       <view class="delivery-top delivery-bottom balance-list">
-        <text class="fl">可用余额:<text class="color">￥0</text></text>
-        <view class="picker fr color">-￥0.00</view> 
+        <text class="fl">可用余额:<text class="color">￥{{ujfdata.account_money || 0}}</text></text>
+        <view class="picker fr color">-￥{{balance || balance_mode[index_balance] || 0}}</view> 
       </view>
     </picker>
   </view>
@@ -94,7 +94,7 @@
   <view class="confirm-msg confirm-box">
     <view class="confirm-msg-box">
       <image src="../../../image/msg.jpg"></image>
-      <input placeholder="给商家留言（限50字以内）" type="text" />
+      <input placeholder="给商家留言（限50字以内）" bindconfirm="binkMessageConfirm" type="text" />
     </view>
   </view>
 

@@ -10,7 +10,8 @@ Page({
     address:{},
     order_pro_rel:[],
     userInfo: [],
-    cuserInfo: []
+    cuserInfo: [],
+    cartleng: 0
   },
   onLoad(){
   },
@@ -30,7 +31,7 @@ Page({
         success: function (res) {
           if (res.data.result == 'OK') {
             self.setData({cuserInfo:res.data})
-            app.globalData.cuserInfo = res.data
+            app.globalData.cuser = res.data
             if (app.globalData.userInfo) {
               self.setData({
                 userInfo: app.globalData.userInfo
@@ -50,7 +51,8 @@ Page({
                 if (res.data.result == 'OK') {
                   self.setData({
                     orders: res.data.data,
-                    order_pro_rel: res.data.order_pro_rel
+                    order_pro_rel: res.data.order_pro_rel,
+                    cartleng: app.globalData.carts.length
                   })
                 }
               }

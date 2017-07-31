@@ -17,6 +17,7 @@ function parseToURL(m,a,arr){
 
 function get_cuser(obj){
   if (app.globalData.cuser){
+    typeof obj.success == "function" && obj.success(app.globalData.cuser)
     return app.globalData.cuser
   }else{
     var openid = wx.getStorageSync('openid');
@@ -85,8 +86,6 @@ function pay(param) {
     paySign: param.paySign,
     success: function (res) {
       // success  
-      console.log(res)
-      
       wx.switchTab({
         url: '../user/user',
       })

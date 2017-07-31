@@ -7,7 +7,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     var openid = wx.getStorageSync('openid');
     if (openid) {
       //console.log('oid:' + openid);
@@ -91,6 +90,7 @@ App({
   globalData: {
     userInfo: null,
     APISESSID: null,
-    carts: []
+    carts: [],
+    cuser: []
   }
 })

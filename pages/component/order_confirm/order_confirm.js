@@ -3,7 +3,6 @@
 import util from "../../../utils/util.js"  
 var comm = require('../../../common/common.js');
 var config = require('../../../common/config.js');
-var md5 = require('../../../common/md5.js');
 var app = getApp()
 Page({
 
@@ -12,7 +11,7 @@ Page({
    */
   data: {
     carts:[],
-    total_price:0,
+    total_price:0,//实付价格
     nowtime: '',
     oid: '',
     cuser: [],
@@ -35,7 +34,7 @@ Page({
     pay_way_id:1,
     delivery_mode:["快递物流"],
     delivery_time:["9:00-12:00","12:00-18:00","18:00-22:00"],
-    coupon_mode:["未使用"],
+    coupon_mode:[{"name":"未使用"}],
     integral_mode:[0],
     balance_mode:[0.00],
     index_mode: 0,
@@ -44,29 +43,41 @@ Page({
     index_integral:0,
     index_balance:0,
     delivery_money:20,
+    integral_money: 0.00,//使用的积分抵扣金额
     delivery_addr: false,
     start_date:"",
     date:"",
     time: "9:00-12:00",
+    message: '',
     address: {
       name: '',
       phone: '',
       detail: ''
     },
     coupon:0,
-    integral:0,
-    balance:0.00,
+    integral:0,//使用的积分数
+    balance:0,//使用的余额
     invoice_mode: ["不需要"],
     index_invoice: 0,
     pay_mode: ["在线支付"],
     index_pay:0,
-    lastPrice:0,
-    openid: ''
-    
+    lastPrice:0,//订单总价
+    openid: '',
+    usercinfo: [],//优惠券数据
+    ujfdata: [],//积分余额等用户数据
+    perdata: [],//积分抵扣方式数据
+    yhjid: 0,
+    yhjprice: 0
   },
   lastPay(){
     var openid = wx.getStorageSync('openid');
-    //if (this.data.index_pay==0){
+    var delivery_addr = this.data.delivery_addr
+    if (!delivery_addr){
+      wx.showToast({
+        title: '请先添加收货人信息'
+      })
+      return false
+    }else{
       var oid = this.data.oid 
       //var body = config.website_name;
       var total_fee = this.data.total_price;
@@ -81,9 +92,15 @@ Page({
         delivery_date: this.data.date,
         delivery_time: delivery_time[index_time],
         address: this.data.address,
+        message: this.data.message,
         invoice_mode: this.data.invoice_mode,
         total_price: this.data.total_price,
-
+        lastPrice: this.data.lastPrice,
+        yeprice: this.data.balance,
+        jfnum: this.data.integral,
+        jfprice: this.data.integral_money,
+        yhjid: this.data.yhjid,
+        yhjprice: this.data.yhjprice
       }
       app.request({
         url: comm.parseToURL('order', 'dopayment'),
@@ -99,30 +116,42 @@ Page({
             wx.showToast({
               title: err
             })
+            return false;
           }
         }
       })
-
-      //wx pay
-      app.request({
-        url: comm.parseToURL('order', 'getprepay_id'),
-        data: {
-          data: JSON.stringify(temdata),
-          method: 'POST'
-        },
-        success: function (res) {
-          if (res.data.result == 'OK') {
-            comm.pay(res.data)
-          } else {
-            var err = res.data.errmsg || '支付失败'
-            wx.showToast({
-              title: err
-            })
+      if (total_fee > 0){
+        //wx pay
+        app.request({
+          url: comm.parseToURL('order', 'getprepay_id'),
+          data: {
+            data: JSON.stringify(temdata),
+            method: 'POST'
+          },
+          success: function (res) {
+            if (res.data.result == 'OK') {
+              comm.pay(res.data)
+            } else {
+              var err = res.data.errmsg || '支付失败'
+              wx.showToast({
+                title: err
+              })
+            }
           }
-        }
-      })
+        })
+      }else{
+        wx.showToast({
+          title: '支付成功！',
+          icon: 'success',
+          duration: 2500
+        })
+        wx.switchTab({
+          url: '../user/user',
+        })
+      }
       
-    //}
+      
+    }
     
   },
   bindPickerChange(e){
@@ -161,24 +190,138 @@ Page({
       pay_way_id: way_id
     })
   },
+  binkMessageConfirm(e){
+    this.setData({
+      message: e.detail.value
+    })
+  },
+  bindCouponChange(e) {
+    var coupon_mode = this.data.coupon_mode
+    var use_coupon = coupon_mode[e.detail.value]
+    var integral_money = this.data.integral_money
+    var lastPrice = this.data.lastPrice
+    var balance = this.data.balance
+    console.log(use_coupon['money'])
+    var coupon_money = (use_coupon['money']*1).toFixed(2)
+    
+    if (lastPrice >= coupon_money){
+      lastPrice = lastPrice - integral_money - balance
+      var yhjid = 0
+      var yhjprice = 0
+      if (e.detail.value == 0){
+        var total_price = lastPrice
+      }else{
+        var total_price = lastPrice - coupon_money
+        if (total_price < 0) total_price = 0
+        yhjid = use_coupon['u_id']
+        yhjprice = coupon_money
+      }
+      
+      this.setData({
+        coupon: e.detail.value,
+        index_coupon: e.detail.value,
+        yhjid: yhjid,
+        yhjprice: yhjprice,
+        total_price: total_price.toFixed(2)
+      })
+    }else{
+      wx.showToast({
+        title: '不满足使用条件！'
+      })
+    }
+    
+  },
+  bindIntegralChange(e) {
+    var perdata = this.data.perdata
+    var total_price = this.data.total_price
+    var lastPrice = this.data.lastPrice
+    var integral_money = this.data.integral_money
+    var integral_mode = this.data.integral_mode
+    var integral = this.data.integral
+    var balance = this.data.balance
+    var yhjprice = this.data.yhjprice
+    var val = integral_mode[e.detail.value]
+    var proportion = parseInt(perdata.redeem_credits) / parseInt(perdata.redeem_money)
+    
+    if (perdata.limit_type == '2'){
+      var limit_val = parseInt(perdata.limit_val) / 100
+      var limit_credits = parseInt(lastPrice * limit_val * proportion)
+      if (val > limit_credits){
+        val = limit_credits
+      }
+    }else{
+      if (val > parseInt(perdata.limit_val)){
+        val = parseInt(perdata.limit_val)
+      }
+    }
+    if (val > (lastPrice * proportion)){
+      val = lastPrice * proportion
+    }
+    
+    if (val >= 1 || val == 0){
+      integral_money = val / proportion
+      lastPrice = lastPrice - balance - yhjprice
+      if (lastPrice > 0){
+        if (integral_money > lastPrice) {
+          integral_money = lastPrice
+          total_price = 0
+        }else{
+          total_price = lastPrice - integral_money
+        }
+      }
+      
+      this.setData({
+        index_integral: val,
+        integral_money: integral_money.toFixed(2),
+        total_price: total_price.toFixed(2),
+        integral: val
+      })
+    }else{
+      wx.showToast({
+        title: '使用积分数量不可小于1',
+        icon: 'loading',
+        duration: 2500
+      })
+    }
+    
+  },
+  bindBalanceChange(e) {
+    var total_price = this.data.total_price
+    var integral_money = this.data.integral_money
+    var balance_mode = this.data.balance_mode
+    var balance = this.data.balance
+    var yhjprice = this.data.yhjprice
+    var lastPrice = this.data.lastPrice
+    var val = balance_mode[e.detail.value]
+    lastPrice = lastPrice - integral_money - yhjprice
+    if (val > lastPrice){
+      val = lastPrice
+    }
+    total_price = lastPrice - val
+    
+    this.setData({
+      index_balance: val,
+      total_price: total_price.toFixed(2),
+      balance: val.toFixed(2)
+    })
+  },
   onLoad: function (options) {
     var carts = app.globalData.carts
-    //var cuser = comm.get_cuser();
     var openid = wx.getStorageSync('openid');
     var now = comm.get_now()
+    var that = this
     if (options.fr=='u'){
-      var that = this
       app.request({
         url: comm.parseToURL('order','getorder'),
         data: { oid: options.oid},
         success: function(res){
           if(res.data.result=='OK'){
-            console.log(res)
             that.setData({
               oid: options.oid,
-              total_price: res.data.total_amount,
+              total_price: res.data.order.total_amount,
               openid: openid,
               nowtime: now,
+              lastPrice: res.data.order.total_amount
             })
           }else{
             wx.showToast({
@@ -194,15 +337,62 @@ Page({
         total_price += carts[i].price * carts[i].num
       }
       
-      this.setData({
+      that.setData({
         carts: carts,
         total_price: total_price.toFixed(2),
         nowtime: now,
         oid: options.oid,
-        //cuser: cuser,
-        openid: openid
+        openid: openid,
+        lastPrice: total_price.toFixed(2)
       })
     }
+    var total_price = that.data.total_price;
+    
+    app.request({
+      url: comm.parseToURL('order', 'showOrderInterface'),
+      data: { amount: total_price },
+      method: 'GET',
+      success: function (res) {
+        if (res.data.result == 'OK') {
+          var usercinfo = res.data.usercinfo
+          var couponnum = 0
+          var coupon_mode = that.data.coupon_mode
+          for (var i = 0; i < usercinfo.length; i++) {
+            couponnum += parseInt(usercinfo[i]['coupon_num'])
+            //coupon_mode.push('满' + usercinfo[i]['full'] + '减' + usercinfo[i]['money'])
+          }
+          var tempc = coupon_mode.concat(usercinfo)
+          coupon_mode = tempc
+          var ujfdata = res.data.ujfdata
+          var perdata = res.data.perdata
+          if (perdata.limit_type == '2'){
+            ujfdata.account_points = total_price * perdata.limit_val / 100 * (perdata.redeem_credits / perdata.redeem_money)
+          }else{
+            if (parseInt(ujfdata.account_points) > parseInt(perdata.limit_val)) {
+              ujfdata.account_points = perdata.limit_val
+            }
+          }
+          var integral_mode = that.data.integral_mode
+          for (var i = 10; i <= ujfdata.account_points; i+=10 ){
+            integral_mode.push(i)
+          }
+          var balance_mode = that.data.balance_mode
+          for (var i = 10; i <= ujfdata.account_money; i+=10 ) {
+            balance_mode.push(i)
+          }
+          
+          that.setData({
+            coupon: couponnum,
+            ujfdata: ujfdata,
+            perdata: perdata,
+            integral_mode: integral_mode,
+            balance_mode: balance_mode,
+            coupon_mode: coupon_mode,
+            lastPrice: total_price
+          })
+        }
+      }
+    })
   },
   onShow: function () {
     let start_date=util.formatTime2(new Date);
