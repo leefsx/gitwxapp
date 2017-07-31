@@ -1,12 +1,29 @@
 <import src="../../common/nav.wxml" />
 <view class="main">
   <template is="nav" data="{{website_name}}"/>
+  
+  <view class="food-detail-xq">
+    <swiper indicator-dots="true" autoplay="true">
+      <swiper-item>
+        <image src="{{detail_data.feature_img}}" class="food-image bigImg" mode="aspectFit" />
+      </swiper-item>
+    </swiper>
+    <view class="food-content">
+      <text class="food-name">{{detail_data.name}}</text>
+      <text class="food-price">价格：<text>{{detail_data.price}}</text></text>
+      <text class="food-old_price">市场价：<text>{{detail_data.mark_price}}</text></text>
+    </view>
+    <view class="food-xq" bindtap="changState">
+      <text>产品规格</text>
+      <view class="navigator-arrow"></view>
+    </view>
+  </view>
+
   <view class="good-box">
     <view class="good-tab-box">
       <text class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">
         <text>商品信息</text>
       </text>
-      
       <text class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">
         <text>顾客评价</text>
       </text>
@@ -19,16 +36,7 @@
     </view>
     <view class="good-content">
         <view class="good-info" wx:if = "{{curIndex==0? true : false}}" bindtouchstart="oTs" bindtouchend="oTe">
-          <image src="{{detail_data.feature_img}}" class="food-image bigImg" mode="aspectFit" />
-          <view class="food-content">
-            <text class="food-name">{{detail_data.name}}</text>
-            <text class="food-price">价格：<text>{{detail_data.price}}</text></text>
-            <text class="food-old_price">市场价：<text>{{detail_data.mark_price}}</text></text>
-          </view>
-          <view class="food-xq" bindtap="changState">
-            <text>产品规格</text>
-            <view class="navigator-arrow"></view>
-          </view>
+          
           <view class="food-para">
             <view class="food-dec">
               <text>商品信息</text>

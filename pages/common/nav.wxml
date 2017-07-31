@@ -1,12 +1,15 @@
 <template name="nav">
     <view class="topbar color">
-      <image mode="aspectFit" src="{{config.logo}}"></image>
-      <text>{{config.website_name}}</text>
+      <view class="topbar-title">
+        <image mode="aspectFit" src="{{config.logo}}"></image>
+        <text>{{config.website_name}}</text>
+      </view>
+      
       <view class="top-tele">
         <image mode="aspectFit" src="/image/telephone.png"></image>
         <view>
-          <text class="small_font">免费服务热线</text>
-          <text>400-000-000</text>
+          <text>免费服务热线</text>
+          <text class="medium_font">400-000-000</text>
         </view>
       </view>
     </view>
