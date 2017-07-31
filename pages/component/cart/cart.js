@@ -1,4 +1,4 @@
-var comm = require('../../../common/common.js');
+  var comm = require('../../../common/common.js');
 var app = getApp()
 Page({
   data: {
@@ -38,7 +38,7 @@ Page({
         this.isSelectAll();
         this.getTotalPrice();
       }
-
+      
     }
   },
 
@@ -63,14 +63,13 @@ Page({
       success:function(cuser){
         var that = this
         if (cuser == false) {
-          console.log('get cuser fail')
           wx.showToast({
             title: '请先登录'
           })
           wx.navigateTo({
             url: '../profile/profile'
           })
-        } else if (app.globalData.carts) {
+        } else {
           app.request({
             url: comm.parseToURL('order', 'addcart'),
             data: { data: JSON.stringify(cartItems) },
@@ -107,8 +106,6 @@ Page({
               }
             }
           })
-        }else{
-          console.log('cart empty')
         }
       }
     })

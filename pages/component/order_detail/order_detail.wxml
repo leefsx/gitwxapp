@@ -27,19 +27,19 @@
   </view>
 
   <view class="orders-list confirm-box">
-    <view class="orders-number">订单编号：{{order.number}}</view>
+    <view class="orders-number">订单编号：{{order.oid}}</view>
     <navigator url="/page/component/details/details" class="orders-detail">
-        <image src="{{order.url}}"></image>
-        <view class="">{{order.name}}</view>
-        <view class="">{{order.count}}</view>
-        <text wx:if="{{order.status==0}}" class="orders-status">待付款</text>
-        <text wx:elif="{{order.status==1}}" class="orders-status">已支付</text>
-        <text wx:else="{{order.status==1}}" class="orders-status">订单取消</text>
+        <image src="{{product.url}}"></image>
+        <view class="">{{product.product_name}}</view>
+        <view class="">{{product.amount}}</view>
+        <text wx:if="{{order.pay_status==1}}" class="orders-status">待付款</text>
+        <text wx:else class="orders-status">已支付</text>
+        
     </navigator>
     <view class="orders-footer">
-        <text><text wx:if="{{order.status==0||order.status==2}}">应付：</text><text wx:if="{{order.status==1}}">实付：</text>￥{{order.money}}</text>
-        <view wx:if="{{order.status==0}}"  class="orders-btn" bindtap="payOrders">付款</view>
-        <view wx:if="{{order.status==1||order.status==2}}" class="orders-btn" bindtap="buyAgain">再次购买</view>
+        <text><text wx:if="{{order.pay_status==2}}">应付：</text><text wx:if="{{order.status==1}}">实付：</text>￥{{order.total_amount}}</text>
+        <view wx:if="{{order.pay_status==1}}"  class="orders-btn" data-oid="{{order.oid}}" bindtap="payOrders">付款</view>
+        <navigator url="../details/details?id={{product.id}}" wx:if="{{order.order_status==3||order.pay_status==2}}" class="orders-btn">再次购买</navigator>
     </view>
   </view>
 
@@ -51,28 +51,23 @@
         <view class="picker fr">在线支付</view>
       </view>
 
-    <view wx:if="{{index_pay==0}}" class="pay_way">
-      <view class="pay_way_list" wx:for="{{pay_ways}}">
-         <image  src="{{item.src}}" class="{{item.way_id==pay_way_id?'active':''}}" data-id="{{item.way_id}}" bindtap="changePay"></image>
-         <icon wx:if="{{item.way_id==pay_way_id}}" type="success_no_circle" size="10" color="#fff"/>
-      </view>
-    </view>
-
+    
     <view class="delivery-top delivery-bottom coupon-list" >
       <text class="fl">优惠券</text>
-      <view class="picker fr">未使用</view>      
+      <view wx:if="{{disass.yhjprice}}" class="picker fr small"><text class="color medium">-￥{{disass.yhjprice}}</text></view>   
+      <view wx:else class="picker fr">未使用</view>     
     </view>
 
     <view class="delivery-top delivery-bottom integral-list">
       <text class="fl">积分</text>
-      <view class="picker fr small"><text class="color medium">-￥0.00</text></view>      
+      <view class="picker fr small"><text class="color medium">-￥{{disass.jfprice || '0.00'}}</text></view>      
     </view>
   </view>
 
   <view class="confirm-invoice confirm-box" style="border-bottom:none;">
     <view class="delivery-top">
-      <text class="fl">发票</text>
-      <view class="picker fr">未开</view>
+      <text class="fl">余额</text>
+      <view class="picker fr small"><text class="color medium">-￥{{disass.yeprice || '0.00'}}</text></view>
     </view>
   </view>
 

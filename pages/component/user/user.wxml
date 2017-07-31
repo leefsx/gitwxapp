@@ -13,11 +13,11 @@
         
         <view class="header-bottom small_font">
           <view>
-            <text>5000</text>
+            <text>{{cuserInfo.account_points}}</text>
             <text>积分</text>
           </view>
           <view>
-            <text>20</text>
+            <text>{{cartleng}}</text>
             <text>购物车</text>
           </view>
         </view>
@@ -43,7 +43,7 @@
         <view class="orders">我的订单</view>
         <view class="orders-list" wx:for="{{orders}}" wx:key="index">
             <view class="orders-number">订单编号：{{item.oid}}</view>
-            <navigator url="../details/details" class="orders-detail">
+            <navigator url="../order_detail/order_detail?oid={{item.oid}}" class="orders-detail">
                 <image src="{{order_pro_rel[item.id][0].picurl}}"></image>
                 <view class="">{{order_pro_rel[item.id][0].product_name}}</view>
                 <view class="">{{item.count}}</view>

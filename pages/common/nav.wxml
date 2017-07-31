@@ -1,7 +1,7 @@
 <template name="nav">
     <view class="topbar color">
       <image mode="aspectFit" src="{{config.logo}}"></image>
-      <text>{{website_name}}</text>
+      <text>{{config.website_name}}</text>
       <view class="top-tele">
         <image mode="aspectFit" src="/image/telephone.png"></image>
         <view>

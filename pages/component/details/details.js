@@ -131,7 +131,7 @@ Page({
             carts[i].sum = detail_data.price;
             carts[i].price = detail_data.price;
             carts[i].num += that.data.food.num;
-            carts[i].skuid = detail_data.skuid;
+            carts[i].skuid = detail_data.skuid || 0;
             hadInCart = true
           }
         }
@@ -147,11 +147,10 @@ Page({
           sum: detail_data.price,
           selected: true,
           max_kc: detail_data.num,
-          skuid: detail_data.skuid
+          skuid: detail_data.skuid || 0
         }
         carts.push(send_data)
       }
-
       app.globalData.carts = carts
       wx.switchTab({
         url: '../cart/cart',
