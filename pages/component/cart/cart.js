@@ -28,11 +28,13 @@ Page({
   },
   onShow() {
     var openid = wx.getStorageSync('openid');
+    this.setData({
+      foods: app.globalData.carts
+    })
     if (app.globalData.carts.length){
       var cart_num = app.globalData.carts.length
       if (cart_num > 0) {
         this.setData({
-          foods: app.globalData.carts,
           'prompt.hidden': app.globalData.carts.length
         });
         this.isSelectAll();

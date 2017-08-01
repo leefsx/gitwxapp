@@ -6,15 +6,15 @@
     <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
       <block wx:for="{{imgUrls}}" wx:key="{{index}}">
         <swiper-item>
-          <image mode="widthFix" src="{{item}}" class="slide-image" />
+          <image mode="widthFix" src="{{item}}" data-id="{{index_autoplay_imgurl[index]['category_id']}}" bindtap="tocategory" class="slide-image" />
         </swiper-item>
       </block>
     </swiper>
   </view>
   <view class="recom">
-    <view class="title"><text class="color">TOP</text>热销产品</view>
+    <view class="title"><text class="color">TOP</text>{{config.index_middle_title}}</view>
     <view class="recom-top">
-      <navigator wx:for="{{index_middle_img}}" url="details/details">
+      <navigator wx:for="{{index_middle_img}}" url="details/details?id={{index_middle_imgurl[index]['detail_id']}}">
         <image mode="aspectFit" src="{{item}}"></image>
       </navigator>
     </view>
@@ -22,7 +22,7 @@
 
   <view class="goodsxx">
     <view class="goodsxx-bt">
-      <view class="title">产品展示</view>
+      <view class="title">{{config.product_title}}</view>
     </view>
     <view class="good-lb">
       <template is="product_list" data="{{products}}" />
@@ -33,5 +33,5 @@
   
  </view>
  <view class="copyright small_font">
-   版权所有@{{config.website_name}}
+   版权所有@{{config.copyright}}
  </view>

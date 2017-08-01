@@ -86,8 +86,8 @@ function pay(param) {
     paySign: param.paySign,
     success: function (res) {
       // success  
-      wx.switchTab({
-        url: '../user/user',
+      wx.navigateTo({
+        url: '../order_detail/order_detail?oid='+param.oid,
       })
        
     },

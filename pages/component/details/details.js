@@ -179,11 +179,61 @@ Page({
         max_kc: detail_data.num,
         skuid: detail_data.skuid
       }]
-      
-      app.globalData.carts = carts
-      wx.switchTab({
-        url: '../cart/cart',
+      comm.get_cuser({
+        success: function (cuser) {
+          var that = this
+          if (cuser == false) {
+            wx.showToast({
+              title: '请先登录'
+            })
+            wx.navigateTo({
+              url: '../profile/profile'
+            })
+          } else {
+            app.request({
+              url: comm.parseToURL('order', 'addcart'),
+              data: { data: JSON.stringify(carts) },
+              method: 'GET',
+              success: function (res) {
+                if (res.data.result == 'OK') {
+                  app.request({
+                    url: comm.parseToURL('order', 'createOrder'),
+                    data: [],
+                    method: 'GET',
+                    success: function (ress) {
+                      if (ress.data.result == 'OK') {
+                        app.globalData.carts = carts
+                        var oid = ress.data.oid
+                        wx.navigateTo({
+                          url: '../order_confirm/order_confirm?fr=u&oid=' + oid
+                        })
+                      } else {
+                        wx.showToast({
+                          title: ress.data.errmsg
+                        })
+                      }
+                    }
+                  })
+
+                } else if (res.data.errmsg == '2') {
+                  wx.navigateTo({
+                    url: '../profile/profile',
+                  })
+
+                } else {
+                  wx.showToast({
+                    title: '请求失败'
+                  })
+                }
+              }
+            })
+          }
+        }
       })
+      
+      //wx.switchTab({
+      //  url: '../cart/cart',
+      //})
     }
     
   },

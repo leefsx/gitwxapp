@@ -68,7 +68,7 @@ Page({
             })
           } else {
             wx.navigateTo({
-              url: '../profile/profile'
+              url: '../login/login'
             })
           }
         }

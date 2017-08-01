@@ -131,6 +131,8 @@ Page({
           },
           success: function (res) {
             if (res.data.result == 'OK') {
+              app.globalData.carts = []
+              res.data.oid = oid
               comm.pay(res.data)
             } else {
               var err = res.data.errmsg || '支付失败'
@@ -140,14 +142,15 @@ Page({
             }
           }
         })
-      }else{
+      } else {
+        app.globalData.carts = []
         wx.showToast({
           title: '支付成功！',
           icon: 'success',
           duration: 2500
         })
-        wx.switchTab({
-          url: '../user/user',
+        wx.navigateTo({
+          url: '../order_detail/order_detail?oid=' + oid,
         })
       }
       
@@ -322,7 +325,8 @@ Page({
               total_price: res.data.order.total_amount,
               openid: openid,
               nowtime: now,
-              lastPrice: res.data.order.total_amount
+              lastPrice: res.data.order.total_amount,
+              carts: res.data.product
             })
           }else{
             wx.showToast({
@@ -337,7 +341,6 @@ Page({
       for(var i=0;i<carts.length;i++){
         total_price += carts[i].price * carts[i].num
       }
-      
       that.setData({
         carts: carts,
         total_price: total_price.toFixed(2),
@@ -347,41 +350,46 @@ Page({
         lastPrice: total_price.toFixed(2)
       })
     }
-    var total_price = that.data.total_price;
+    setTimeout(this.showOrderInterface,200)
     
+  },
+  showOrderInterface() {
+    var that = this 
+    var total_amount = that.data.total_price
     app.request({
       url: comm.parseToURL('order', 'showOrderInterface'),
-      data: { amount: total_price },
+      data: { total_amount: total_amount },
       method: 'GET',
       success: function (res) {
         if (res.data.result == 'OK') {
           var usercinfo = res.data.usercinfo
+          var total_price = that.data.total_price;
+          console.log(total_price)
           var couponnum = 0
           var coupon_mode = that.data.coupon_mode
           for (var i = 0; i < usercinfo.length; i++) {
             couponnum += parseInt(usercinfo[i]['coupon_num'])
-            //coupon_mode.push('满' + usercinfo[i]['full'] + '减' + usercinfo[i]['money'])
           }
           var tempc = coupon_mode.concat(usercinfo)
           coupon_mode = tempc
           var ujfdata = res.data.ujfdata
           var perdata = res.data.perdata
-          if (perdata.limit_type == '2'){
+          if (perdata.limit_type == '2') {
             ujfdata.account_points = total_price * perdata.limit_val / 100 * (perdata.redeem_credits / perdata.redeem_money)
-          }else{
+          } else {
             if (parseInt(ujfdata.account_points) > parseInt(perdata.limit_val)) {
               ujfdata.account_points = perdata.limit_val
             }
           }
           var integral_mode = that.data.integral_mode
-          for (var i = 10; i <= ujfdata.account_points; i+=10 ){
+          for (var i = 10; i <= ujfdata.account_points; i += 10) {
             integral_mode.push(i)
           }
           var balance_mode = that.data.balance_mode
-          for (var i = 10; i <= ujfdata.account_money; i+=10 ) {
+          for (var i = 10; i <= ujfdata.account_money; i += 10) {
             balance_mode.push(i)
           }
-          
+
           that.setData({
             coupon: couponnum,
             ujfdata: ujfdata,

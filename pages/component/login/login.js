@@ -73,7 +73,7 @@ Page({
             title: '注册成功'
           })
           wx.navigateBack({
-            delta: 2
+            delta: 1
           })
         }else{
           wx.showToast({

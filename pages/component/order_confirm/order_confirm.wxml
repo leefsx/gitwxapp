@@ -1,10 +1,10 @@
 <view class="main">
   <view class="orders-list confirm-box">
       <view class="orders-number color2">订单编号：{{oid}}</view>
-      <navigator wx:for="{{carts}}" url="../details/details?id={{item.cid}}" class="orders-detail">
-          <image src="{{item.image}}"></image>
-          <view class="">{{item.title}}</view>
-          <view class="">{{item.num}}</view>
+      <navigator wx:for="{{carts}}" url="../details/details?id={{item.cid||item.id}}" class="orders-detail">
+          <image src="{{item.image||item.product_thumb}}"></image>
+          <view class="">{{item.title||item.product_name}}</view>
+          <view class="">{{item.num||item.amount}}</view>
           <text class="orders-status">待付款</text>
       </navigator>
       <view class="orders-footer">

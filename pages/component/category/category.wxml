@@ -13,7 +13,7 @@
   <view class="categroy">
     <view class="categroy-left">
       <scroll-view scroll-y style="height:100%;" scroll-with-animation>
-        <view class="medium_font scroll-view-left-item {{curIndex == index ? 'on' : ''}}" wx:for="{{category}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchTab">{{item.name}}</view>
+        <view class="medium_font scroll-view-left-item {{curIndex === index ? 'on' : ''}}" wx:for="{{category}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchTab">{{item.name}}</view>
       </scroll-view>
     </view>
 

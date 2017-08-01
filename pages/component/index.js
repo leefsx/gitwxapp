@@ -25,8 +25,16 @@ Page({
       index_middle2_img: config.index_middle2_img,
       config: {
         'website_name': config.website_name,
-        'logo': config.logo
-      }
+        'logo': config.logo,
+        'hotline_logo': config.hotline_logo,
+        'hotline_no': config.hotline_no,
+        'copyright': config.copyright,
+        'product_title': config.product_title,
+        'index_middle_title': config.index_middle_title,
+        'logourl': config.logourl
+      },
+      index_autoplay_imgurl: config.index_autoplay_imgurl,
+      index_middle_imgurl: config.index_middle_imgurl
     })
   },
   onShow: function () {
@@ -81,7 +89,6 @@ Page({
             website_name: config.website_name
           })
           if (resdata.length > 0) {
-            // console.log(resdata[0].id)
             app.globalData.firstPid = resdata[0].id
           }
         }
@@ -94,6 +101,15 @@ Page({
         console.log('complete!');
       }
     })
+  },
+  tocategory(opt){
+    var cateid = opt.target.dataset.id
+    if (cateid){
+      app.globalData.cateid = cateid
+      wx.switchTab({
+        url: 'category/category'
+      })
+    }
   }
 
 })

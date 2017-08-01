@@ -23,7 +23,7 @@ Page({
     curSecIndex: 0,
     product_category: 0,
     list_page: 1,
-    curIndex: 0,
+    curIndex: '',
     prompt:{
       hidden:true,
     },
@@ -42,16 +42,21 @@ Page({
   //     });  
   // },  
   onShow(){
-    if (this.data.products.length<1){
-      this.getProductsFromServer(4, 1)
-      wx.stopPullDownRefresh()
-    }
+    var product_category = app.globalData.cateid || 0
+    app.globalData.cateid = 0
     this.setData({
       config: {
         'website_name': config.website_name,
         'logo': config.logo
-      }
+      },
+      product_category: product_category,
+      curIndex: ''
     })
+    //if (this.data.products.length<1){
+      this.getProductsFromServer(4, 1)
+      wx.stopPullDownRefresh()
+    //}
+    
   },
   switchTab(e) {
     var that = this

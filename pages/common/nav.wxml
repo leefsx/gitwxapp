@@ -6,10 +6,10 @@
       </view>
       
       <view class="top-tele">
-        <image mode="aspectFit" src="/image/telephone.png"></image>
+        <image mode="aspectFit" src="{{config.hotline_logo}}"></image>
         <view>
           <text>免费服务热线</text>
-          <text class="medium_font">400-000-000</text>
+          <text class="medium_font">{{config.hotline_no}}</text>
         </view>
       </view>
     </view>
