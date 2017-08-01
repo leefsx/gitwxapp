@@ -28,10 +28,10 @@
 
   <view class="orders-list confirm-box">
     <view class="orders-number">订单编号：{{order.oid}}</view>
-    <navigator url="/page/component/details/details" class="orders-detail">
-        <image src="{{product.url}}"></image>
-        <view class="">{{product.product_name}}</view>
-        <view class="">{{product.amount}}</view>
+    <navigator wx:for="{{product}}" url="/page/component/details/details" class="orders-detail">
+        <image src="{{item.product_thumb}}"></image>
+        <view class="">{{item.product_name}}</view>
+        <view class="">{{item.amount}}</view>
         <text wx:if="{{order.pay_status==1}}" class="orders-status">待付款</text>
         <text wx:else class="orders-status">已支付</text>
         

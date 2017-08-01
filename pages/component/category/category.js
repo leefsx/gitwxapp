@@ -43,9 +43,8 @@ Page({
   },
   switchTab(e) {
     var that = this
-    var cateid = e.target.dataset.id;
+    var cateid = e.currentTarget.dataset.id;
     var curIndex = e.currentTarget.dataset.index;
-    console.log(curIndex)
     that.setData({
       curIndex: curIndex
     })
