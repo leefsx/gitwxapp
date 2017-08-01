@@ -4,14 +4,14 @@
         <view class="cart-top">
             <icon wx:if="{{selectAllStatus}}" type="success" color="#c71f3b" class="total-select  cart-pro-select-top" bindtap="selectAll"/>
             <icon wx:else type="circle" class="total-select  cart-pro-select-top" bindtap="selectAll"/>
-            <text class="cart-top-tex">某某商城</text>
+            <text class="cart-top-tex" bindtap="selectAll">某某商城</text>
         </view>
         <view class="cart-box">
             <view class="cart-list" wx:for="{{foods}}" wx:key="{{index}}">
                 <icon wx:if="{{item.selected}}" type="success" color="#c71f3b" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
                 <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
                 <navigator url="../details/details?id={{item.cid}}"><image class="cart-thumb" src="{{item.image}}"></image></navigator>
-                <text class="cart-pro-name">{{item.title}}</text>
+                <navigator url="../details/details?id={{item.cid}}"><text class="cart-pro-name">{{item.title}}</text></navigator>
                 <text class="cart-pro-price">￥{{item.sum}}</text>
                 <view class="cart-count-box">
                     <text class="cart-count-down" bindtap="minusCount" data-index="{{index}}">-</text>
@@ -26,12 +26,12 @@
         <view class="cart-footer">
             <icon wx:if="{{selectAllStatus}}" type="success" color="#c71f3b" class="total-select" bindtap="selectAll"/>
             <icon wx:else type="circle" class="total-select" bindtap="selectAll"/>
-            <text class="cart-toatl-tex fl">全选</text>
+            <text class="cart-toatl-tex fl" bindtap="selectAll">全选</text>
             
             <text class="cart-toatl-qjs {{totleNum>0 ? 'cart-toatl-js' : ''}} fr" bindtap="toConfirm">去结算<text>({{totleNum}})</text></text>
             <!--<text wx:else class="cart-toatl-qjs fr">请选购</text>-->
             <view class="cart-toatl-js-price fr">
-                <view class="cart-toatl-price">合计:<text class="color">￥{{totalPrice}}</text></view>
+                <view class="cart-toatl-price small_font">合计:<text class="color normal_font">￥{{totalPrice}}</text></view>
                 <view class="cart-toatl-addPri">不含运费</view>
             </view>
         </view>

@@ -10,7 +10,7 @@
   padding-bottom: 100rpx;
 }
 .confirm-box{
-    color: #999;
+    /*color: #999;*/
     font-size: 28rpx;
     background-color: #fff;
     padding-left: 30rpx;
@@ -51,7 +51,7 @@
     top: 35rpx;
     height: 120rpx;
     line-height: 120rpx;
-    color: #b42f2d;
+    color: #c71f3b;
 }
 .orders-footer{
     height: 60rpx;
@@ -156,11 +156,11 @@
   border: 1rpx solid transparent;
 }
 .pay_way image.active{
-  border: 1rpx solid #f00;
+  border: 1rpx solid #c71f3b;
 }
 .pay_way image.active::after{
   position: absolute;
-  background-color: #f00;
+  background-color: #c71f3b;
   right: -10px;
   top: -10px;
   transform: rotate(45deg);
@@ -196,14 +196,17 @@
   bottom:0;
   left:0;
   width:100%;
-  height:90rpx;
-  line-height:90rpx;
+  height:100rpx;
+  line-height:100rpx;
   padding:0 0rpx 0 30rpx;
   box-sizing:border-box;
   background:#fff;
   display:flex;
   flex-direction:row;
   justify-content:space-between;
+  background-color: #fff;
+  border-top: 1rpx solid #e1e1e1;
+  z-index: 999;
 }
 .confirm-pay{
   padding-left: 25rpx;

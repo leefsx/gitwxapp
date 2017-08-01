@@ -27,8 +27,20 @@ Page({
     prompt:{
       hidden:true,
     },
-    config: []
+    config: [],
+    // scrollHeight: 800
   },
+  // onLoad: function () {  
+  //     var that = this;  
+  //     wx.getSystemInfo({  
+  //         success: function (res) {  
+  //             console.info(res.windowHeight);  
+  //             that.setData({  
+  //                 scrollHeight: res.windowHeight-88  
+  //             });  
+  //         }  
+  //     });  
+  // },  
   onShow(){
     if (this.data.products.length<1){
       this.getProductsFromServer(4, 1)
@@ -124,6 +136,7 @@ Page({
           website_name: config.website_name,
           list_page: page
         })
+        console.log(this_products)
       },
       fail: function () {
         console.log('fail');
@@ -140,6 +153,11 @@ Page({
     }
   },
   onReachBottom() {
+    console.log("1111")
+    this.load_more()
+  },
+  reachBottom() {
+    console.log("22222")
     this.load_more()
   }
 

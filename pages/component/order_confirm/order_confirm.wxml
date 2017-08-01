@@ -1,6 +1,6 @@
 <view class="main">
   <view class="orders-list confirm-box">
-      <view class="orders-number">订单编号：{{oid}}</view>
+      <view class="orders-number color2">订单编号：{{oid}}</view>
       <navigator wx:for="{{carts}}" url="../details/details?id={{item.cid}}" class="orders-detail">
           <image src="{{item.image}}"></image>
           <view class="">{{item.title}}</view>
@@ -70,7 +70,7 @@
     <picker bindchange="bindIntegralChange" value="{{index}}" range="{{integral_mode}}">
       <view class="delivery-top delivery-bottom integral-list">
         <text class="fl">可用积分:<text class="color">{{ujfdata.account_points || 0}}</text></text>
-        <view class="picker fr small">已用{{integral || integral_mode[index_integral] || 0}}积分,<text class="color medium">-￥{{integral_money}}</text></view>      
+        <view class="picker fr small color2">已用{{integral || integral_mode[index_integral] || 0}}积分,<text class="color medium">-￥{{integral_money}}</text></view>      
       </view>
     </picker>
     <picker bindchange="bindBalanceChange" value="{{index}}" range="{{balance_mode}}">

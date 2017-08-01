@@ -17,6 +17,7 @@ page {
   text-align: center;
 }
 .color{ color: #c71f3b;}
+.color2{ color: #898989;}
 .bor_color{border-color: #c71f3b }
 .bg_color{background-color: #c71f3b;color:#fff;}
 .small_font{font-size: 26rpx;}

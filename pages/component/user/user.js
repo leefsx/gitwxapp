@@ -13,6 +13,11 @@ Page({
     cuserInfo: [],
     cartleng: 0
   },
+  goToCart(){
+    wx.switchTab({
+      url: "../cart/cart",
+    })
+  },
   onLoad(){
   },
   onShow() {

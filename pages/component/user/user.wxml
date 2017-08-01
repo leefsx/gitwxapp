@@ -16,7 +16,7 @@
             <text>{{cuserInfo.account_points}}</text>
             <text>积分</text>
           </view>
-          <view>
+          <view bindtap="goToCart">
             <text>{{cartleng}}</text>
             <text>购物车</text>
           </view>
@@ -26,9 +26,9 @@
         <text class="account_money">余额：{{cuserInfo.account_money}}</text>-->
         <!--<text class="about">关于我们</text>-->
     </view>
-    <view class="address-box">
+    <view class="address-box" style="border-bottom:none;">
         <view class="address-manage">
-            <navigator url="../address/address">地址管理</navigator>
+            <navigator url="../address/address">我的收货地址</navigator>
         </view>
         <!--<view wx:if="{{hasAddress}}" class="address-list">
             <view>{{address.name}}</view>
@@ -36,25 +36,30 @@
             <view>{{address.detail}}</view>
         </view>-->
     </view>
+    <view class="address-box">
+        <view class="address-manage">
+            <navigator>退出</navigator>
+        </view>
+    </view>
     <view class="orders-box">
         <!-- <view class="orders">
             <navigator>我的订单</navigator>
         </view> -->
         <view class="orders">我的订单</view>
         <view class="orders-list" wx:for="{{orders}}" wx:key="index">
-            <view class="orders-number">订单编号：{{item.oid}}</view>
+            <view class="orders-number color2">订单编号：{{item.oid}}</view>
             <navigator url="../order_detail/order_detail?oid={{item.oid}}" class="orders-detail">
                 <image src="{{order_pro_rel[item.id][0].picurl}}"></image>
                 <view class="">{{order_pro_rel[item.id][0].product_name}}</view>
-                <view class="">{{item.count}}</view>
+                <view class="">￥{{item.price}} x <text class="color2" style="font-size:26rpx;">{{item.amount}}</text></view>
                 <text wx:if="{{item.order_status_no==1}}" class="orders-status">待付款</text>
                 <text wx:elif="{{item.order_status_no==2}}" class="orders-status">已支付</text>
                 <text wx:else="{{item.order_status_no==5}}" class="orders-status">订单取消</text>
             </navigator>
             <view class="orders-footer">
-                <text><text wx:if="{{item.order_status_no==1||item.pay_status==1}}">应付：</text><text wx:if="{{item.order_status_no==3}}">实付：</text>￥{{item.total_amount}}</text>
-                <view wx:if="{{item.order_status_no==1}}"  class="orders-btn" data-oid="{{item.oid}}" bindtap="payOrders">付款</view>
-                <navigator url="../details/details?id={{order_pro_rel[item.id][0].product_id}}" wx:if="{{item.order_status_no==2||item.pay_status==2}}" class="orders-btn">再次购买</navigator>
+                <text><text wx:if="{{item.order_status_no==1||item.pay_status==1}}">应付：</text><text wx:if="{{item.order_status_no==3}}">实付：</text><text class="color">￥{{item.total_amount}}</text></text>
+                <view wx:if="{{item.order_status_no==1}}"  class="orders-btn bg_color" data-oid="{{item.oid}}" bindtap="payOrders">付款</view>
+                <navigator url="../details/details?id={{order_pro_rel[item.id][0].product_id}}" wx:if="{{item.order_status_no==2||item.pay_status==2}}" class="orders-btn bg_color">再次购买</navigator>
             </view>
         </view>
     </view>

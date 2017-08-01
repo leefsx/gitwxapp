@@ -1,4 +1,8 @@
 <view class="main">
+  <view class="order-status-content bg_color">
+    <text wx:if="{{order.pay_status==1}}">待付款</text>
+    <text wx:else>已支付</text>
+  </view>
   <view class="delivery-box confirm-box">
     <view class="delivery-top">
       <text class="fl">配送地址</text>
@@ -13,31 +17,20 @@
         </view>
       </view>
     </view>
-
-    <!--<view class="delivery-top delivery-bottom">
-      <text class="fl">配送日期</text>
-      <view class="picker fr">2017/7/27</view>
-    </view>
-
-    <view class="delivery-top delivery-bottom">
-      <text class="fl">配送时间</text>
-      <view class="picker fr">9:00-12:00</view>
-    </view>-->
-
   </view>
 
   <view class="orders-list confirm-box">
-    <view class="orders-number">订单编号：{{order.oid}}</view>
+    <view class="orders-number color2">订单编号：{{order.oid}}</view>
     <navigator url="/page/component/details/details" class="orders-detail">
         <image src="{{product.url}}"></image>
         <view class="">{{product.product_name}}</view>
-        <view class="">{{product.amount}}</view>
-        <text wx:if="{{order.pay_status==1}}" class="orders-status">待付款</text>
-        <text wx:else class="orders-status">已支付</text>
+        <view class="">￥{{product.price}} x <text class="color2" style="font-size:26rpx;">{{product.amount}}</text></view>
+        <!--<text wx:if="{{order.pay_status==1}}" class="orders-status">待付款</text>
+        <text wx:else class="orders-status">已支付</text>-->
         
     </navigator>
     <view class="orders-footer">
-        <text><text wx:if="{{order.pay_status==2}}">应付：</text><text wx:if="{{order.status==1}}">实付：</text>￥{{order.total_amount}}</text>
+        <text><text wx:if="{{order.pay_status==2}}">应付：</text><text wx:if="{{order.status==1}}">实付：</text><text class="color">￥{{order.total_amount}}</text></text>
         <view wx:if="{{order.pay_status==1}}"  class="orders-btn" data-oid="{{order.oid}}" bindtap="payOrders">付款</view>
         <navigator url="../details/details?id={{product.id}}" wx:if="{{order.order_status==3||order.pay_status==2}}" class="orders-btn">再次购买</navigator>
     </view>

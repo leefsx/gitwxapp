@@ -65,7 +65,7 @@
 
 .address-box{
     border-bottom: 20rpx solid #ededed;
-    color: #999;
+    /*color: #999;*/
     line-height: 90rpx;
     font-size: 28rpx;
 }
@@ -99,7 +99,7 @@
 }*/
 
 .orders-box{
-    color: #999;
+    /*color: #999;*/
     font-size: 28rpx;
 }
 .orders{
@@ -155,12 +155,11 @@
     top: 35rpx;
     height: 120rpx;
     line-height: 120rpx;
-    color: #b42f2d;
+    color: #c71f3b;
 }
 .orders-footer{
     height: 60rpx;
     line-height: 60rpx;
-    color: #2f2f2f;
     padding:15rpx 30rpx 15rpx 0;
 }
 .orders-footer .orders-btn{
@@ -169,8 +168,6 @@
     height: 60rpx;
     line-height:60rpx;
     border-radius: 6rpx;
-    background: #b42f2d;
-    color: #fff;
     text-align: center;
     font-size: 26rpx;
 }
