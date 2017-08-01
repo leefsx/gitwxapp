@@ -78,6 +78,7 @@ swiper-item image {
   padding: 10rpx;
   line-height: 60rpx;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .copyright{

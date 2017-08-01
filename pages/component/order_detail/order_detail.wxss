@@ -1,5 +1,6 @@
 .main{
   background-color: #ededed;
+  overflow-x: hidden;
 }
 .confirm-box{
     background-color: #fff;
@@ -89,4 +90,5 @@
   height: 200rpx;
   line-height: 200rpx;
   padding-left: 40rpx;
+  /*box-sizing: border-box;*/
 }

@@ -5,6 +5,7 @@ Page({
     products:[],
     category: [],
     website_name: '',
+    scrollTop: 0,
     goods: [
       {
         "first_level_category": "坚果炒货2",
@@ -29,6 +30,7 @@ Page({
     },
     config: [],
     // scrollHeight: 800
+    deviceHeight:''
   },
   // onLoad: function () {  
   //     var that = this;  
@@ -42,6 +44,16 @@ Page({
   //     });  
   // },  
   onShow(){
+    var that = this
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log(res.windowWidth + 'px')
+        that.setData({
+            deviceWidth: res.windowWidth + 'px', 
+            deviceHeight: res.windowHeight + 'px', 
+        })
+      }
+    })
     var product_category = app.globalData.cateid || 0
     app.globalData.cateid = 0
     this.setData({
@@ -53,7 +65,7 @@ Page({
       curIndex: ''
     })
     //if (this.data.products.length<1){
-      this.getProductsFromServer(4, 1)
+      this.getProductsFromServer(6, 1)
       wx.stopPullDownRefresh()
     //}
     
@@ -63,7 +75,8 @@ Page({
     var cateid = e.currentTarget.dataset.id;
     var curIndex = e.currentTarget.dataset.index;
     that.setData({
-      curIndex: curIndex
+      curIndex: curIndex,
+      scrollTop: 0
     })
     app.request({
       url: app.domain + '/api/product/list',
@@ -156,10 +169,10 @@ Page({
       this.getProductsFromServer(4, this_page + 1)
     }
   },
-  onReachBottom() {
-    console.log("1111")
-    this.load_more()
-  },
+  // onReachBottom() {
+  //   console.log("1111")
+  //   this.load_more()
+  // },
   reachBottom() {
     console.log("22222")
     this.load_more()
