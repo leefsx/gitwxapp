@@ -18,7 +18,7 @@
           </view>
           <view bindtap="goToCart">
             <text>{{cartleng}}</text>
-            <text>购物车</text>
+            <text bindtap="toCart">购物车</text>
           </view>
         </view>
         <!--<image src="{{userInfo.avatarUrl}}" class="thumb"></image>

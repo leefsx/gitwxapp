@@ -33,5 +33,5 @@
   
  </view>
  <view class="copyright small_font">
-   版权所有@某某商城
+   版权所有@{{config.website_name}}
  </view>

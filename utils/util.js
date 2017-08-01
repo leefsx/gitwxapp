@@ -21,7 +21,7 @@ function formatTime2(date) {
   var month = date.getMonth() + 1
   var day = date.getDate()
 
-  return [year, month, day].map(formatNumber).join('/') 
+  return [year, month, day].map(formatNumber).join('-') 
 }
 
 function formatNumber(n) {
@@ -29,7 +29,15 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function formatTime3(date) {
+  var year = date.getFullYear()
+  var month = date.getMonth() + 3
+  var day = date.getDate()
+
+  return [year, month, day].map(formatNumber).join('-')
+}
 module.exports = {
   formatTime: formatTime,
-  formatTime2: formatTime2
+  formatTime2: formatTime2,
+  formatTime3: formatTime3
 }

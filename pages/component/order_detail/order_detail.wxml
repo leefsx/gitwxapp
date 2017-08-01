@@ -27,7 +27,6 @@
         <view class="">￥{{product.price}} x <text class="color2" style="font-size:26rpx;">{{product.amount}}</text></view>
         <!--<text wx:if="{{order.pay_status==1}}" class="orders-status">待付款</text>
         <text wx:else class="orders-status">已支付</text>-->
-        
     </navigator>
     <view class="orders-footer">
         <text><text wx:if="{{order.pay_status==2}}">应付：</text><text wx:if="{{order.status==1}}">实付：</text><text class="color">￥{{order.total_amount}}</text></text>
