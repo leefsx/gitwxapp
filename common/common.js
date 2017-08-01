@@ -76,8 +76,6 @@ function createTimeStamp() {
 }
 /* 支付   */
 function pay(param) {
-  console.log('pay:')
-  console.log(param)
   wx.requestPayment({
     timeStamp: param.timeStamp,
     nonceStr: param.nonceStr,

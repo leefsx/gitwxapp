@@ -187,7 +187,7 @@ Page({
               title: '请先登录'
             })
             wx.navigateTo({
-              url: '../profile/profile'
+              url: '../login/login'
             })
           } else {
             app.request({
@@ -217,7 +217,7 @@ Page({
 
                 } else if (res.data.errmsg == '2') {
                   wx.navigateTo({
-                    url: '../profile/profile',
+                    url: '../login/login',
                   })
 
                 } else {

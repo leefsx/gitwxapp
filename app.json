@@ -10,7 +10,6 @@
     "pages/component/order_detail/order_detail",
     "pages/component/details/details",
     "pages/component/order_confirm/order_confirm",
-    "pages/component/profile/profile",
     "pages/component/login/login"
   ],
   "window": {
