@@ -16,7 +16,7 @@
   "window": {
     "navigationBarTextStyle": "#ffffff",
     "navigationBarTitleText": "零食汇商城",
-    "navigationBarBackgroundColor": "#707070",
+    "navigationBarBackgroundColor": "#313131",
     "backgroundColor": "#eeeeee",
     "enablePullDownRefresh": true
   },

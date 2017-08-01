@@ -7,10 +7,9 @@
   font-weight: bold;
   padding-right: 6rpx;
 }
-.good-lb{
+.product-display-ul{
   padding: 20rpx 0;
 }
-
 .main{text-align: center;margin: 0 10rpx;}
 swiper {
     width: 100%;
@@ -21,7 +20,6 @@ swiper-item image {
      width: 100%;
      height: 100%;
 }
-
 .index-top{
   position: relative;
   text-align: center;
@@ -58,10 +56,10 @@ swiper-item image {
   background-color:#eee;
   border:0.5px solid #f0eeee;
 }
-.goodsxx-bt{
+/*.product-display-title{
   position: relative;
-}
-.subtit_cate{
+}*/
+/*.subtit_cate{
   position: absolute;
   top: 0;
   right: 15rpx;
@@ -71,13 +69,12 @@ swiper-item image {
 .subtit_cate navigator{
   float: left;
   font-size: 24rpx;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #e9e9e9;
   padding: 0 10rpx;
   line-height: 50rpx;
-}
+}*/
 .load_more{
-  border: 1px solid #eee;
-  /* font-size: 30rpx; */
+  border: 1px solid #e9e9e9;
   padding: 10rpx;
   line-height: 60rpx;
   width: 100%;

@@ -1,39 +1,25 @@
 /* order_confirm.wxss */
-.small{
-  font-size: 26rpx;
-}
-.medium{
-  font-size: 28rpx;
-}
+
 .main{
   background-color: #ededed;
   padding-bottom: 100rpx;
 }
 .confirm-box{
-    /*color: #999;*/
     font-size: 28rpx;
     background-color: #fff;
     padding-left: 30rpx;
     padding-right: 30rpx;
-    border-bottom: 20rpx solid #ededed;
 }
-.orders{
-    height: 90rpx;
-    line-height: 90rpx;
-    border-bottom: 1rpx solid #e9e9e9;
-    text-align: center;
-}
+
 
 .orders-number{
     height: 90rpx;
     line-height: 90rpx;
-    border-bottom: 1rpx solid #e9e9e9;
 }
 .orders-detail{
     position: relative;
     height: 120rpx;
     padding: 35rpx 20rpx 35rpx 170rpx;
-    border-bottom: 1rpx solid #e9e9e9;
 }
 .orders-detail image{
     position: absolute;
@@ -51,7 +37,6 @@
     top: 35rpx;
     height: 120rpx;
     line-height: 120rpx;
-    color: #c71f3b;
 }
 .orders-footer{
     height: 60rpx;
@@ -63,7 +48,6 @@
   position:relative;
   height:90rpx;
   line-height: 90rpx;
-  border-bottom:1rpx solid #e9e9e9;
   text-align:center;
   padding-right:38rpx;
 }
@@ -91,9 +75,6 @@
   font-size: 120rpx;
   vertical-align: middle;
 }
-.delivery-bottom{
-  border-top: 1rpx solid #e9e9e9;
-}
 .delivery_addr-no-list{
   position: relative;
   height: 120rpx;
@@ -106,16 +87,8 @@
     width:100rpx;
     height:100rpx;
 }
-.delivery_addr-no-list view:first-child{
-  font-size: 32rpx;
-}
 .delivery_addr-no-list view:nth-child(2){
-  color:#535353;
-  font-size: 28rpx;
   padding: 10rpx 0 10rpx 0;
-}
-.delivery_addr-no-list view:last-child{
-  font-size: 26rpx;
 }
 .confirm-msg{
   height:90rpx;
@@ -200,7 +173,6 @@
   line-height:100rpx;
   padding:0 0rpx 0 30rpx;
   box-sizing:border-box;
-  background:#fff;
   display:flex;
   flex-direction:row;
   justify-content:space-between;

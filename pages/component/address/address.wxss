@@ -1,15 +1,25 @@
-/*@import '../../common/common.wxss';*/
-
 .form-box{
     padding-left: 30rpx;
     padding-right: 30rpx;
     position: relative;
-    /*width: 100%*/
 }
-.form-box input{
+.form-box view{
     height: 90rpx;
-    border-bottom: 1rpx solid #ededed;
-    font-size: 28rpx;
+    width: 100%
+}
+.form-box view text{
+    display: inline-block;
+    width: 20%;
+    height: 90rpx;
+    line-height: 90rpx;
+    vertical-align: top;
+    text-align: right;
+}
+
+.form-box  input{
+    display: inline-block;
+    width: 80%;
+    height: 90rpx;
     color: #999;
 }
 .form-box .input-placeholder{
@@ -26,20 +36,6 @@
     color: #fff;
     background-color: #898989;
 }
-/*.address{
-  width: 80%;
-  display: inline-block;
-}
-.address-btn{
-  display: inline-block;
-  width: 20%;
-  line-height: 90rpx;
-  position: absolute;
-  right: 30rpx;
-  bottom: 137rpx;
-  text-align: center;
-  border-radius: 10rpx;
-}*/
 
 
 

@@ -9,8 +9,8 @@
     </swiper>
     <view class="food-content">
       <text class="food-name">{{detail_data.name}}</text>
-      <text class="food-price">价格：<text>{{detail_data.price}}</text></text>
-      <text class="food-old_price">市场价：<text>{{detail_data.mark_price}}</text></text>
+      <text class="food-price color small_font">价格：<text>{{detail_data.price}}</text></text>
+      <text class="food-old_price color2 small_font">市场价：<text>{{detail_data.mark_price}}</text></text>
     </view>
     <view class="food-xq" bindtap="changState">
       <text>产品规格</text>
@@ -52,26 +52,26 @@
           </view>
         </view>
         <view class="good-rating" wx:if = "{{curIndex==1? true : false}}" bindtouchstart="oTs" bindtouchend="oTe">
-          <view class="good-rating-content">
+          <view class="good-rating-content medium_font">
           <view class="good-rating-list" wx:if="{{tradeRate.length>0}}">
-            <view class="good-rating-detail" wx:for="{{tradeRate}}">
+            <view class="good-rating-detail border_bottom)" wx:for="{{tradeRate}}">
               <view>
                 <text class="fl">{{item.usernick}}</text>
-                <text class="fr">{{item.created}}</text>
+                <text class="fr color2">{{item.created}}</text>
               </view>
               <text style="display:block;">{{item.content}}</text>
             </view>
-            <view class="good-rating-detail" wx:for="{{tradeRate}}">
+            <view class="good-rating-detail border_bottom" wx:for="{{tradeRate}}">
               <view style="height:25px;">
                 <text class="fl">{{item.usernick}}</text>
-                <text class="fr">{{item.created}}</text>
+                <text class="fr color2">{{item.created}}</text>
               </view>
               <text style="display:block;">{{item.content}}</text>
             </view>
           </view>
             <text class="good-rating-list" wx:else>暂无评价信息</text>
             
-            <text class="good-rating-last">总共<text>{{tradeRate.length}}</text>条记录</text>
+            <text class="good-rating-last">总共<text class="color">{{tradeRate.length}}</text>条记录</text>
           </view>
         </view>
         <view class="good-rec" wx:if = "{{curIndex==2? true : false}}" bindtouchstart="oTs" bindtouchend="oTe">
@@ -98,23 +98,23 @@
                 </view>
               </block>
             </view>
-            <text class="good-rating-last">总共<text>{{salesRecords.length}}</text>条记录</text>
+            <text class="good-rating-last">总共<text class="color">{{salesRecords.length}}</text>条记录</text>
           </view>
         </view>
         <view class="good-rating" wx:if = "{{curIndex==3? true : false}}" bindtouchstart="oTs" bindtouchend="oTe">
-          <view class="good-rating-content">
+          <view class="good-rating-content medium_font">
           <view class="good-rating-list" wx:if="{{productMessage.length>0}}">
-            <view class="good-rating-detail" wx:for="{{productMessage}}">
+            <view class="good-rating-detail border_bottom" wx:for="{{productMessage}}">
               <view>
                 <text class="fl">{{item.goumairen}}</text>
-                <text class="fr">{{item.created}}</text>
+                <text class="fr color2">{{item.created}}</text>
               </view>
               <text style="display:block;">{{item.content}}</text>
             </view>
           </view>
             <text class="good-rating-list" wx:else>暂无评价信息</text>
             
-            <text class="good-rating-last">总共<text>{{productMessage.length}}</text>条记录</text>
+            <text class="good-rating-last">总共<text class="color">{{productMessage.length}}</text>条记录</text>
           </view>
         </view>
     </view>
@@ -219,7 +219,7 @@
             <image class="detail-cart-thumb" src="{{detail_data.feature_img[0]}}" mode="aspectFit" />
             <view>
               <text class="detail-cart-pro-name tooLong">{{detail_data.name}}</text>
-              <text class="detail-cart-pro-price">价格：<text>{{detail_data.price}}</text></text>
+              <text class="detail-cart-pro-price color small_font">价格：<text>{{detail_data.price}}</text></text>
             </view>
             <icon class="digClose" size="23" type="cancel" color="#aaa" bindtap="changState"></icon>
           </view>
@@ -228,7 +228,7 @@
           不可选class为disable -->
           <scroll-view scroll-y style="height: 250px;">
              <view class="detail-cart-property">
-              <view class="property-list" wx:for="{{propertys}}" wx:for-index="id">
+              <view class="property-list border_bottom" wx:for="{{propertys}}" wx:for-index="id">
                 
                 <view class="property-list-name">{{item.name}}</view>
                 <view class="property-list-li">

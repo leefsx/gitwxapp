@@ -1,10 +1,18 @@
 <view class="main">
     <view class="form-box">
         <form bindsubmit="formSubmit">
-            <input value="{{address.name}}" placeholder="姓名" bindinput="bindName"/>
-            <input type="number" value="{{address.phone}}" placeholder="电话号码" bindinput="bindPhone" />
-            <input value="{{address.detail}}" placeholder="详细地址" bindinput="bindDetail" class="address"/>
-            <!--<view class="address-btn bg_color medium_font">获取地址</view>-->
+            <view class="border_bottom medium_font">
+                <text>收货人：</text>
+                <input value="{{address.name}}" placeholder="请输入姓名" bindinput="bindName"/>
+            </view>
+            <view class="border_bottom medium_font">
+                <text>电话：</text>
+                <input type="number" value="{{address.phone}}" placeholder="请输入电话号码" bindinput="bindPhone" />
+            </view>
+            <view class="border_bottom medium_font">
+                <text>地址：</text>
+                <input value="{{address.detail}}" placeholder="请输入详细地址" bindinput="bindDetail"/>
+            </view>
             <button form-type="submit" class="bg_color">保存</button><button bindtap="toBack">取消</button>
         </form>
     </view>

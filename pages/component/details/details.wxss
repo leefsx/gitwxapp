@@ -23,7 +23,7 @@
   background-color: #fff;
 }
 .food-detail-xq{
-  border-top: 1rpx solid #e1e1e1;
+  border-top: 1rpx solid #e9e9e9;
   padding-top: 10rpx;
   background-color: #fff;
 }
@@ -54,8 +54,7 @@
 }
 .goods-tab-nav text{
   display: block;
-  border-right: 1rpx solid #aaa;
-  /*width: 100%*/
+  border-right: 1rpx solid #e9e9e9;
 }
 .goods-tab-nav:last-child text{
   border-right: none;
@@ -79,16 +78,12 @@
   color: #372119;
 }
 .food-price{
-  color: #c71f3b;
-  font-size: 26rpx;
   padding: 8rpx 0;
 }
 .food-price text{
   font-size: 32rpx;
 }
 .food-old_price{
-  color: #999;
-  font-size: 26rpx;
   text-decoration:line-through;
   margin-bottom: 8rpx;
 }
@@ -118,16 +113,16 @@
   padding: 20rpx 20rpx;
 }
 
-.foot-dec_detail>text{
+/*.foot-dec_detail>text{
   font-size: 28rpx;
   color: #999;
   font-family: tahoma, arial, 微软雅黑, sans-serif;
   font-style: italic;
-}
+}*/
+/*
+.dec_detail-all{margin-left: 80rpx;}*/
 
-.dec_detail-all{margin-left: 80rpx;}
-
-.dec_detail{
+/*.dec_detail{
   color: #666666;
   position: relative;
   font-size: 26rpx;
@@ -144,14 +139,11 @@
   top: 50%;
   margin-top: -5rpx;
   left: -20rpx;
-}
+}*/
 .good-rating{
     background: #EDEDED;
 }
-.good-rating-content{
-    /* padding: 20rpx 10rpx 20rpx 20rpx; */
-    font-size: 28rpx;
-}
+
 .good-rating-list{
     display: block;
     min-height: 150rpx;
@@ -168,24 +160,20 @@
 .good-rating-detail view{
   height:25px;
   line-height: 25px;
-  border-bottom:1px solid #ededed;
 }
-.good-rating-detail view text.fr{
+/*.good-rating-detail view text.fr{
   color:#848689;
-}
+}*/
 .good-rating-last{
     display: block;
     text-align: right;
-}
-.good-rating-last text{
-    color: #c71f3b;
 }
 .good-rec,.good-ans{
     background: #EDEDED;
 }
 .good-rec-content{
     margin-top: 20rpx;
-    border:1rpx solid #aaa;
+    border:1rpx solid #e9e9e9;
     padding: 20rpx 10rpx;
     background: #fff;
     min-height: 150rpx;  
@@ -353,7 +341,7 @@
   width: 220rpx;
   height: 220rpx;
   background-color: #eee;
-  border: 1rpx solid #aaa;
+  border: 1rpx solid #e9e9e9;
   border-radius: 10rpx;
   margin-right: 20rpx;
 }
@@ -369,9 +357,7 @@
 }
 .detail-cart-pro-price{
   display: block;
-  font-size: 26rpx;
   max-width: 370rpx;
-  color: #c71f3b;
 }
 .detail-cart-count-box{
   margin-bottom: 40rpx;
@@ -390,18 +376,18 @@
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
-  border-top: 1rpx solid #aaa;
-  border-bottom: 1rpx solid #aaa;
+  border-top: 1rpx solid #e9e9e9;
+  border-bottom: 1rpx solid #e9e9e9;
 }
 .detail-cart-count-num{
   width: 80rpx;
-  border: 1rpx solid #aaa;
+  border: 1rpx solid #e9e9e9;
 }
 .detail-cart-count-down{
-  border-left: 1rpx solid #aaa;
+  border-left: 1rpx solid #e9e9e9;
 }
 .detail-cart-count-add{
-  border-right: 1rpx solid #aaa;
+  border-right: 1rpx solid #e9e9e9;
 }
 .detail-cart-count-surplus{
   display: inline-block;
@@ -435,7 +421,6 @@
 }
 .property-list{
   padding-bottom: 10rpx;
-  border-bottom:1rpx solid #ececec;
 }
 .property-list-name{
   display: inline-block;

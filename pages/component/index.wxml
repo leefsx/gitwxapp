@@ -15,16 +15,17 @@
     <view class="title"><text class="color">TOP</text>{{config.index_middle_title}}</view>
     <view class="recom-top">
       <navigator wx:for="{{index_middle_img}}" url="details/details?id={{index_middle_imgurl[index]['detail_id']}}">
-        <image mode="aspectFit" src="{{item}}"></image>
+        <image mode="aspectFill" src="{{item}}"></image>
       </navigator>
     </view>
   </view>
 
-  <view class="goodsxx">
-    <view class="goodsxx-bt">
+
+  <view class="product-display">
+    <view class="product-display-title">
       <view class="title">{{config.product_title}}</view>
     </view>
-    <view class="good-lb">
+    <view class="product-display-ul">
       <template is="product_list" data="{{products}}" />
       <view class="load_more medium_font" bindtap="load_more">加载更多</view>
     </view>

@@ -7,7 +7,6 @@
     position: relative;
     padding: 20rpx 20rpx 20rpx 285rpx;
     height: 185rpx;
-    border-bottom: 1rpx solid #e9e9e9;
 }
 .cart-list .cart-pro-select{
     position: absolute;
@@ -35,7 +34,6 @@
     display: block;
     height: 50rpx;
     line-height: 50rpx;
-    color: #c71f3b;
 }
 .cart-list .cart-count-box{
     position: absolute;
@@ -70,11 +68,8 @@
     height: 100rpx;
     padding:0 0rpx 0 80rpx;
     box-sizing: border-box;
-    /*display: flex;*/
     border-top: 1rpx solid #e9e9e9;
     background-color: #fff;
-    /*flex-direction: row;
-    justify-content: space-between;*/
 }
 .total-select{
     line-height: 100rpx;
@@ -97,12 +92,9 @@
   display:inline-block;
   height:100rpx;
   line-height:100rpx;
-}
-.cart-toatl-price{
-    color: #b5b5b5;
+  text-decoration: underline;
 }
 .cart-toatl-price text{
-  color:#c71f3b;
   font-weight: bold;
 }
 .cart-toatl-qjs{
@@ -124,7 +116,6 @@
 }
 .cart-top{
     height: 90rpx;
-    border-bottom:1rpx solid #e9e9e9;
 }
 .cart-top-tex{
     display:inline-block;
@@ -143,7 +134,5 @@
     text-align: right;
 }
 .cart-toatl-js-price .cart-toatl-addPri{
-  font-size: 26rpx;
-  color: #b5b5b5;
   font-weight: normal;
 }
