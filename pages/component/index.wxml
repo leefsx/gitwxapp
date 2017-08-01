@@ -15,7 +15,7 @@
     <view class="title"><text class="color">TOP</text>热销产品</view>
     <view class="recom-top">
       <navigator wx:for="{{index_middle_img}}" url="details/details">
-        <image mode="aspectFit" src="{{item}}"></image>
+        <image mode="aspectFill" src="{{item}}"></image>
       </navigator>
     </view>
   </view>
