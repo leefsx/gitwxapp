@@ -141,7 +141,7 @@ Page({
         var send_data = {
           cid: detail_data.id,
           title: detail_data.name,
-          image: detail_data.feature_img,
+          image: detail_data.feature_img[0],
           num: that.data.food.num,
           price: detail_data.price,
           sum: detail_data.price,

@@ -216,7 +216,7 @@
       <view class="detail-cart-box">
         <view class="detail-cart-list">
           <view class="detail-cart-list-top">
-            <image class="detail-cart-thumb" src="{{detail_data.feature_img}}" mode="aspectFit" />
+            <image class="detail-cart-thumb" src="{{detail_data.feature_img[0]}}" mode="aspectFit" />
             <view>
               <text class="detail-cart-pro-name tooLong">{{detail_data.name}}</text>
               <text class="detail-cart-pro-price">价格：<text>{{detail_data.price}}</text></text>
