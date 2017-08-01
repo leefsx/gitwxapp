@@ -23,7 +23,7 @@
     <view class="orders-number color2">订单编号：{{order.oid}}</view>
     <navigator wx:for="{{product}}" url="../details/details?id={{item.product_id}}" class="orders-detail">
         <image src="{{item.product_thumb}}"></image>
-        <view class="">{{item.product_name}}</view>
+        <view class="tooLong">{{item.product_name}}</view>
         <view class="">￥{{item.price}} x <text class="color2" style="font-size:26rpx;">{{item.amount}}</text></view>
         <!--<text wx:if="{{order.pay_status==1}}" class="orders-status">待付款</text>
         <text wx:else class="orders-status">已支付</text>-->
