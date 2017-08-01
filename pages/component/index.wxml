@@ -20,11 +20,11 @@
     </view>
   </view>
 
-  <view class="goodsxx">
-    <view class="goodsxx-bt">
+  <view class="product-display">
+    <view class="product-display-title">
       <view class="title">产品展示</view>
     </view>
-    <view class="good-lb">
+    <view class="product-display-ul">
       <template is="product_list" data="{{products}}" />
       <view class="load_more medium_font" bindtap="load_more">加载更多</view>
     </view>

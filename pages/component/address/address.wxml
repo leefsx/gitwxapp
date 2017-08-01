@@ -1,10 +1,9 @@
 <view class="main">
     <view class="form-box">
         <form bindsubmit="formSubmit">
-            <input value="{{address.name}}" placeholder="姓名" bindinput="bindName"/>
-            <input type="number" value="{{address.phone}}" placeholder="电话号码" bindinput="bindPhone" />
-            <input value="{{address.detail}}" placeholder="详细地址" bindinput="bindDetail" class="address"/>
-            <!--<view class="address-btn bg_color medium_font">获取地址</view>-->
+            <input class="border_bottom medium_font" value="{{address.name}}" placeholder="姓名" bindinput="bindName"/>
+            <input class="border_bottom medium_font" type="number" value="{{address.phone}}" placeholder="电话号码" bindinput="bindPhone" />
+            <input class="border_bottom medium_font" value="{{address.detail}}" placeholder="详细地址" bindinput="bindDetail" class="address"/>
             <button form-type="submit" class="bg_color">保存</button><button bindtap="toBack">取消</button>
         </form>
     </view>

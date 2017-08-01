@@ -1,12 +1,7 @@
-/*@import '../../common/common.wxss';*/
-
 .header{
     position: relative;
     height: 292rpx;
     box-sizing: border-box;
-    background: #c71f3b;
-    font-size: 28rpx;
-    color: #fff;
 }
 .header-top{
   padding:30rpx 30rpx 30rpx 30rpx;
@@ -64,15 +59,11 @@
 }
 
 .address-box{
-    border-bottom: 20rpx solid #ededed;
-    /*color: #999;*/
     line-height: 90rpx;
-    font-size: 28rpx;
 }
 .address-box .address-manage{
     position: relative;
     height: 90rpx;
-    border-bottom: 1rpx solid #e9e9e9;
     padding-left: 40rpx;
 }
 .address-box .address-manage::after{
@@ -87,43 +78,14 @@
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-/*.address-box .address-list{
-    padding-left: 30rpx;
-}
-.address-box .address-list view{
-    height: 90rpx;
-    border-bottom: 1rpx solid #e9e9e9;
-}
-.address-box .address-list view:last-child{
-    border-bottom: 0;
-}*/
-
-.orders-box{
-    /*color: #999;*/
-    font-size: 28rpx;
-}
 .orders{
     position: relative;
     height: 90rpx;
     line-height: 90rpx;
-    border-bottom: 1rpx solid #e9e9e9;
     text-align: center;
 }
-/* .orders::after{
-    position: absolute;
-    right: 30rpx;
-    top: 34rpx;
-    content: '';
-    width: 16rpx;
-    height: 16rpx;
-    border-top: 4rpx solid #7f7f7f;
-    border-right: 4rpx solid #7f7f7f;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-} */
 .orders-list{
     padding-left: 30rpx;
-    border-bottom: 20rpx solid #ededed;
 }
 .orders-list:last-child{
     border-bottom: 0;
@@ -131,13 +93,11 @@
 .orders-number{
     height: 90rpx;
     line-height: 90rpx;
-    border-bottom: 1rpx solid #e9e9e9;
 }
 .orders-detail{
     position: relative;
     height: 120rpx;
     padding: 35rpx 20rpx 35rpx 170rpx;
-    border-bottom: 1rpx solid #e9e9e9;
 }
 .orders-detail image{
     position: absolute;
@@ -152,10 +112,9 @@
 .orders-detail .orders-status{
     position: absolute;
     right: 20rpx;
-    top: 35rpx;
+    top: 42rpx;
     height: 120rpx;
     line-height: 120rpx;
-    color: #c71f3b;
 }
 .orders-footer{
     height: 60rpx;
@@ -169,5 +128,4 @@
     line-height:60rpx;
     border-radius: 6rpx;
     text-align: center;
-    font-size: 26rpx;
 }
