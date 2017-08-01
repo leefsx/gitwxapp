@@ -56,7 +56,7 @@
 
   <view class="confirm-invoice confirm-box medium_font border_bottom2" style="border-bottom:none;">
     <view class="delivery-top border_bottom">
-      <text class="fl">余额</text>
+      <text class="fl">可用余额</text>
       <view class="picker fr small_font"><text class="color medium_font">-￥{{disass.yeprice || '0.00'}}</text></view>
     </view>
   </view>

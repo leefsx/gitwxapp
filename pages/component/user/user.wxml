@@ -22,16 +22,16 @@
           </view>
         </view>
     </view>
-    <view class="address-box medium_font">
+    <view class="address-box medium_font border_bottom2">
         <view class="address-manage border_bottom">
             <navigator url="../address/address">我的收货地址</navigator>
         </view>
     </view>
-    <view class="address-box medium_font border_bottom2">
+    <!--<view class="address-box medium_font border_bottom2">
         <view class="address-manage border_bottom">
             <navigator>退出</navigator>
         </view>
-    </view>
+    </view>-->
     <view class="orders-box medium_font">
         <view class="orders border_bottom">我的订单</view>
         <view class="orders-list border_bottom2" wx:for="{{orders}}" wx:key="index">

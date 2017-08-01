@@ -3,7 +3,22 @@
     padding-right: 30rpx;
     position: relative;
 }
-.form-box input{
+.form-box view{
+    height: 90rpx;
+    width: 100%
+}
+.form-box view text{
+    display: inline-block;
+    width: 20%;
+    height: 90rpx;
+    line-height: 90rpx;
+    vertical-align: top;
+    text-align: right;
+}
+
+.form-box  input{
+    display: inline-block;
+    width: 80%;
     height: 90rpx;
     color: #999;
 }
