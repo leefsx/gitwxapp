@@ -18,7 +18,6 @@
 }
 .scroll-view-left-item{
   text-align: center;
-  height: 80rpx;
   line-height: 80rpx;
   box-sizing: border-box;
   border-bottom: 1rpx solid #e9e9e9;

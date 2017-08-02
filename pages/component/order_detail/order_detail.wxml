@@ -11,9 +11,9 @@
       <view class="delivery_addr-no-content">
         <view class="delivery_addr-no-list">
             <image src="../../../image/local.jpg" style="width:50px; height:50px;"></image>
-            <view class="addr_name normal_font">收货人:<text class="color">{{address.name}}</text></view>
-            <view class="addr_phone medium_font">电话:{{address.phone}}</view>
-            <view class="addr_detail small_font">{{address.detail}}</view>
+            <view class="addr_name normal_font">收货人：<text class="color">{{address.name}}</text></view>
+            <view class="addr_phone medium_font">电话：{{address.phone}}</view>
+            <view class="addr_detail small_font">地址：{{address.detail}}</view>
         </view>
       </view>
     </view>
