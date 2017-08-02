@@ -245,7 +245,9 @@ Page({
         carts: app.globalData.carts,
         config: {
           'website_name': config.website_name,
-          'logo': config.logo
+          'logo': config.logo,
+          'hotline_logo': config.hotline_logo,
+          'hotline_no': config.hotline_no
         }
       })
       app.request({
