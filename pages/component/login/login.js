@@ -94,7 +94,29 @@ Page({
     })
   },
   onShow: function () {
-    console.log('index is show')
+    var self = this;
+    var openid = wx.getStorageSync('openid');
+    if (openid) {
+      var url = comm.parseToURL('weixin', 'signin')
+      var uinfo = self.data.userInfo
+      app.request({
+        url: url,
+        data: {
+          openid: openid,
+          nickName: uinfo.nickName || '',
+          avatarUrl: uinfo.avatarUrl || ''
+        },
+        method: 'GET',
+        success: function (res) {
+          if (res.data.result == 'OK') {
+            app.globalData.cuser = res.data
+            wx.navigateBack({
+              
+            })
+          }
+        }
+      })
+    }
   },
   shuaxin: function () {
     wx.redirectTo({
