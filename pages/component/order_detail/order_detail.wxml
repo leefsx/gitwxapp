@@ -29,7 +29,7 @@
     <view class="orders-footer">
         <text><text wx:if="{{order.pay_status==2}}">应付：</text><text wx:if="{{order.status==1}}">实付：</text><text class="color">￥{{order.total_amount}}</text></text>
         <view wx:if="{{order.pay_status==1}}"  class="orders-btn bg_color" data-oid="{{order.oid}}" bindtap="payOrders">付款</view>
-        <navigator url="../details/details?id={{product.id}}" wx:if="{{order.order_status==3||order.pay_status==2}}" class="orders-btn bg_color">再次购买</navigator>
+        <navigator url="../details/details?id={{product[0].product_id}}" wx:if="{{order.order_status==3||order.pay_status==2}}" class="orders-btn bg_color">再次购买</navigator>
     </view>
   </view>
 
