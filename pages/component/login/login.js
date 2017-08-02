@@ -57,12 +57,12 @@ Page({
   auto_registered: function(opt){
     var that = this
     var openid = wx.getStorageSync('openid');
-    console.log(that.data.userInfo.avatarUrl)
     app.request({
       url: comm.parseToURL('weixin','auto_registered'),
       data: {
         openid: openid,
-        headphoto: that.data.userInfo.avatarUrl
+        headphoto: that.data.userInfo.avatarUrl,
+        nickName: that.data.userInfo.nickName
       },
       method: 'POST',
       success: function(res){

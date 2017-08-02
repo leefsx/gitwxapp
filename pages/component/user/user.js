@@ -23,11 +23,9 @@ Page({
   onShow() {
     var self = this;
     var openid = wx.getStorageSync('openid');
-    console.log('oi:'+openid)
     if (openid) {
       var url = comm.parseToURL('weixin', 'signin')
       var uinfo = self.data.userInfo
-      console.log(uinfo)
       app.request({
         url: url,
         data: {
@@ -58,7 +56,7 @@ Page({
               success: function (res) {
                 if (res.data.result == 'OK') {
                   self.setData({
-                    orders: res.data.data,
+                    orders: res.data.data || [],
                     order_pro_rel: res.data.order_pro_rel,
                     cartleng: app.globalData.carts.length
                   })

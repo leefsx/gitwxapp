@@ -202,10 +202,10 @@ Page({
                     method: 'GET',
                     success: function (ress) {
                       if (ress.data.result == 'OK') {
-                        app.globalData.carts = carts
+                        app.globalData.dcarts = carts
                         var oid = ress.data.oid
                         wx.navigateTo({
-                          url: '../order_confirm/order_confirm?fr=u&oid=' + oid
+                          url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
                         })
                       } else {
                         wx.showToast({

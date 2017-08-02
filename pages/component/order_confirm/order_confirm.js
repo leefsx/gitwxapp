@@ -315,6 +315,9 @@ Page({
     var now = comm.get_now()
     var that = this
     if (options.fr=='u'){
+	  if(options.t == 'detail'){
+        carts = app.globalData.dcarts
+      }
       app.request({
         url: comm.parseToURL('order','getorder'),
         data: { oid: options.oid},
@@ -336,7 +339,7 @@ Page({
         }
       })
     }
-    if(carts.length>0){
+    if(carts.length>0 && options.t != 'detail'){
       var total_price = 0
       for(var i=0;i<carts.length;i++){
         total_price += carts[i].price * carts[i].num
