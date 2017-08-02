@@ -49,8 +49,8 @@ Page({
       success: function(res) {
         console.log(res.windowWidth + 'px')
         that.setData({
-            deviceWidth: res.windowWidth + 53, 
-            deviceHeight: res.windowHeight + 53, 
+            deviceWidth: res.windowWidth, 
+            deviceHeight: res.windowHeight, 
         })
       }
     })

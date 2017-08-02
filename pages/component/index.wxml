@@ -34,5 +34,5 @@
   
  </view>
  <view class="copyright small_font">
-   版权所有@{{config.copyright}}
+   @{{config.copyright}}
  </view>
