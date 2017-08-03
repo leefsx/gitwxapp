@@ -41,6 +41,10 @@ Page({
         this.getTotalPrice();
       }
       
+    }else{
+      this.setData({
+        'prompt.hidden': false
+      });
     }
   },
 

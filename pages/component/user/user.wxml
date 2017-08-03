@@ -41,8 +41,12 @@
                 <view class="tooLong">{{order_pro_rel[item.id][0].product_name}}</view>
                 <view class="">￥{{item.total_amount}} x <text class="color2 small_font">{{order_pro_rel[item.id][0].amount}}</text></view>
                 <text wx:if="{{item.order_status_no==1}}" class="orders-status color">待付款</text>
-                <text wx:elif="{{item.order_status_no==2}}" class="orders-status color">已支付</text>
-                <text wx:else="{{item.order_status_no==5}}" class="orders-status color">订单取消</text>
+                <text wx:elif="{{item.order_status_no==5}}" class="orders-status color">订单取消</text>
+                <text wx:elif="{{item.order_status_no==2 && item.delivery_status_no==1}}" class="orders-status color">已支付</text>
+                <text wx:elif="{{item.order_status_no==2 && item.delivery_status_no==2}}" class="orders-status color">已发货</text>
+                <text wx:elif="{{item.pay_status==3}}" class="orders-status color">已退款</text>
+                <text wx:elif="{{item.delivery_status_no==3}}" class="orders-status color">已退货</text>
+                <text wx:elif="{{item.order_status_no==3}}" class="orders-status color">已完成</text>
             </navigator>
             <view class="orders-footer">
                 <text><text wx:if="{{item.order_status_no==1||item.pay_status==1}}">应付：</text><text wx:if="{{item.order_status_no==3}}">实付：</text><text class="color">￥{{item.total_amount}}</text></text>
