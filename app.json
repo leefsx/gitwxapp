@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/component/address-confirm/address-confirm",
     "pages/component/index",
     "pages/component/category/category",
     "pages/component/cart/cart",
@@ -9,7 +8,7 @@
     "pages/component/address/address",
     "pages/component/address-edit/address-edit",
     "pages/component/address-list/address-list",
-    
+    "pages/component/address-confirm/address-confirm",
     "pages/component/order-list/order-list",
     "pages/component/order_detail/order_detail",
     "pages/component/details/details",
