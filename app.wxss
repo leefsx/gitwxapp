@@ -187,7 +187,28 @@ page {
 
 
 /*产品列表样式*/
+.products{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
 .product-nav{
+  width: 49%;
+  border: 1rpx solid #f0eeee;
+  box-sizing: border-box;
+  margin-bottom: 15rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+
+
+
+/*.product-nav{
   width: 49.5%;
   border: 1rpx solid #f0eeee;
   box-sizing: border-box;
@@ -199,7 +220,7 @@ page {
 }
 .product-nav:nth-child(even){
   margin-right: 0;
-}
+}*/
 .product-nav:hover{
   border-color: #c71f3b;
 }
