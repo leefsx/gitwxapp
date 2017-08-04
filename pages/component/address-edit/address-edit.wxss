@@ -41,16 +41,6 @@ switch{
     line-height:90rpx;
 }
 
-.picker-view {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-}
-.addr-item {
-    line-height: 50px;
-    text-align: center;
-}
-
 
 
 
