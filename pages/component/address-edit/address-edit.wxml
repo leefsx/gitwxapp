@@ -24,7 +24,13 @@
             <button form-type="submit" class="bg_color">保存</button><button bindtap="toDele">删除</button>
         </form>
     </view>
-    <picker-view wx:if="{{isShow}}" class="picker-view" indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">
+
+    <view wx:if="{{isShow}}" class="pickerConfirm">
+        <text>取消</text>
+        <text>确定</text>
+    </view>
+
+    <picker-view wx:if="{{isShow}}" class="picker-view" indicator-style="height: 40px;" style="width: 100%; height: 500rpx;" value="{{value}}" bindchange="bindChange">
         <picker-view-column>
             <view wx:for="{{proviceData}}" class="addr-item">{{item.fullNameDot}}</view>
         </picker-view-column>

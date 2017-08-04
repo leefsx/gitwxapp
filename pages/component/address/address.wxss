@@ -47,8 +47,30 @@ switch{
     bottom: 0;
 }
 .addr-item {
-    line-height: 50px;
+    line-height: 40px;
     text-align: center;
+}
+
+
+.pickerConfirm{
+  position: fixed;
+  left: 0;
+  bottom: 500rpx;
+  height: 80rpx;
+  background-color: #fbf9fe;
+  color: #586c94;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
+  padding:0 40rpx;
+  box-sizing:border-box;
+
+}
+.pickerConfirm text{
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
 
