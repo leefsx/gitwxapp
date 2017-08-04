@@ -8,22 +8,36 @@
 	padding: 20rpx 70rpx 20rpx 30rpx;
 	position: relative;
 }
-.weui-media-box__desc{
-	line-height: 55rpx;
-}
+
+
+
 .address-list .edit {
 	position: absolute;
-	top: 50%;
+	/*top: 50%;*/
 	right: 30rpx;
-	width: 40rpx; 
+	bottom: 10rpx;
+	/*width: 40rpx; */
     height: 40rpx;
-    -webkit-transform: translate3d(0, -50%, 0);
-    transform: translate3d(0, -50%, 0);
+	line-height: 40rpx;
+    /*-webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);*/
 }
-
+.address-list .edit view{
+	display: inline-block;
+}
+.address-list .edit view:first-child{
+	margin-right: 20rpx;
+}
 .address-list .edit .icon {
     width: 40rpx; 
     height: 40rpx;
+	vertical-align: top;
+}
+.weui-media-box__det{
+	line-height: 70rpx;
+}
+.weui-media-box__info{
+	line-height: 60rpx;
 }
 
 
@@ -43,4 +57,5 @@
 	width: 40rpx;
 	height: 40rpx;
 	margin-right: 10rpx;
+	vertical-align:-6rpx;
 }

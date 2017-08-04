@@ -7,14 +7,23 @@
         <view class="weui-panel" wx:if="{{ !!items.length }}">
             <view class="weui-panel__bd">
                 <view class="weui-media-box border_bottom" wx:for="{{ items }}" wx:key="">
-                    <view class="">{{ item.name }}  {{ item.tel }}</view>
+                    <view class="weui-media-box__det">{{ item.name }}  {{ item.tel }}</view>
                     <view class="weui-media-box__desc medium_font">{{ item.address }}</view>
                     <view class="weui-media-box__info">
                         <view class="color small_font" wx:if="{{ item.is_def }}">默认地址</view>
                         <view class="color2 small_font" wx:if="{{ !item.is_def }}" bindtap="setDefalutAddress" data-id="{{ item.id }}">设为默认</view>
                     </view>
-                    <view class="edit" bindtap="toAddressEdit" data-id="{{ item.id }}">
-                        <image class="icon" src="../../../image/iconfont-edit.png" />
+                    <view class="edit">
+                        <view bindtap="toAddressEdit" data-id="{{ item.id }}">
+                            <text class="small_font color2">编辑:</text>
+                            <image class="icon" src="../../../image/iconfont-edit.png" />
+                        </view>
+                        <view bindtap="cancelAddress" data-id="{{ item.id }}">
+                            <text class="small_font color2">删除:</text>
+                            <image class="icon" src="../../../image/iconfont-cancel.png" />
+                        </view>
+                        
+                        <!--<image class="icon" src="../../../image/iconfont-cancel.png" />-->
                     </view>
                 </view>
             </view>

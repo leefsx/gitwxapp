@@ -54,6 +54,7 @@ switch{
 
 .pickerConfirm{
   position: fixed;
+  z-index: 10000;
   left: 0;
   bottom: 500rpx;
   height: 80rpx;

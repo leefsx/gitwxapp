@@ -67,5 +67,16 @@ Page({
     this.setData({
       'address.is_def' : e.detail.value
     })
+  },
+  onCancel(){
+    this.setData({
+      'address.povince' : '',
+      isShow : false
+    })
+  },
+  onConfirm(){
+    this.setData({
+      isShow : false
+    })
   }
 })
