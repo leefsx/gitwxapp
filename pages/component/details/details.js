@@ -124,6 +124,10 @@ Page({
         currentState: (!that.data.currentState)
       })
     }else{
+      wx.showLoading({
+        title: '请求中',
+        mask: true
+      })
       if (cart_index > 0) {
         for (var i = 0; i < cart_index; i++) {
 
@@ -168,6 +172,10 @@ Page({
         currentState: (!that.data.currentState)
       })
     } else {
+      wx.showLoading({
+        title: '请求中',
+        mask: true
+      })
       var carts = [{
         cid: detail_data.id,
         title: detail_data.name,
@@ -191,38 +199,23 @@ Page({
             })
           } else {
             app.request({
-              url: comm.parseToURL('order', 'addcart'),
-              data: { data: JSON.stringify(carts) },
+              url: comm.parseToURL('order', 'createOrder'),
+              data: { 
+                fr: 'buy',
+                cart: JSON.stringify(carts) 
+              },
               method: 'GET',
-              success: function (res) {
-                if (res.data.result == 'OK') {
-                  app.request({
-                    url: comm.parseToURL('order', 'createOrder'),
-                    data: [],
-                    method: 'GET',
-                    success: function (ress) {
-                      if (ress.data.result == 'OK') {
-                        app.globalData.dcarts = carts
-                        var oid = ress.data.oid
-                        wx.navigateTo({
-                          url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
-                        })
-                      } else {
-                        wx.showToast({
-                          title: ress.data.errmsg
-                        })
-                      }
-                    }
-                  })
-
-                } else if (res.data.errmsg == '2') {
+              success: function (ress) {
+                wx.hideLoading()
+                if (ress.data.result == 'OK') {
+                  app.globalData.dcarts = carts
+                  var oid = ress.data.oid
                   wx.navigateTo({
-                    url: '../login/login',
+                    url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
                   })
-
                 } else {
                   wx.showToast({
-                    title: '请求失败'
+                    title: ress.data.errmsg
                   })
                 }
               }
@@ -238,6 +231,13 @@ Page({
     
   },
   onLoad(options){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    comm.get_cuser({
+      success: function (cuser) {}
+    })
     if (!options.id) options.id = app.globalData.firstPid
     if (options.id) {
       var that = this;
@@ -260,7 +260,7 @@ Page({
         success: function (res) {
           var detail = res.data.data.description;
           WxParse.wxParse('detail_desc', 'html', detail, that, 0);
-          console.log(res.data.data)
+          
           that.setData({
             detail_data: res.data.data,
             product_id: options.id,
@@ -278,6 +278,7 @@ Page({
         },
         complete: function () {
           console.log('complete!');
+          wx.hideLoading()
         }
       })
 

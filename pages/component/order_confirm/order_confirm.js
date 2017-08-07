@@ -68,11 +68,24 @@ Page({
     ujfdata: [],//积分余额等用户数据
     perdata: [],//积分抵扣方式数据
     yhjid: 0,
-    yhjprice: 0
+    yhjprice: 0,
+    MessageSwitch: '',
+    TextModification: ''
   },
   lastPay(){
     var openid = wx.getStorageSync('openid');
     var delivery_addr = this.data.delivery_addr
+    var MessageSwitch = this.data.MessageSwitch
+    if (MessageSwitch=='1'){
+      var message = this.data.message
+      var TextModification = this.data.TextModification
+      if (message == '' || message.length == 0){
+        wx.showToast({
+          title: '请先添加' + TextModification
+        })
+        return false
+      }
+    }
     if (!delivery_addr){
       wx.showToast({
         title: '请先添加收货人信息'
@@ -149,7 +162,7 @@ Page({
           icon: 'success',
           duration: 2500
         })
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../order_detail/order_detail?oid=' + oid,
         })
       }
@@ -175,7 +188,7 @@ Page({
   },
   addAddr(){
     wx.navigateTo({
-      url: '../address/address',
+      url: '../address-list/address-list',
     })
   },
   bindInvoiceChange(e){
@@ -367,7 +380,7 @@ Page({
         if (res.data.result == 'OK') {
           var usercinfo = res.data.usercinfo
           var total_price = that.data.total_price;
-          console.log(total_price)
+          
           var couponnum = 0
           var coupon_mode = that.data.coupon_mode
           for (var i = 0; i < usercinfo.length; i++) {
@@ -400,16 +413,23 @@ Page({
             integral_mode: integral_mode,
             balance_mode: balance_mode,
             coupon_mode: coupon_mode,
-            lastPrice: total_price
+            lastPrice: total_price,
+            MessageSwitch: res.data.MessageSwitch,
+            TextModification: res.data.TextModification,
+            address: res.data.delivery
           })
         }
       }
     })
   },
   onShow: function () {
+    if (typeof (this.options.fr) =='undefined'){
+      wx.switchTab({
+        url: '../user/user',
+      })
+    }
     let start_date=util.formatTime2(new Date);
     let end_date = util.formatTime3(new Date);
-    //console.log(start_date)
     this.setData({
       start_date: start_date,
       date: start_date,

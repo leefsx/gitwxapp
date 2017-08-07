@@ -1,5 +1,5 @@
+var comm = require('../../../common/common.js');
 const App = getApp()
-
 Page({
     data: {
         address: {},
@@ -9,28 +9,40 @@ Page({
             title: '还没有收货地址呢',
             text: '暂时没有相关数据',
         },
-        items:[
-            {
-                address:"上海市黄浦区大道188号",
-                is_def:true,
-                name:"金三顺",
-                tel:"13188888888",
-                id:1
-            },
-            {
-                address:"上海市黄浦区大道199号",
-                is_def:false,
-                name:"金er顺",
-                tel:"13199999999",
-                id:2
-            }
-        ]
+        items:[],
+        areaname: [],
+        fr: ''
     },
-    onLoad() {
-        // this.onPullDownRefresh()
-        this.setData({
-            'prompt.hidden': this.data.items.length,
+    onLoad(opt) {
+      console.log(11)
+      var that = this
+      if (opt && opt.fr == 'chose'){
+        that.setData({
+          fr: 'chose'
         })
+      }
+      App.request({
+        url: comm.parseToURL('user','getarea'),
+        data:{},
+        success: function(res){
+          if (res.data.addresses.length > 0){
+            that.setData({
+              items: res.data.addresses,
+              areaname: res.data.areaname,
+              'prompt.hidden': true
+            })
+          }else{
+            that.setData({
+              'prompt.hidden': false,
+            })
+          }
+        }
+      })
+        // this.onPullDownRefresh()
+    },
+    onShow(opt){
+      console.log(opt)
+      console.log('show')
     },
     // initData() {
     //     this.setData({
@@ -45,9 +57,8 @@ Page({
     //     })
     // },
     toAddressEdit(e) {
-        console.log(e.currentTarget.dataset.id)
         wx.navigateTo({
-            url:'../address-edit/address-edit?id='+e.currentTarget.dataset.id
+            url:'../address/address?id='+e.currentTarget.dataset.id
         })
     },
     toAddressAdd(e) {
@@ -56,9 +67,42 @@ Page({
             url:'../address/address'
         })
     },
-
+    cancelAddress(e) {
+      var id = e.currentTarget.dataset.id
+      var that = this
+      if (id){
+        App.request({
+          url: comm.parseToURL('user','del_consignee'),
+          data: {id: id},
+          success: function(res){
+            if(res.data.result=='OK'){
+              wx.showToast({
+                title: '删除成功'
+              })
+              that.onLoad()
+            }else{
+              wx.showToast({
+                title: '删除失败'
+              })
+            }
+            
+          }
+        })
+      }
+    },
     setDefalutAddress(e) {
         const id = e.currentTarget.dataset.id
+        var that = this
+        if(id){
+          App.request({
+            url: comm.parseToURL('user','setDefaultAddress'),
+            data: {id:id},
+            success: function(res){
+              that.onLoad()
+
+            }
+          })
+        }
 
     },
     getList() {
@@ -81,6 +125,27 @@ Page({
             }
         })
     },
+    choseAddress(e){
+      var index = e.currentTarget.dataset.index;
+      var areaname = this.data.areaname
+      var items = this.data.items
+      var adress = items[index]
+      adress.detail = areaname[adress['prov_id']] + areaname[adress['city_id']] + areaname[adress['dist_id']] + adress['detailed_addr']
+
+      var fr = this.data.fr
+      if(fr = 'chose'){
+        wx.setStorage({
+          key: 'address',
+          data: items[index],
+          success() {
+            wx.navigateBack();
+          }
+        })
+      }else{
+        return false
+      }
+
+    }
     // onPullDownRefresh() {
     //     this.initData()
     //     this.getList()

@@ -16,7 +16,7 @@ function parseToURL(m,a,arr){
 }
 
 function get_cuser(obj){
-  if (app.globalData.cuser){
+  if (app.globalData.cuser.length){
     typeof obj.success == "function" && obj.success(app.globalData.cuser)
     return app.globalData.cuser
   }else{

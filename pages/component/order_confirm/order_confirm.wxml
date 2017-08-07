@@ -24,7 +24,7 @@
       <view wx:if="{{delivery_addr}}" bindtap="addAddr" class="delivery_addr-no-content">
         <view class="delivery_addr-no-list">
             <image src="../../../image/local.jpg" style="width:50px; heigh:50px;"></image>
-            <view class="addr_name normal_font">收货人：<text class="color">{{address.name}}</text></view>
+            <view class="addr_name normal_font">收货人：<text class="color">{{address.reciever_name}}</text></view>
             <view class="addr_phone medium_font">电话：{{address.phone}}</view>
             <view class="addr_detail small_font">地址：{{address.detail}}</view>
         </view>
@@ -94,7 +94,7 @@
   <view class="confirm-msg confirm-box border_bottom2">
     <view class="confirm-msg-box">
       <image src="../../../image/msg.jpg"></image>
-      <input placeholder="给商家留言（限50字以内）" bindconfirm="binkMessageConfirm" type="text" />
+      <input placeholder="给商家留言" bindblur="binkMessageConfirm" type="text" />
     </view>
   </view>
 

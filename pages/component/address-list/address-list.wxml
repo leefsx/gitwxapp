@@ -6,12 +6,12 @@
     <view class="scroll-list">
         <view class="weui-panel" wx:if="{{ !!items.length }}">
             <view class="weui-panel__bd">
-                <view class="weui-media-box border_bottom" wx:for="{{ items }}" wx:key="">
-                    <view class="weui-media-box__det">{{ item.name }}  {{ item.tel }}</view>
-                    <view class="weui-media-box__desc medium_font">{{ item.address }}</view>
+                <view class="weui-media-box border_bottom" wx:for="{{ items }}" wx:key="index">
+                    <view class="weui-media-box__det" data-index="{{index}}" bindtap="choseAddress" >{{ item.reciever_name }}  {{ item.phone }}</view>
+                    <view class="weui-media-box__desc medium_font" data-index="{{index}}" bindtap="choseAddress" >{{ areaname[item.prov_id] + areaname[item.city_id] + areaname[item.dist_id] + item.detailed_addr }}</view>
                     <view class="weui-media-box__info">
-                        <view class="color small_font" wx:if="{{ item.is_def }}">默认地址</view>
-                        <view class="color2 small_font" wx:if="{{ !item.is_def }}" bindtap="setDefalutAddress" data-id="{{ item.id }}">设为默认</view>
+                        <view class="color small_font" wx:if="{{ item.is_default == '1' }}">默认地址</view>
+                        <view class="color2 small_font" wx:if="{{ item.is_default == '0' }}" bindtap="setDefalutAddress" data-id="{{ item.id }}">设为默认</view>
                     </view>
                     <view class="edit">
                         <view bindtap="toAddressEdit" data-id="{{ item.id }}">

@@ -1,4 +1,6 @@
 // page/component/new-pages/user/address/address.js
+var comm = require('../../../common/common.js');
+const app = getApp()
 Page({
   data:{
     address:{
@@ -8,9 +10,7 @@ Page({
       is_def:''
     }
   },
-  onLoad(){
-    var self = this;
-    
+  onLoad(opt){
     wx.getStorage({
       key: 'address',
       success: function(res){

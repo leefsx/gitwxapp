@@ -48,12 +48,7 @@ Page({
     }
   },
 
-  toConfirm(){
-    wx.showToast({
-      title: '购买中...',
-      icon: 'loading',
-      duration: 5000
-    })
+  toConfirm() {
     var cartItems = this.data.foods
     if (!cartItems || cartItems.length === 0) {
       wx.hideToast()
@@ -65,6 +60,10 @@ Page({
       })
       return
     }
+    wx.showLoading({
+      title: '请求中',
+      mask: true
+    })
     comm.get_cuser({
       success:function(cuser){
         var that = this
@@ -90,9 +89,10 @@ Page({
                     if (ress.data.result == 'OK') {
                       var oid = ress.data.oid
                       wx.navigateTo({
-                        url: '../order_confirm/order_confirm?oid=' + oid
+                        url: '../order_confirm/order_confirm?fr=cart&oid=' + oid
                       })
                     } else {
+                      wx.hideLoading()
                       wx.showToast({
                         title: ress.data.errmsg
                       })
@@ -106,6 +106,7 @@ Page({
                 })
                 
               } else {
+                wx.hideLoading()
                 wx.showToast({
                   title: '请求失败'
                 })
