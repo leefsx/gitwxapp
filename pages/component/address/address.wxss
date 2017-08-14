@@ -1,6 +1,6 @@
 .form-box{
-    padding-left: 30rpx;
-    padding-right: 30rpx;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
     position: relative;
 }
 .form-box view{

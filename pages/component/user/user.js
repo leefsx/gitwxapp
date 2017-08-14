@@ -68,7 +68,7 @@ Page({
             wx.navigateTo({
               url: '../login/login'
             })
-          }
+          } 
         }
       })
 
