@@ -9,9 +9,10 @@
                 <text>电话：</text>
                 <input type="number" value="{{address.phone}}" placeholder="请输入电话号码" bindinput="bindPhone" />
             </view>
-            <view class="border_bottom medium_font">
+            <view class="border_bottom medium_font" bindtap="choosearea" style="position:relative;">
                 <text>选择地区：</text>
-                <input value="{{address.province}}" disabled="true" bindtap="choosearea"/>
+                <input value="{{address.province}}" disabled="true" />
+                <view style="position:absolute;width:80%;left:20%;top:0;height:90rpx;z-index:100;"></view>
             </view>
             <view class="border_bottom medium_font">
                 <text>详细地址：</text>
