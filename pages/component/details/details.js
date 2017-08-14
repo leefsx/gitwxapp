@@ -335,10 +335,9 @@ Page({
     }
   },
   onShareAppMessage: function () {
-    console.log('pages/component/details?id=' + this.data.product_id)
     return {
       title: config.website_name +' '+ this.data.detail_data['name'],
-      path: 'pages/component/details?id=' + this.data.product_id
+      path: 'pages/component/details/details?id=' + this.data.product_id
     }
   }
 
