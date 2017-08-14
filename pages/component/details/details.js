@@ -333,6 +333,13 @@ Page({
         url: '../details/details?id=' + id
       })
     }
+  },
+  onShareAppMessage: function () {
+    console.log('pages/component/details?id=' + this.data.product_id)
+    return {
+      title: config.website_name +' '+ this.data.detail_data['name'],
+      path: 'pages/component/details?id=' + this.data.product_id
+    }
   }
 
 })

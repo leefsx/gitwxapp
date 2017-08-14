@@ -110,6 +110,12 @@ Page({
         url: 'category/category'
       })
     }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: config.website_name,
+      path: 'pages/component/index'
+    }
   }
 
 })
