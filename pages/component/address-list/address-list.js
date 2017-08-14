@@ -14,35 +14,35 @@ Page({
         fr: ''
     },
     onLoad(opt) {
-      console.log(11)
       var that = this
       if (opt && opt.fr == 'chose'){
         that.setData({
           fr: 'chose'
         })
       }
+      that.onShow()
+      
+        // this.onPullDownRefresh()
+    },
+    onShow(){
+      var that = this
       App.request({
-        url: comm.parseToURL('user','getarea'),
-        data:{},
-        success: function(res){
-          if (res.data.addresses.length > 0){
+        url: comm.parseToURL('user', 'getarea'),
+        data: {},
+        success: function (res) {
+          if (res.data.addresses.length > 0) {
             that.setData({
               items: res.data.addresses,
               areaname: res.data.areaname,
               'prompt.hidden': true
             })
-          }else{
+          } else {
             that.setData({
               'prompt.hidden': false,
             })
           }
         }
       })
-        // this.onPullDownRefresh()
-    },
-    onShow(opt){
-      console.log(opt)
-      console.log('show')
     },
     // initData() {
     //     this.setData({
@@ -145,11 +145,12 @@ Page({
         return false
       }
 
+    },
+    onPullDownRefresh() {
+         //this.initData()
+      this.onShow()
+      wx.stopPullDownRefresh()
     }
-    // onPullDownRefresh() {
-    //     this.initData()
-    //     this.getList()
-    // },
     // onReachBottom() {
     //     if (!this.data.address.paginate.hasNext) return
     //     this.getList()
