@@ -4,7 +4,7 @@
         <view class="cart-top border_bottom">
             <icon wx:if="{{selectAllStatus}}" type="success" color="#c71f3b" class="total-select  cart-pro-select-top" bindtap="selectAll"/>
             <icon wx:else type="circle" class="total-select  cart-pro-select-top" bindtap="selectAll"/>
-            <text class="cart-top-tex" bindtap="selectAll">某某商城</text>
+            <text class="cart-top-tex" bindtap="selectAll">{{config.website_name}}</text>
         </view>
         <view class="cart-box">
             <view class="cart-list border_bottom" wx:for="{{foods}}" wx:key="{{index}}">
