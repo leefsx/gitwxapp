@@ -30,7 +30,8 @@ Page({
     },
     config: [],
     // scrollHeight: 800
-    deviceHeight:''
+    deviceHeight:'',
+    loading: false
   },
   // onLoad: function () {  
   //     var that = this;  
@@ -108,12 +109,15 @@ Page({
     
   },
   onPullDownRefresh() {
-    this.getProductsFromServer(4, 1)
+    this.getProductsFromServer(6, 1)
     wx.stopPullDownRefresh()
   },
   getProductsFromServer(list_num, page) {
     var that = this;
     var product_category = that.data.product_category
+    that.setData({
+      loading: true
+    })
     app.request({
       url: app.domain + '/api/product/catelist',
       data: {
@@ -141,19 +145,21 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        var resdata = res.data.data
-        if (page > 1 && resdata.length > 0) {
-          var this_products = that.data.products
-          this_products = this_products.concat(resdata)
-        }else{
-          var this_products = resdata
+        if (res.data.result == 'OK') {
+          var resdata = res.data.data
+          if (page > 1 && resdata.length > 0) {
+            var this_products = that.data.products
+            this_products = this_products.concat(resdata)
+          }else{
+            var this_products = resdata
+          }
+          that.setData({
+            products: this_products,
+            website_name: config.website_name,
+            list_page: page,
+            loading: false
+          })
         }
-        that.setData({
-          products: this_products,
-          website_name: config.website_name,
-          list_page: page
-        })
-        console.log(this_products)
       },
       fail: function () {
         console.log('fail');
@@ -166,16 +172,13 @@ Page({
   load_more() {
     var this_page = this.data.list_page
     if (this_page > 0) {
-      this.getProductsFromServer(4, this_page + 1)
+      this.getProductsFromServer(6, this_page + 1)
     }
   },
-  // onReachBottom() {
-  //   console.log("1111")
-  //   this.load_more()
-  // },
   reachBottom() {
-    console.log("22222")
-    this.load_more()
+    if (!this.data.loading) {
+      this.load_more()
+    }
   }
 
 })
