@@ -8,6 +8,7 @@ page {
   line-height: 1.6;
   color: #383838;
   overflow-x: hidden;
+  font-family: "Microsoft YaHei";
 }
 /* lib */
 .border-color{border-color:#898989;} 
