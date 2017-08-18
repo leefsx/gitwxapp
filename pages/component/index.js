@@ -15,7 +15,8 @@ Page({
     list_page: 1,
     index_middle_img: [],
     index_middle2_img: '',
-    config: []
+    config: [],
+    hadmore: true
   },
   onLoad() {
     
@@ -37,7 +38,8 @@ Page({
           'logourl': config.logourl
         },
         index_autoplay_imgurl: config.index_autoplay_imgurl,
-        index_middle_imgurl: config.index_middle_imgurl
+        index_middle_imgurl: config.index_middle_imgurl,
+        list_page: 1
       })
     
   },
@@ -74,19 +76,28 @@ Page({
       success: function (res) {
         // console.log(res)
         var resdata = res.data.data
+        var hadmore = true
         if (page > 1 && resdata.length > 0) {
           var this_products = that.data.products
+          if (resdata.length < list_num){
+            hadmore = false
+          }
           this_products = this_products.concat(resdata)
           that.setData({
             products: this_products,
-            list_page: page
+            list_page: page,
+            hadmore: hadmore
           })
           
           return resdata;
         }else{
+          if (resdata.length < list_num){
+            hadmore = false
+          }
           that.setData({
             products: resdata,
-            website_name: config.website_name
+            website_name: config.website_name,
+            hadmore: hadmore
           })
           if (resdata.length > 0) {
             app.globalData.firstPid = resdata[0].id
