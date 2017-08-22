@@ -1,11 +1,12 @@
 // page/component/new-pages/user/address/address.js
 import { Promise } from '../../../utils/util-2';
 var comm = require('../../../common/common.js');
+var config = require('../../../common/config.js');
 
 /**
  *  查询接口
  */
-const API = 'https://lishifeng2.mywopop.com/api/user/basearea?pid=';
+const API = config.domain + '/api/user/basearea?pid=';
 var app = getApp()
 Page({
   data:{
@@ -258,9 +259,6 @@ Page({
   bindChange: function (e) {
     const current_value = e.detail.value, _data = this.data;
     let address = _data.address;
-
-    console.log('ddddddddd');
-
     if (current_value.length > 2) {
       if (this.data.value[0] !== current_value[0] && this.data.value[1] === current_value[1] && this.data.value[2] === current_value[2]) {
         // 滑动省份
@@ -291,7 +289,10 @@ Page({
             })
             
             address.province = this.data.proviceData[current_value[0]].fullName + ' - ' + this.data.cityData[0].fullName + ' - ' + district.data.data[0].fullName
-            address.prov_id = _data.proviceData[current_value[0]].code
+            address.prov_id = this.data.proviceData[current_value[0]].code
+            address.city_id = this.data.cityData[current_value[1]].code
+            address.dist_id = this.data.districtData[current_value[2]].code
+
             this.setData({
               address: address
             })
@@ -312,8 +313,10 @@ Page({
             this.addDot(district.data.data);
 
             address.province = this.data.proviceData[current_value[0]].fullName + ' - ' + this.data.cityData[current_value[1]].fullName + ' - ' + district.data.data[0].fullName
-            address.city_id = _data.cityData[current_value[1]].code
-            
+            address.prov_id = this.data.proviceData[current_value[0]].code
+            address.city_id = this.data.cityData[current_value[1]].code
+            address.dist_id = this.data.districtData[current_value[2]].code
+
             this.setData({
               districtData: district.data.data,
               'value[0]': current_value[0],
@@ -329,12 +332,17 @@ Page({
       } else if (this.data.value[0] === current_value[0] && this.data.value[1] === current_value[1] && this.data.value[2] !== current_value[2]) {
         // 滑动地区
         address.province = this.data.proviceData[current_value[0]].fullName + ' - ' + this.data.cityData[current_value[1]].fullName + ' - ' + this.data.districtData[current_value[2]].fullName
+        address.prov_id = this.data.proviceData[current_value[0]].code
+        address.city_id = this.data.cityData[current_value[1]].code
         address.dist_id = this.data.districtData[current_value[2]].code
+
         this.setData({
           value: current_value,
           address: address
         })
       }
+      
+      
     }
   }
 

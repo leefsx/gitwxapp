@@ -15,30 +15,32 @@ Page({
     list_page: 1,
     index_middle_img: [],
     index_middle2_img: '',
-    config: []
+    config: [],
+    hadmore: true
   },
   onLoad() {
-    this.getProductsFromServer(6,1),
-    this.setData({
-      imgUrls: config.index_autoplay_img,
-      index_middle_img: config.index_middle_img,
-      index_middle2_img: config.index_middle2_img,
-      config: {
-        'website_name': config.website_name,
-        'logo': config.logo,
-        'hotline_logo': config.hotline_logo,
-        'hotline_no': config.hotline_no,
-        'copyright': config.copyright,
-        'product_title': config.product_title,
-        'index_middle_title': config.index_middle_title,
-        'logourl': config.logourl
-      },
-      index_autoplay_imgurl: config.index_autoplay_imgurl,
-      index_middle_imgurl: config.index_middle_imgurl
-    })
+    
   },
   onShow: function () {
-    // 页面显示
+    this.getProductsFromServer(6, 1),
+      this.setData({
+        imgUrls: config.index_autoplay_img,
+        index_middle_img: config.index_middle_img,
+        index_middle2_img: config.index_middle2_img,
+        config: {
+          'website_name': config.website_name,
+          'logo': config.logo,
+          'hotline_logo': config.hotline_logo,
+          'hotline_no': config.hotline_no,
+          'copyright': config.copyright,
+          'product_title': config.product_title,
+          'index_middle_title': config.index_middle_title,
+          'logourl': config.logourl
+        },
+        index_autoplay_imgurl: config.index_autoplay_imgurl,
+        index_middle_imgurl: config.index_middle_imgurl,
+        list_page: 1
+      })
     
   },
   toCategory(){
@@ -74,19 +76,28 @@ Page({
       success: function (res) {
         // console.log(res)
         var resdata = res.data.data
+        var hadmore = true
         if (page > 1 && resdata.length > 0) {
           var this_products = that.data.products
+          if (resdata.length < list_num){
+            hadmore = false
+          }
           this_products = this_products.concat(resdata)
           that.setData({
             products: this_products,
-            list_page: page
+            list_page: page,
+            hadmore: hadmore
           })
           
           return resdata;
         }else{
+          if (resdata.length < list_num){
+            hadmore = false
+          }
           that.setData({
             products: resdata,
-            website_name: config.website_name
+            website_name: config.website_name,
+            hadmore: hadmore
           })
           if (resdata.length > 0) {
             app.globalData.firstPid = resdata[0].id

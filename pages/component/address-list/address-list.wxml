@@ -11,7 +11,7 @@
                     <view class="weui-media-box__desc medium_font" data-index="{{index}}" bindtap="choseAddress" >{{ areaname[item.prov_id] + areaname[item.city_id] + areaname[item.dist_id] + item.detailed_addr }}</view>
                     <view class="weui-media-box__info">
                         <view class="color small_font" wx:if="{{ item.is_default == '1' }}">默认地址</view>
-                        <view class="color2 small_font" wx:if="{{ item.is_default == '0' }}" bindtap="setDefalutAddress" data-id="{{ item.id }}">设为默认</view>
+                        <view class="color2 small_font" wx:else bindtap="setDefalutAddress" data-id="{{ item.id }}">设为默认</view>
                     </view>
                     <view class="edit">
                         <view bindtap="toAddressEdit" data-id="{{ item.id }}">

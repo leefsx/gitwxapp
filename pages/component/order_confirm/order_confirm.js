@@ -58,8 +58,9 @@ Page({
     coupon:0,
     integral:0,//使用的积分数
     balance:0,//使用的余额
-    invoice_mode: ["不需要"],
+    invoice_mode: ["不需要", "需要"],
     index_invoice: 0,
+    invoice: '',
     pay_mode: ["在线支付"],
     index_pay:0,
     lastPrice:0,//订单总价
@@ -107,7 +108,7 @@ Page({
         delivery_time: delivery_time[index_time],
         address: this.data.address,
         message: this.data.message,
-        invoice_mode: this.data.invoice_mode,
+        invoice: this.data.invoice,
         total_price: this.data.total_price,
         lastPrice: this.data.lastPrice,
         yeprice: this.data.balance,
@@ -218,10 +219,10 @@ Page({
     var integral_money = this.data.integral_money
     var lastPrice = this.data.lastPrice
     var balance = this.data.balance
-    console.log(use_coupon['money'])
-    var coupon_money = (use_coupon['money']*1).toFixed(2)
     
-    if (lastPrice >= coupon_money){
+    var coupon_money = (use_coupon['money']*1).toFixed(2)
+    if (e.detail.value == 0){
+    }else if (lastPrice >= coupon_money){
       lastPrice = lastPrice - integral_money - balance
       var yhjid = 0
       var yhjprice = 0
@@ -250,6 +251,7 @@ Page({
   },
   bindIntegralChange(e) {
     var perdata = this.data.perdata
+    if (perdata.length == 0) return false
     var total_price = this.data.total_price
     var lastPrice = this.data.lastPrice
     var integral_money = this.data.integral_money
@@ -405,7 +407,10 @@ Page({
           for (var i = 10; i <= ujfdata.account_money; i += 10) {
             balance_mode.push(i)
           }
-
+          var delivery_addr = true
+          if(res.data.delivery.length == 0){
+            delivery_addr = false
+          }
           that.setData({
             coupon: couponnum,
             ujfdata: ujfdata,
@@ -416,7 +421,8 @@ Page({
             lastPrice: total_price,
             MessageSwitch: res.data.MessageSwitch,
             TextModification: res.data.TextModification,
-            address: res.data.delivery
+            address: res.data.delivery,
+            delivery_addr: delivery_addr
           })
         }
       }
@@ -449,6 +455,11 @@ Page({
       }
     })
   },
+  binkInvoiceText(e){
+    this.setData({
+      invoice: e.detail.value
+    })
+  }
 })
 
 

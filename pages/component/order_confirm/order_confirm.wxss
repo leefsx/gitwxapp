@@ -184,3 +184,6 @@
   padding-left: 25rpx;
   padding-right: 25rpx;
 }
+.invoice-box{
+  border-bottom: 0;
+}

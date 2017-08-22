@@ -1,4 +1,5 @@
-  var comm = require('../../../common/common.js');
+var comm = require('../../../common/common.js');
+var config = require('../../../common/config.js');
 var app = getApp()
 Page({
   data: {
@@ -29,7 +30,10 @@ Page({
   onShow() {
     var openid = wx.getStorageSync('openid');
     this.setData({
-      foods: app.globalData.carts
+      foods: app.globalData.carts,
+      config:{
+        'website_name': config.website_name
+      }
     })
     if (app.globalData.carts.length){
       var cart_num = app.globalData.carts.length

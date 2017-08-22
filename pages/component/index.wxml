@@ -27,7 +27,7 @@
     </view>
     <view class="product-display-ul">
       <template is="product_list" data="{{products}}" />
-      <view class="load_more medium_font" bindtap="load_more">加载更多</view>
+      <view wx:if="{{hadmore}}" class="load_more medium_font" bindtap="load_more">加载更多</view>
     </view>
   </view>
 
