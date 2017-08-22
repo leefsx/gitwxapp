@@ -86,6 +86,7 @@ Page({
               })
             }
             
+            
           }
         })
       }
@@ -144,11 +145,11 @@ Page({
       }else{
         return false
       }
-
+      
     }
     // onPullDownRefresh() {
-    //     this.initData()
-    //     this.getList()
+        // this.initData()
+        // this.getList()
     // },
     // onReachBottom() {
     //     if (!this.data.address.paginate.hasNext) return
