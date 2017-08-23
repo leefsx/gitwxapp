@@ -18,7 +18,7 @@
                 <text>详细地址：</text>
                 <input value="{{address.detail}}" placeholder="请输入详细地址" bindinput="bindDetail"/>
             </view>
-            <view class="border_bottom medium_font">
+            <view class="border_bottom medium_font switch-view">
                 <text>设为默认：</text>
                 <switch checked="{{ address.is_def }}" bindchange="switchChange"/>
             </view>

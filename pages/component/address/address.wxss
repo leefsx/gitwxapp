@@ -5,22 +5,28 @@
 }
 .form-box view{
     height: 90rpx;
-    width: 100%
+    width: 100%;
+    display:flex;
+}
+.switch-view{
+  justify-content: space-between;
 }
 .form-box view text{
-    display: inline-block;
+    /* display: inline-block; */
     width: 25%;
     height: 90rpx;
     line-height: 90rpx;
     vertical-align: top;
-    text-align: right;
+     text-align: right; 
+    box-sizing: border-box;
 }
 
 .form-box  input{
-    display: inline-block;
+    /* display: inline-block; */
     width: 75%;
     height: 90rpx;
     color: #999;
+    box-sizing: border-box;
 }
 .form-box .input-placeholder{
     color: #aaa;
@@ -37,7 +43,7 @@
     background-color: #898989;
 }
 switch{
-    float:right;
+    /* float:right; */
     line-height:90rpx;
 }
 
