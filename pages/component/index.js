@@ -43,10 +43,33 @@ Page({
       })
     
   },
-  toCategory(){
-    wx.switchTab({
-      url: 'category/category',
-    })
+  toCategory(e){
+    var cindex = e.currentTarget.dataset.index
+    var type = e.currentTarget.dataset.type
+    var imgdata = []
+    if (type == 'index_autoplay_imgurl') {
+      imgdata = config.index_autoplay_imgurl
+    } else if (type == 'index_middle_img') {
+      imgdata = config.index_middle_imgurl
+    } else if (type == 'logourl') {
+      imgdata[0] = config.logourl
+    }
+    if (typeof (imgdata[cindex]['category_id']) != 'undefined') {
+      app.globalData.cateid = imgdata[cindex]['category_id']
+      //app.globalData.catename = 
+      wx.switchTab({
+        url: 'category/category'
+      })
+    } else if (typeof (imgdata[cindex]['detail_id']) != 'undefined') {
+      wx.navigateTo({
+        url: 'details/details?id=' + imgdata[cindex]['detail_id'],
+      })
+
+    } else {
+      wx.switchTab({
+        url: 'category/category',
+      })
+    }
   },
   onPullDownRefresh(){
     var list_page = this.data.list_page
