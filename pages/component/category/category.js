@@ -77,7 +77,8 @@ Page({
     var curIndex = e.currentTarget.dataset.index;
     that.setData({
       curIndex: curIndex,
-      scrollTop: 0
+      scrollTop: 0,
+      loading: false
     })
     app.request({
       url: app.domain + '/api/product/list',
