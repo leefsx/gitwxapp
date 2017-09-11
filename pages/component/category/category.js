@@ -78,7 +78,8 @@ Page({
     that.setData({
       curIndex: curIndex,
       scrollTop: 0,
-      loading: false
+      loading: false,
+      list_page: 1
     })
     app.request({
       url: app.domain + '/api/product/list',
