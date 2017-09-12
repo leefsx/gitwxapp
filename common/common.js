@@ -39,9 +39,10 @@ function get_cuser(obj){
           typeof obj.success == "function" && obj.success(false)
         }
       })
+    }else{
+      typeof obj.success == "function" && obj.success(false)
     }
   }
-  return false
   
 }
 

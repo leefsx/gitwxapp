@@ -50,6 +50,7 @@ Page({
         'prompt.hidden': false
       });
     }
+    wx.hideLoading()
   },
 
   toConfirm() {
