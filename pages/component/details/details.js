@@ -231,9 +231,11 @@ Page({
       title: '加载中',
       mask: true
     })
-    comm.get_cuser({
-      success: function (cuser) {}
-    })
+    if (app.globalData.hadlogin == false) {
+      comm.get_cuser({
+        success: function (cuser) { }
+      })
+    }
     if (!options.id) options.id = app.globalData.firstPid
     if (options.id) {
       var that = this;
