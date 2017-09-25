@@ -56,6 +56,7 @@ Page({
       }
     })
     var product_category = app.globalData.cateid || 0
+    if (product_category == -1) product_category = 0
     app.globalData.cateid = 0
     this.setData({
       config: {
