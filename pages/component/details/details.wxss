@@ -292,7 +292,8 @@
   background-color: #913a12
 }*/
 .details{
-  padding-left: 30rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
   box-sizing: border-box;
 }
 
