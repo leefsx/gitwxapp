@@ -41,6 +41,7 @@ Page({
         index_middle_imgurl: config.index_middle_imgurl,
         list_page: 1
       })
+    app.globalData.hadInLoginPage = false
     
   },
   toCategory(e){
