@@ -491,7 +491,7 @@ Page({
           })
           that.setData({
             IsEnd: true,
-            IsAllEnd: false
+            IsAllEnd: true
           })
         }
       }
