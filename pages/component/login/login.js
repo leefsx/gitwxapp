@@ -46,6 +46,7 @@ Page({
       success: function(res){
         if (res.data.result=='OK'){
           app.globalData.APISESSID = res.data.APISESSID;
+          app.globalData.hadlogin = true
           wx.switchTab({
             url: `../user_new/user_new`
           })
@@ -74,6 +75,7 @@ Page({
         console.log(res)
         if(res.data.result=='OK'){
           app.globalData.APISESSID = res.data.APISESSID
+          app.globalData.hadlogin = true
           wx.showToast({
             title: '注册成功'
           })
@@ -101,6 +103,7 @@ Page({
   onShow: function () {
     var self = this;
     var openid = wx.getStorageSync('openid');
+    app.globalData.hadInLoginPage = true
     if (openid) {
       var url = comm.parseToURL('weixin', 'signin')
       var uinfo = self.data.userInfo

@@ -2,3 +2,5 @@
 wxminiapp/
 pages/component/address-list/address-list.js
 pages/component/address-list/address-list.js
+pages/component/details/details.js
+pages/component/user/user.js

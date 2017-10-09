@@ -92,6 +92,7 @@ App({
     APISESSID: null,
     carts: [],
     cuser: [],
-    hadlogin: false
+    hadlogin: false,
+    hadInLoginPage: false
   }
 })
