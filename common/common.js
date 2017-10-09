@@ -29,6 +29,7 @@ function get_cuser(obj){
         success: function (res) {
           if (res.data.result == 'OK') {
             app.globalData.cuser = res.data
+            app.globalData.hadlogin = true
             typeof obj.success == "function" && obj.success(res.data)
             return res.data
           } else {
@@ -39,9 +40,10 @@ function get_cuser(obj){
           typeof obj.success == "function" && obj.success(false)
         }
       })
+    }else{
+      typeof obj.success == "function" && obj.success(false)
     }
   }
-  return false
   
 }
 

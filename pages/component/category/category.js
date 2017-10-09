@@ -56,6 +56,7 @@ Page({
       }
     })
     var product_category = app.globalData.cateid || 0
+    if (product_category == -1) product_category = 0
     app.globalData.cateid = 0
     this.setData({
       config: {
@@ -77,7 +78,9 @@ Page({
     var curIndex = e.currentTarget.dataset.index;
     that.setData({
       curIndex: curIndex,
-      scrollTop: 0
+      scrollTop: 0,
+      loading: false,
+      list_page: 1
     })
     app.request({
       url: app.domain + '/api/product/list',

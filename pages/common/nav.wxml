@@ -1,7 +1,7 @@
 <template name="nav">
     <view class="topbar color">
       <view class="topbar-title">
-        <image mode="aspectFit" src="{{config.logo}}"></image>
+        <image mode="aspectFit" src="{{config.logo}}" data-index="0" data-type="logourl" bindtap="toCategory"></image>
         <text>{{config.website_name}}</text>
       </view>
       

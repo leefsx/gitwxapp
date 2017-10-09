@@ -187,42 +187,38 @@ Page({
         max_kc: detail_data.num,
         skuid: detail_data.skuid
       }]
-      comm.get_cuser({
-        success: function (cuser) {
-          var that = this
-          if (cuser == false) {
-            wx.showToast({
-              title: '请先登录'
-            })
-            wx.navigateTo({
-              url: '../login/login'
-            })
-          } else {
-            app.request({
-              url: comm.parseToURL('order', 'createOrder'),
-              data: { 
-                fr: 'buy',
-                cart: JSON.stringify(carts) 
-              },
-              method: 'GET',
-              success: function (ress) {
-                wx.hideLoading()
-                if (ress.data.result == 'OK') {
-                  app.globalData.dcarts = carts
-                  var oid = ress.data.oid
-                  wx.navigateTo({
-                    url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
-                  })
-                } else {
-                  wx.showToast({
-                    title: ress.data.errmsg
-                  })
-                }
-              }
-            })
+      if (app.globalData.hadlogin == true){
+        var that = this
+        app.request({
+          url: comm.parseToURL('order', 'createOrder'),
+          data: {
+            fr: 'buy',
+            cart: JSON.stringify(carts)
+          },
+          method: 'GET',
+          success: function (ress) {
+            wx.hideLoading()
+            if (ress.data.result == 'OK') {
+              app.globalData.dcarts = carts
+              var oid = ress.data.oid
+              wx.navigateTo({
+                url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
+              })
+            } else {
+              wx.showToast({
+                title: ress.data.errmsg
+              })
+            }
           }
-        }
-      })
+        })
+      }else{
+        wx.showToast({
+          title: '请先登录'
+        })
+        wx.navigateTo({
+          url: '../login/login'
+        })
+      }
       
       //wx.switchTab({
       //  url: '../cart/cart',
@@ -235,9 +231,11 @@ Page({
       title: '加载中',
       mask: true
     })
-    comm.get_cuser({
-      success: function (cuser) {}
-    })
+    if (app.globalData.hadlogin == false) {
+      comm.get_cuser({
+        success: function (cuser) { }
+      })
+    }
     if (!options.id) options.id = app.globalData.firstPid
     if (options.id) {
       var that = this;
