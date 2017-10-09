@@ -1,5 +1,7 @@
 <import src="../../common/prompt.wxml" />
+<import src="../../common/contact.wxml" />
 <view class="main">
+    <template is="contact"/>
     <view wx:if="{{foods.length}}">
         <view class="cart-top border_bottom">
             <icon wx:if="{{selectAllStatus}}" type="success" color="#c71f3b" class="total-select  cart-pro-select-top" bindtap="selectAll"/>

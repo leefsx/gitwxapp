@@ -85,14 +85,18 @@ Page({
     })
   },
   addCount() {
-    
+
     let food = this.data.food;
     let num = food.num;
-    const count = food.total_count;
-    if (num >= count) {
-      return false;
-    }
+    let detail_data = this.data.detail_data
+    const count = detail_data.num;
     num = num + 1;
+    if (num > count) {
+      num = count;
+      wx.showToast({
+        title: '数量超出范围~'
+      })
+    }
     food.num = num;
     this.setData({
       food: food
@@ -111,6 +115,57 @@ Page({
       food: food
     });
   },
+  // toCart() {
+  //   var that = this;
+  //   var carts = that.data.carts
+  //   var cart_index = carts.length
+  //   var detail_data = that.data.detail_data
+  //   var skulist = that.data.skulist
+  //   var attr_data = that.data.attr_data;
+  //   var hadInCart = false
+  //   if (skulist && Object.keys(skulist).length > 0 && attr_data.length == 0){
+  //     that.setData({
+  //       currentState: (!that.data.currentState)
+  //     })
+  //   }else{
+  //     wx.showLoading({
+  //       title: '请求中',
+  //       mask: true
+  //     })
+  //     if (cart_index > 0) {
+  //       for (var i = 0; i < cart_index; i++) {
+
+  //         if (carts[i].cid == detail_data.id) {
+  //           carts[i].sum = detail_data.price;
+  //           carts[i].price = detail_data.price;
+  //           carts[i].num += that.data.food.num;
+  //           carts[i].skuid = detail_data.skuid || 0;
+  //           hadInCart = true
+  //         }
+  //       }
+
+  //     }
+  //     if (hadInCart == false) {
+  //       var send_data = {
+  //         cid: detail_data.id,
+  //         title: detail_data.name,
+  //         image: detail_data.feature_img[0],
+  //         num: that.data.food.num,
+  //         price: detail_data.price,
+  //         sum: detail_data.price,
+  //         selected: true,
+  //         max_kc: detail_data.num,
+  //         skuid: detail_data.skuid || 0
+  //       }
+  //       carts.push(send_data)
+  //     }
+  //     app.globalData.carts = carts
+  //     wx.switchTab({
+  //       url: '../cart/cart',
+  //     })
+  //   }
+    
+  // },
   toCart() {
     var that = this;
     var carts = that.data.carts
@@ -119,23 +174,52 @@ Page({
     var skulist = that.data.skulist
     var attr_data = that.data.attr_data;
     var hadInCart = false
-    if (skulist && Object.keys(skulist).length > 0 && attr_data.length == 0){
-      that.setData({
-        currentState: (!that.data.currentState)
-      })
-    }else{
+    var propertys = this.data.propertys;
+    var isFull = true
+    var currentState = this.data.currentState
+    var food = that.data.food
+    var num = parseInt(food.num)
+
+    
+    console.log(attr_data)
+    if (attr_data.length == 0) {
+      isFull = false
+    } else {
+      for (var i = 0; i < attr_data.length; i++) {
+        console.log(1)
+        if (attr_data[i] == '' || attr_data[i] == undefined || attr_data.length < propertys.length) {
+          isFull = false
+          break
+        }
+        isFull = true
+      }
+    }
+    if (skulist && Object.keys(skulist).length > 0 && !isFull) {
+      if (currentState) {
+        wx.showToast({
+          title: '请选择商品属性'
+        })
+      } else {
+        that.setData({
+          currentState: (!that.data.currentState)
+        })
+      }
+    } else {
+      console.log('n')
       wx.showLoading({
         title: '请求中',
         mask: true
       })
       if (cart_index > 0) {
         for (var i = 0; i < cart_index; i++) {
-
-          if (carts[i].cid == detail_data.id) {
-            carts[i].sum = detail_data.price;
-            carts[i].price = detail_data.price;
-            carts[i].num += that.data.food.num;
-            carts[i].skuid = detail_data.skuid || 0;
+          if (detail_data.skuid && carts[i].cid == detail_data.id && carts[i].skuid == detail_data.skuid) {
+            console.log(carts[i].num)
+            var cartNum = parseInt(carts[i].num)
+            carts[i].num = cartNum += num;
+            hadInCart = true
+          } else if (!detail_data.skuid && carts[i].cid == detail_data.id) {
+            var cartNum = parseInt(carts[i].num)
+            carts[i].num = cartNum += num;
             hadInCart = true
           }
         }
@@ -160,17 +244,121 @@ Page({
         url: '../cart/cart',
       })
     }
-    
+
   },
-  toConfirm(){
+  // toConfirm(){
+  //   var that = this
+  //   var detail_data = that.data.detail_data
+  //   var skulist = that.data.skulist
+  //   var currentState = this.data.currentState
+  //   var propertys = this.data.propertys;
+  //   var attr_data = that.data.attr_data;
+  //   var isFull = true
+  //   if (attr_data.length == 0) {
+  //     isFull = false
+  //   } else {
+  //     for (var i = 0; i < attr_data.length; i++) {
+  //       console.log(1)
+  //       if (attr_data[i] == '' || attr_data[i] == undefined || attr_data.length < propertys.length) {
+  //         isFull = false
+  //         break
+  //       }
+  //       isFull = true
+  //     }
+  //   }
+  //   if (skulist && Object.keys(skulist).length > 0 && !isFull) {
+  //     if (currentState) {
+  //       wx.showToast({
+  //         title: '请选择商品属性'
+  //       })
+  //     } else {
+  //       that.setData({
+  //         currentState: (!that.data.currentState)
+  //       })
+  //     }
+  //   } else {
+  //     wx.showLoading({
+  //       title: '请求中',
+  //       mask: true
+  //     })
+  //     var carts = [{
+  //       cid: detail_data.id,
+  //       title: detail_data.name,
+  //       image: detail_data.feature_img,
+  //       num: that.data.food.num,
+  //       price: detail_data.price,
+  //       sum: detail_data.price,
+  //       selected: true,
+  //       max_kc: detail_data.num,
+  //       skuid: detail_data.skuid
+  //     }]
+  //     if (app.globalData.hadlogin == true){
+  //       var that = this
+  //       app.request({
+  //         url: comm.parseToURL('order', 'createOrder'),
+  //         data: {
+  //           fr: 'buy',
+  //           cart: JSON.stringify(carts)
+  //         },
+  //         method: 'GET',
+  //         success: function (ress) {
+  //           wx.hideLoading()
+  //           if (ress.data.result == 'OK') {
+  //             app.globalData.dcarts = carts
+  //             var oid = ress.data.oid
+  //             wx.navigateTo({
+  //               url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
+  //             })
+  //           } else {
+  //             wx.showToast({
+  //               title: ress.data.errmsg
+  //             })
+  //           }
+  //         }
+  //       })
+  //     }else{
+  //       wx.showToast({
+  //         title: '请先登录'
+  //       })
+  //       wx.navigateTo({
+  //         url: '../login/login'
+  //       })
+  //     }
+  //   }
+  // },
+  toConfirm() {
     var that = this
     var detail_data = that.data.detail_data
     var skulist = that.data.skulist
     var attr_data = that.data.attr_data;
-    if (skulist && Object.keys(skulist).length > 0 && attr_data.length == 0) {
-      that.setData({
-        currentState: (!that.data.currentState)
-      })
+    var currentState = this.data.currentState
+    var isFull = true
+    var propertys = this.data.propertys;
+    var isFull = true
+    var food = that.data.food
+    var num = parseInt(food.num)
+    if (attr_data.length == 0) {
+      isFull = false
+    } else {
+      for (var i = 0; i < attr_data.length; i++) {
+        console.log(1)
+        if (attr_data[i] == '' || attr_data[i] == undefined || attr_data.length < propertys.length) {
+          isFull = false
+          break
+        }
+        isFull = true
+      }
+    }
+    if (skulist && Object.keys(skulist).length > 0 && !isFull) {
+      if (currentState) {
+        wx.showToast({
+          title: '请选择商品属性'
+        })
+      } else {
+        that.setData({
+          currentState: (!that.data.currentState)
+        })
+      }
     } else {
       wx.showLoading({
         title: '请求中',
@@ -187,44 +375,43 @@ Page({
         max_kc: detail_data.num,
         skuid: detail_data.skuid
       }]
-      if (app.globalData.hadlogin == true){
-        var that = this
-        app.request({
-          url: comm.parseToURL('order', 'createOrder'),
-          data: {
-            fr: 'buy',
-            cart: JSON.stringify(carts)
-          },
-          method: 'GET',
-          success: function (ress) {
-            wx.hideLoading()
-            if (ress.data.result == 'OK') {
-              app.globalData.dcarts = carts
-              var oid = ress.data.oid
-              wx.navigateTo({
-                url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
-              })
-            } else {
-              wx.showToast({
-                title: ress.data.errmsg
-              })
-            }
+      comm.get_cuser({
+        success: function (cuser) {
+          var that = this
+          if (cuser == false) {
+            wx.showToast({
+              title: '请先登录'
+            })
+            wx.navigateTo({
+              url: '../login/login'
+            })
+          } else {
+            app.request({
+              url: comm.parseToURL('order', 'createOrder'),
+              data: {
+                fr: 'buy',
+                cart: JSON.stringify(carts)
+              },
+              method: 'GET',
+              success: function (ress) {
+                wx.hideLoading()
+                if (ress.data.result == 'OK') {
+                  app.globalData.dcarts = carts
+                  var oid = ress.data.oid
+                  wx.navigateTo({
+                    url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
+                  })
+                } else {
+                  wx.showToast({
+                    title: ress.data.errmsg
+                  })
+                }
+              }
+            })
           }
-        })
-      }else{
-        wx.showToast({
-          title: '请先登录'
-        })
-        wx.navigateTo({
-          url: '../login/login'
-        })
-      }
-      
-      //wx.switchTab({
-      //  url: '../cart/cart',
-      //})
+        }
+      })
     }
-    
   },
   onLoad(options){
     wx.showLoading({

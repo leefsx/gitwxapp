@@ -1,4 +1,6 @@
+<import src="../../common/contact.wxml" />
 <view class="main">
+  <template is="contact"/>
     <view class="form-box">
         <form bindsubmit="formSubmit">
             <view class="border_bottom medium_font">
@@ -9,7 +11,7 @@
                 <text>电话：</text>
                 <input type="number" value="{{address.phone}}" placeholder="请输入电话号码" bindinput="bindPhone" />
             </view>
-            <view class="border_bottom medium_font" bindtap="choosearea" style="position:relative;">
+            <view class="border_bottom medium_font choose-prov" bindtap="choosearea" style="position:relative;">
                 <text>选择地区：</text>
                 <input value="{{address.province}}" disabled="true" />
                 <view style="position:absolute;width:80%;left:20%;top:0;height:90rpx;z-index:100;"></view>
@@ -18,7 +20,7 @@
                 <text>详细地址：</text>
                 <input value="{{address.detail}}" placeholder="请输入详细地址" bindinput="bindDetail"/>
             </view>
-            <view class="border_bottom medium_font switch-view">
+            <view class="border_bottom medium_font">
                 <text>设为默认：</text>
                 <switch checked="{{ address.is_def }}" bindchange="switchChange"/>
             </view>

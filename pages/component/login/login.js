@@ -26,6 +26,11 @@ Page({
       userPassword: e.detail.value
     })
   },
+  backHome(){
+    wx.switchTab({
+      url:'/pages/component/index'
+    })
+  },
   logIn: function () {
     var that = this
     var openid = wx.getStorageSync('openid');
@@ -42,7 +47,7 @@ Page({
         if (res.data.result=='OK'){
           app.globalData.APISESSID = res.data.APISESSID;
           wx.switchTab({
-            url: `../user/user`
+            url: `../user_new/user_new`
           })
         }else{
           wx.showToast({

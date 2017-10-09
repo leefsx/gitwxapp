@@ -69,54 +69,106 @@ Page({
       title: '请求中',
       mask: true
     })
-    if (app.globalData.hadlogin == true) {
-      var that = this
-      app.request({
-        url: comm.parseToURL('order', 'addcart'),
-        data: { data: JSON.stringify(cartItems) },
-        method: 'GET',
-        success: function (res) {
-          if (res.data.result == 'OK') {
-            app.request({
-              url: comm.parseToURL('order', 'createOrder'),
-              data: [],
-              method: 'GET',
-              success: function (ress) {
-                if (ress.data.result == 'OK') {
-                  var oid = ress.data.oid
-                  wx.navigateTo({
-                    url: '../order_confirm/order_confirm?fr=cart&oid=' + oid
-                  })
-                } else {
-                  wx.hideLoading()
-                  wx.showToast({
-                    title: ress.data.errmsg
-                  })
-                }
+    // if (app.globalData.hadlogin == true) {
+    //   var that = this
+    //   app.request({
+    //     url: comm.parseToURL('order', 'addcart'),
+    //     data: { data: JSON.stringify(cartItems) },
+    //     method: 'GET',
+    //     success: function (res) {
+    //       if (res.data.result == 'OK') {
+    //         app.request({
+    //           url: comm.parseToURL('order', 'createOrder'),
+    //           data: [],
+    //           method: 'GET',
+    //           success: function (ress) {
+    //             if (ress.data.result == 'OK') {
+    //               var oid = ress.data.oid
+    //               wx.navigateTo({
+    //                 url: '../order_confirm/order_confirm?fr=cart&oid=' + oid
+    //               })
+    //             } else {
+    //               wx.hideLoading()
+    //               wx.showToast({
+    //                 title: ress.data.errmsg
+    //               })
+    //             }
+    //           }
+    //         })
+
+    //       } else if (res.data.errmsg == '2') {
+    //         wx.navigateTo({
+    //           url: '../login/login',
+    //         })
+
+    //       } else {
+    //         wx.hideLoading()
+    //         wx.showToast({
+    //           title: '请求失败'
+    //         })
+    //       }
+    //     }
+    //   })
+    // } else {
+    //   wx.showToast({
+    //     title: '请先登录'
+    //   })
+    //   wx.navigateTo({
+    //     url: '../login/login'
+    //   })
+    // }
+    comm.get_cuser({
+      success: function (cuser) {
+        var that = this
+        if (cuser == false) {
+          wx.showToast({
+            title: '请先登录'
+          })
+          wx.navigateTo({
+            url: '../login/login'
+          })
+        } else {
+          app.request({
+            url: comm.parseToURL('order', 'addcart'),
+            data: { data: JSON.stringify(cartItems) },
+            method: 'GET',
+            success: function (res) {
+              if (res.data.result == 'OK') {
+                app.request({
+                  url: comm.parseToURL('order', 'createOrder'),
+                  data: [],
+                  method: 'GET',
+                  success: function (ress) {
+                    if (ress.data.result == 'OK') {
+                      var oid = ress.data.oid
+                      wx.navigateTo({
+                        url: '../order_confirm/order_confirm?fr=cart&oid=' + oid
+                      })
+                    } else {
+                      wx.hideLoading()
+                      wx.showToast({
+                        title: ress.data.errmsg
+                      })
+                    }
+                  }
+                })
+
+              } else if (res.data.errmsg == '2') {
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+
+              } else {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '请求失败'
+                })
               }
-            })
-
-          } else if (res.data.errmsg == '2') {
-            wx.navigateTo({
-              url: '../login/login',
-            })
-
-          } else {
-            wx.hideLoading()
-            wx.showToast({
-              title: '请求失败'
-            })
-          }
+            }
+          })
         }
-      })
-    } else {
-      wx.showToast({
-        title: '请先登录'
-      })
-      wx.navigateTo({
-        url: '../login/login'
-      })
-    }
+      }
+    })
       
     
     
@@ -146,20 +198,35 @@ Page({
   deleteList(e) {
     const index = e.currentTarget.dataset.index;
     let foods = this.data.foods;
-    foods.splice(index,1);
-    this.setData({
-      foods: foods
-    });
-    app.globalData.carts = foods
-    if(!foods.length){
-      this.setData({
-        hasList: false,
-        'prompt.hidden': false
-      });
-    }else{
-      this.isSelectAll();
-      this.getTotalPrice();
-    }
+    let that = this
+    wx.showModal({
+      title: '温馨提示：',
+      content: '是否确认删除该商品',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          foods.splice(index, 1);
+          that.setData({
+            foods: foods
+          });
+          app.globalData.carts = foods
+          wx.showToast({
+            title: '删除成功'
+          })
+          if (!foods.length) {
+            that.setData({
+              hasList: false,
+              'prompt.hidden': false
+            });
+          } else {
+            that.isSelectAll();
+            that.getTotalPrice();
+          }
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
   /**

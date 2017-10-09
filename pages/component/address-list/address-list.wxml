@@ -1,8 +1,8 @@
 <import src="../../common/prompt.wxml"/>
-
+<import src="../../common/contact.wxml" />
 <view class="address-list">
     <template is="prompt" data="{{ prompt }}"/>
-    
+    <template is="contact"/>
     <view class="scroll-list">
         <view class="weui-panel" wx:if="{{ !!items.length }}">
             <view class="weui-panel__bd">

@@ -137,14 +137,13 @@ Page({
         },
         success: function (res) {
           if (res.data.result == 'OK') {
-            if(!that.data.fr){
+            if (!that.data.fr) {
               app.request({
                 url: comm.parseToURL('order', 'createOrderNotice'),
                 data: { oid: oid },
                 success: function () { }
               })
             }
-            
           } else {
             var err = res.data.errmsg || '支付失败'
             wx.showToast({

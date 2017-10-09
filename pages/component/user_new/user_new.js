@@ -10,27 +10,34 @@ Page({
     address:{},
     order_pro_rel:[],
     userInfo: [],
-    cuserInfo: []
+    cuserInfo: [],
+    cartleng: 0
+  },
+  goToCart(){
+    wx.switchTab({
+      url: "../cart/cart",
+    })
   },
   onLoad(){
   },
   onShow() {
     var self = this;
     var openid = wx.getStorageSync('openid');
-    console.log('oi:'+openid)
     if (openid) {
       var url = comm.parseToURL('weixin', 'signin')
       var uinfo = self.data.userInfo
       app.request({
         url: url,
         data: {
-          openid: openid
+          openid: openid,
+          nickName: uinfo.nickName || '',
+          avatarUrl: uinfo.avatarUrl || ''
         },
         method: 'GET',
         success: function (res) {
           if (res.data.result == 'OK') {
             self.setData({cuserInfo:res.data})
-            app.globalData.cuserInfo = res.data
+            app.globalData.cuser = res.data
             if (app.globalData.userInfo) {
               self.setData({
                 userInfo: app.globalData.userInfo
@@ -49,26 +56,28 @@ Page({
               success: function (res) {
                 if (res.data.result == 'OK') {
                   self.setData({
-                    orders: res.data.data,
-                    order_pro_rel: res.data.order_pro_rel
+                    cartleng: app.globalData.carts.length,
+                    order_num_state: res.data.order_num_state
                   })
                 }
               }
+              
 
             })
           } else {
             wx.navigateTo({
-              url: '../profile/profile'
+              url: '../login/login'
             })
-          }
+          } 
         }
       })
 
     } else {
       wx.navigateTo({
-        url: '../profile/profile'
+        url: '../login/login'
       })
     }
+    console.log(self.data.orders)
    },
   /**
    * 发起支付请求
@@ -118,5 +127,14 @@ Page({
       })
     }
 
+  },
+  onPullDownRefresh: function () {
+    this.onShow()
+    wx.stopPullDownRefresh()
+  },
+  toCart(e){
+    wx.switchTab({
+      url: '../cart/cart',
+    })
   }
 })

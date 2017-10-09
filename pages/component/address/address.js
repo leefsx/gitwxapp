@@ -283,7 +283,7 @@ Page({
             this.addDot(district.data.data);
             this.setData({
               districtData: district.data.data,
-              value: [current_value[0],0,0]
+              value: [current_value[0], 0, 0]
             })
             
             address.province = this.data.proviceData[current_value[0]].fullName + ' - ' + this.data.cityData[0].fullName + ' - ' + district.data.data[0].fullName
@@ -317,7 +317,7 @@ Page({
 
             this.setData({
               districtData: district.data.data,
-              value: [current_value[0], current_value[1],0],
+              value: [current_value[0], current_value[1], 0],
               address: address
             })
           }

@@ -1,7 +1,9 @@
 <import src="../common/nav.wxml" />
 <import src="../common/productList.wxml" />
+<import src="../common/contact.wxml" />
 <view class="main">
   <template is="nav" data="{{config}}" />
+  <template is="contact"/>
   <view class="index-top">
     <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
       <block wx:for="{{imgUrls}}" wx:key="{{index}}">

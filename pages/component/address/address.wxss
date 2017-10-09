@@ -5,28 +5,22 @@
 }
 .form-box view{
     height: 90rpx;
-    width: 100%;
-    display:flex;
-}
-.switch-view{
-  justify-content: space-between;
+    width: 100%
 }
 .form-box view text{
-    /* display: inline-block; */
-    width: 25%;
+    display: inline-block;
+    width: 20%;
     height: 90rpx;
     line-height: 90rpx;
     vertical-align: top;
-     text-align: right; 
-    box-sizing: border-box;
+    text-align: right;
 }
 
 .form-box  input{
-    /* display: inline-block; */
-    width: 75%;
+    display: inline-block;
+    width: 80%;
     height: 90rpx;
     color: #999;
-    box-sizing: border-box;
 }
 .form-box .input-placeholder{
     color: #aaa;
@@ -43,7 +37,7 @@
     background-color: #898989;
 }
 switch{
-    /* float:right; */
+    float:right;
     line-height:90rpx;
 }
 
@@ -80,6 +74,18 @@ switch{
   line-height: 80rpx;
 }
 
-
+.choose-prov::after {
+    position:absolute;
+    right:30rpx;
+    top:34rpx;
+    content:'';
+    width:16rpx;
+    height:16rpx;
+    border-bottom:4rpx solid #7f7f7f;
+    border-right:4rpx solid #7f7f7f;
+    -webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+    
 
 
