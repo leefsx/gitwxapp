@@ -401,6 +401,13 @@ Page({
                   wx.navigateTo({
                     url: '../order_confirm/order_confirm?t=detail&fr=u&oid=' + oid
                   })
+                } else if (ress.data.errmsg == '2') {
+                  wx.showToast({
+                    title: '请先登录'
+                  })
+                  wx.navigateTo({
+                    url: '../login/login'
+                  })
                 } else {
                   wx.showToast({
                     title: ress.data.errmsg
