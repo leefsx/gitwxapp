@@ -47,13 +47,29 @@ Page({
             var order = res.data.order
             var product  = res.data.product
             var disass = res.data.disass
-            console.log(order)
             that.setData({
               order: order,
               product: product,
               disass: disass,
-              oid: oid
+              oid: oid,
+              dis_title: res.data.dis_title
             })
+            if (res.data.address) {
+              that.setData({
+                delivery_addr: true,
+                address: res.data.address
+              })
+            } else {
+              wx.getStorage({
+                key: 'address',
+                success: function (ress) {
+                  that.setData({
+                    delivery_addr: true,
+                    address: ress.data
+                  })
+                }
+              })
+            }
           }else{
             wx.showToast({
               title: '参数错误！',
@@ -86,7 +102,7 @@ Page({
     var self = this;
     /**
      * 获取本地缓存 地址信息
-     */
+     
     wx.getStorage({
       key: 'address',
       success: function (res) {
@@ -95,7 +111,7 @@ Page({
           address: res.data
         })
       }
-    })
+    })*/
   },
   confirmOrders(e) {
     const order_id = e.currentTarget.dataset.oid;

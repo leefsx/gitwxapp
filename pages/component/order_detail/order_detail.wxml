@@ -22,7 +22,7 @@
   <view class="delivery-box confirm-box medium_font border_bottom2">
     <view class="delivery-top border_bottom" style="padding-right:0rpx;">
       <text class="fl">配送方式</text>
-      <text class="fr">顺丰快递</text>
+      <text class="fr">{{dis_title}}</text>
     </view>
     <view class="delivery-top border_bottom">
       <text class="fl">配送地址</text>
