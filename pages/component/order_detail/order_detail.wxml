@@ -1,6 +1,6 @@
 <import src="../../common/contact.wxml" />
 <view class="main">
-  <template is="contact"/>
+  <template wx:if="{{config.customer_service===1}}" is="contact" data="{{config}}"/>
   <view class="order-status-content bg_color">
     <!-- <text wx:if="{{order.pay_status==1}}">待付款</text>
     <text wx:elif="{{order.order_status==5}}">已取消</text>
@@ -20,9 +20,13 @@
     <text wx:elif="{{order.delivery_status==3}}">已退货</text> 
   </view>
   <view class="delivery-box confirm-box medium_font border_bottom2">
+    <view class="delivery-top border_bottom" style="padding-right:0rpx;">
+      <text class="fl">配送方式</text>
+      <text class="fr">顺丰快递</text>
+    </view>
     <view class="delivery-top border_bottom">
       <text class="fl">配送地址</text>
-    </view>
+    </view> 
     <view class="delivery-middle">
       <view class="delivery_addr-no-content">
         <view class="delivery_addr-no-list">

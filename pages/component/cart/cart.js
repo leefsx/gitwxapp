@@ -31,9 +31,7 @@ Page({
     var openid = wx.getStorageSync('openid');
     this.setData({
       foods: app.globalData.carts,
-      config:{
-        'website_name': config.website_name
-      }
+      config:config
     })
     if (app.globalData.carts.length){
       var cart_num = app.globalData.carts.length

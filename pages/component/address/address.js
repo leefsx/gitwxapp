@@ -19,7 +19,8 @@ Page({
     },
     isShow:false,
     areaname: [],
-    uid: 0
+    uid: 0,
+    config: {}
   },
 
   // onLoad(){
@@ -34,6 +35,11 @@ Page({
   //     }
   //   })
   // },
+  onShow(){
+    this.setData({
+      config: config
+    })
+  },
   formSubmit(){
     var self = this;
     var uid = self.data.uid

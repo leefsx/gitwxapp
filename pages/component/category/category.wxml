@@ -11,7 +11,7 @@
     </view>
   </view>-->
 
-  <template is="contact"/>
+  <template wx:if="{{config.customer_service===1}}" is="contact" data="{{config}}"/>
   <view class="categroy-left">
     <scroll-view scroll-y  style="height:{{deviceHeight+'px'}}" scroll-with-animation>
       <view class="medium_font scroll-view-left-item {{curIndex === index ? 'on' : ''}}" wx:for="{{category}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchTab">{{item.name}}</view>

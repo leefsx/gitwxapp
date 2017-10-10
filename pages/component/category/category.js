@@ -87,10 +87,7 @@ Page({
     if (product_category == -1) product_category = 0
     app.globalData.cateid = 0
     this.setData({
-      config: {
-        'website_name': config.website_name,
-        'logo': config.logo
-      },
+      config: config,
       product_category: product_category,
       curIndex: '',
       carts: app.globalData.carts,
@@ -103,6 +100,7 @@ Page({
     //}
     
   },
+// 直接添加到购物车--开始
   initCart() {
     this.setData({
       detail_data: [],
@@ -370,7 +368,6 @@ Page({
       food: food
     });
   },
-
   minusCount() {
     let food = this.data.food;
     let num = food.num;
@@ -383,6 +380,7 @@ Page({
       food: food
     });
   },
+// 直接添加到购物车--结束
   switchTab(e) {
     var that = this
     var cateid = e.currentTarget.dataset.id;

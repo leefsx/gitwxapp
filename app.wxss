@@ -196,12 +196,12 @@ page {
   align-items: center;
 }
 .product-nav{
+  position: relative;
   width: 49%;
   border: 1rpx solid #f0eeee;
   box-sizing: border-box;
   margin-bottom: 15rpx;
   overflow: hidden;
-  position: relative;
 }
 
 
@@ -286,4 +286,25 @@ page {
   padding-top: 8px;
   box-sizing: border-box;
   z-index: 99999;
+}
+
+/* 产品列表购物车样式 */
+.directAddCart{
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 40rpx;
+  /* font-weight: bold; */
+  /* border: 1rpx solid #c71f3b; */
+  border-radius: 50%;
+  /* color: #c71f3b; */
+  position: absolute;
+  right: 20rpx;
+  top: 10rpx;
+  background-color: #e5e5e5;
+}
+.directAddCart image{
+  width:50rpx;
+  height:50rpx;
+  margin-top: 15rpx;
 }

@@ -1,5 +1,6 @@
 // page/component/new-pages/user/user.js
 var comm = require('../../../common/common.js');
+var config = require('../../../common/config.js');
 var app = getApp();
 Page({
   data:{
@@ -11,7 +12,8 @@ Page({
     order_pro_rel:[],
     userInfo: [],
     cuserInfo: [],
-    cartleng: 0
+    cartleng: 0,
+    config: []
   },
   goToCart(){
     wx.switchTab({
@@ -23,6 +25,9 @@ Page({
   onShow() {
     var self = this;
     var openid = wx.getStorageSync('openid');
+    self.setData({
+      config: config
+    })
     if (openid) {
       var url = comm.parseToURL('weixin', 'signin')
       var uinfo = self.data.userInfo

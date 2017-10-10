@@ -1,6 +1,7 @@
 
 //获取应用实例
 var comm = require('../../../common/common.js');
+var config = require('../../../common/config.js');
 var app = getApp()
 Page({
   data: {
@@ -31,6 +32,7 @@ Page({
       url:'/pages/component/index'
     })
   },
+  config: [],
   logIn: function () {
     var that = this
     var openid = wx.getStorageSync('openid');
@@ -103,6 +105,9 @@ Page({
   onShow: function () {
     var self = this;
     var openid = wx.getStorageSync('openid');
+    self.setData({
+      config: config
+    })
     app.globalData.hadInLoginPage = true
     if (openid) {
       var url = comm.parseToURL('weixin', 'signin')

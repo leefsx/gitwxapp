@@ -20,7 +20,8 @@ Page({
     openid: '',
     product: [],
     order: [],
-    disass: []
+    disass: [],
+    config: []
     
   },
   addAddr(){
@@ -33,12 +34,16 @@ Page({
     var carts = app.globalData.carts
     var openid = wx.getStorageSync('openid');
     var that = this
+    that.setData({
+      config: config
+    })
     if(oid){
       app.request({
         url: comm.parseToURL('order','getorder'),
         data: {oid: oid},
         success: function(res){
           if(res.data.result=='OK'){
+            console.log(res.data)
             var order = res.data.order
             var product  = res.data.product
             var disass = res.data.disass
