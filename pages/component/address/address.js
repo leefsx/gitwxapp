@@ -43,7 +43,7 @@ Page({
   formSubmit(){
     var self = this;
     var uid = self.data.uid
-    if(self.data.address.name && self.data.address.phone && self.data.address.detail){
+    if (self.data.address.name && self.data.address.phone && self.data.address.detail && self.data.address.province){
       app.request({
         url: comm.parseToURL('user','delivery_address'),
         data: { 
