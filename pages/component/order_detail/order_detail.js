@@ -52,7 +52,8 @@ Page({
               product: product,
               disass: disass,
               oid: oid,
-              dis_title: res.data.dis_title
+              dis_title: res.data.dis_title,
+              trade_status: res.data.trade_status
             })
             if (res.data.address) {
               that.setData({

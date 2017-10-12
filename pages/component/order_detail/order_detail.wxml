@@ -13,11 +13,10 @@
     <text wx:elif="{{order.pay_status==1}}">待付款</text>
     <text wx:elif="{{order.pay_status==2 && order.delivery_status==1}}">待发货</text>
     <text wx:elif="{{order.pay_status==2 && order.delivery_status==2 && order.ori_status!=3}}">待收货</text>
-    <text wx:elif="{{order.pay_status==2 && order.delivery_status==2 && order.ori_status==3}}">待评价</text>
-    <text wx:elif="">已完成</text>
-
+    <text wx:elif="{{order.pay_status==2 && order.delivery_status==4}}">{{trade_status}}</text>
     <text wx:elif="{{order.pay_status==3}}">已退款</text>
     <text wx:elif="{{order.delivery_status==3}}">已退货</text> 
+    <text wx:else>已完成</text>
   </view>
   <view class="delivery-box confirm-box medium_font border_bottom2">
     <view class="delivery-top border_bottom" style="padding-right:0rpx;">
