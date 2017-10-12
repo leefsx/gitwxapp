@@ -370,7 +370,7 @@ Page({
         image: detail_data.feature_img,
         num: that.data.food.num,
         price: detail_data.price,
-        sum: detail_data.price,
+        sum: detail_data.price * that.data.food.num,
         selected: true,
         max_kc: detail_data.num,
         skuid: detail_data.skuid
@@ -386,6 +386,11 @@ Page({
               url: '../login/login'
             })
           } else {
+            app.globalData.dcarts = carts
+            wx.navigateTo({
+              url: '../order_confirm/order_confirm?fr=buy'
+            })
+            /*
             app.request({
               url: comm.parseToURL('order', 'createOrder'),
               data: {
@@ -415,6 +420,7 @@ Page({
                 }
               }
             })
+            */
           }
         }
       })

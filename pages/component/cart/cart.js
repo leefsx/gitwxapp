@@ -128,10 +128,14 @@ Page({
         } else {
           app.request({
             url: comm.parseToURL('order', 'addcart'),
-            data: { data: JSON.stringify(cartItems) },
+            data: { data: JSON.stringify(cartItems),fr: 'cart' },
             method: 'GET',
             success: function (res) {
               if (res.data.result == 'OK') {
+                wx.navigateTo({
+                  url: '../order_confirm/order_confirm?fr=cart'
+                })
+                /*
                 app.request({
                   url: comm.parseToURL('order', 'createOrder'),
                   data: [],
@@ -150,6 +154,7 @@ Page({
                     }
                   }
                 })
+                */
 
               } else if (res.data.errmsg == '2') {
                 wx.navigateTo({

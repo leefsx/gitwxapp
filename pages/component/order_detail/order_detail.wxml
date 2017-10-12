@@ -22,12 +22,12 @@
   <view class="delivery-box confirm-box medium_font border_bottom2">
     <view class="delivery-top border_bottom" style="padding-right:0rpx;">
       <text class="fl">配送方式</text>
-      <text class="fr">{{dis_title}}</text>
+      <text class="fr">{{dis_title.title}}</text>
     </view>
-    <view class="delivery-top border_bottom">
+    <view class="delivery-top border_bottom" wx:if="{{dis_title.key &&dis_title.key!='0'&&dis_title.key!='1'}}">
       <text class="fl">配送地址</text>
     </view> 
-    <view class="delivery-middle">
+    <view class="delivery-middle" wx:if="{{dis_title.key && dis_title.key!='0'&&dis_title.key!='1'}}" >
       <view class="delivery_addr-no-content">
         <view class="delivery_addr-no-list">
             <image src="../../../image/local.jpg" style="width:50px; height:50px;"></image>
@@ -47,7 +47,7 @@
         <view class="">￥{{item.price}} x <text class="color2" style="font-size:26rpx;">{{item.amount}}</text></view>
     </navigator>
     <view class="orders-footer">
-        <view style="text-align:right;"><text>金额：</text><text class="color">￥{{order.total_amount}}</text></view>
+        <view style="text-align:right;"><text>金额：</text><text class="color">￥{{order.total_amount_new}}</text></view>
         <view  class="color2" style="text-align:right;">(<text>含运费：￥</text><text>{{order.ifee}}</text>)</view>
         
         <view class="orders-btns" wx:if="{{order.pay_status==1&&order.order_status!=5}}">

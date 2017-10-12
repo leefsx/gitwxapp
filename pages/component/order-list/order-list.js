@@ -250,9 +250,58 @@ Page({
         duration: 5000
       })
       var oid = opt.target.dataset.oid
-      if (oid) {
-        wx.navigateTo({
-          url: '../order_confirm/order_confirm?fr=u&oid=' + oid,
+      var openid = wx.getStorageSync('openid')
+      if (oid && openid) {
+        app.request({
+          url: comm.parseToURL('order', 'dopayment'),
+          data: {
+            oid: oid,
+            method: 'POST',
+            mark: 'new'
+          },
+          success: function (res) {
+            if (res.data.result == 'OK') {
+              if (res.data.wxPrice > 0) {
+                var temdata = { 'oid': oid, 'openid': openid, 'mark': 'new' }
+                //wx pay
+                app.request({
+                  url: comm.parseToURL('order', 'getprepay_id'),
+                  data: {
+                    data: JSON.stringify(temdata),
+                    method: 'POST'
+                  },
+                  success: function (res) {
+                    if (res.data.result == 'OK') {
+                      app.globalData.carts = []
+                      res.data.oid = oid
+                      comm.pay(res.data)
+                    } else {
+                      var err = res.data.errmsg || '支付失败'
+                      wx.showToast({
+                        title: err
+                      })
+                    }
+                  }
+                })
+              } else {
+                app.globalData.carts = []
+                wx.showToast({
+                  title: '支付成功！',
+                  icon: 'success',
+                  duration: 2500
+                })
+                wx.redirectTo({
+                  url: '../order_detail/order_detail?oid=' + oid,
+                })
+              }
+            } else {
+              var err = res.data.errmsg || '支付失败'
+              wx.showToast({
+                title: err
+              })
+              return false;
+            }
+          }
         })
       } else {
         wx.showToast({
