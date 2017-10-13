@@ -53,6 +53,7 @@ Page({
         imgUrls: config.index_autoplay_img,
         index_middle_img: config.index_middle_img,
         index_middle2_img: config.index_middle2_img,
+        carts: app.globalData.carts,
         config: {
           'website_name': config.website_name,
           'logo': config.logo,

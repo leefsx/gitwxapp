@@ -155,16 +155,6 @@ Page({
         var attr_data = that.data.attr_data;
         var hadInCart = false
         var propertys = res.data.newsku;
-        // var isFull = true
-        // var currentState = this.data.currentState
-        // for (var i = 0; i < attr_data.length; i++) {
-        //   console.log(1)
-        //   if (attr_data[i] == '' || attr_data[i] == undefined || attr_data.length < propertys.length) {
-        //     isFull = false
-        //     break
-        //   }
-        //   isFull = true
-        // }
         if (skulist && Object.keys(skulist).length > 0) {
           console.log('m')
           that.setData({
@@ -176,18 +166,6 @@ Page({
             title: '请求中',
             mask: true
           })
-          // if (cart_index > 0) {
-          //   for (var i = 0; i < cart_index; i++) {
-
-          //     if (carts[i].cid == detail_data.id) {
-          //       carts[i].sum = detail_data.price;
-          //       carts[i].price = detail_data.price;
-          //       carts[i].num += that.data.food.num;
-          //       carts[i].skuid = detail_data.skuid || 0;
-          //       hadInCart = true
-          //     }
-          //   }
-          // }
           if (cart_index > 0) {
             for (var i = 0; i < cart_index; i++) {
               if (detail_data.skuid && carts[i].cid == detail_data.id && carts[i].skuid == detail_data.skuid) {
@@ -220,7 +198,6 @@ Page({
 
           that.initCart()
         }
-        // console.log(that.data.skulist)
       },
       fail: function () {
         console.log('fail');

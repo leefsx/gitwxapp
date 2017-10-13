@@ -6,7 +6,7 @@ Page({
     foods:[],               // 购物车列表
     hasList:false,          // 列表是否有数据
     totalPrice:0,           // 总价，初始为0
-    selectAllStatus:true,    // 全选状态，默认全选
+    selectAllStatus:'',    // 全选状态，默认全选
     jsStatus: false,
     totleNum: 0,
     prompt: {
@@ -29,6 +29,7 @@ Page({
   },
   onShow() {
     var openid = wx.getStorageSync('openid');
+    console.log(app.globalData.carts)
     this.setData({
       foods: app.globalData.carts,
       config:config
@@ -53,7 +54,16 @@ Page({
 
   toConfirm() {
     var cartItems = this.data.foods
-    if (!cartItems || cartItems.length === 0) {
+    var selectItems = []
+    cartItems.forEach((item)=>{
+      if(item.selected){
+        selectItems.push(item)
+      }
+    })
+    app.globalData.selectCarts = selectItems
+    console.log(app.globalData.selectCarts)
+    // if (!cartItems || cartItems.length === 0) {
+    if (!selectItems || selectItems.length === 0) {
       wx.hideToast()
       wx.showModal({
         title: '未选购商品',
@@ -67,54 +77,6 @@ Page({
       title: '请求中',
       mask: true
     })
-    // if (app.globalData.hadlogin == true) {
-    //   var that = this
-    //   app.request({
-    //     url: comm.parseToURL('order', 'addcart'),
-    //     data: { data: JSON.stringify(cartItems) },
-    //     method: 'GET',
-    //     success: function (res) {
-    //       if (res.data.result == 'OK') {
-    //         app.request({
-    //           url: comm.parseToURL('order', 'createOrder'),
-    //           data: [],
-    //           method: 'GET',
-    //           success: function (ress) {
-    //             if (ress.data.result == 'OK') {
-    //               var oid = ress.data.oid
-    //               wx.navigateTo({
-    //                 url: '../order_confirm/order_confirm?fr=cart&oid=' + oid
-    //               })
-    //             } else {
-    //               wx.hideLoading()
-    //               wx.showToast({
-    //                 title: ress.data.errmsg
-    //               })
-    //             }
-    //           }
-    //         })
-
-    //       } else if (res.data.errmsg == '2') {
-    //         wx.navigateTo({
-    //           url: '../login/login',
-    //         })
-
-    //       } else {
-    //         wx.hideLoading()
-    //         wx.showToast({
-    //           title: '请求失败'
-    //         })
-    //       }
-    //     }
-    //   })
-    // } else {
-    //   wx.showToast({
-    //     title: '请先登录'
-    //   })
-    //   wx.navigateTo({
-    //     url: '../login/login'
-    //   })
-    // }
     comm.get_cuser({
       success: function (cuser) {
         var that = this
@@ -128,34 +90,13 @@ Page({
         } else {
           app.request({
             url: comm.parseToURL('order', 'addcart'),
-            data: { data: JSON.stringify(cartItems),fr: 'cart' },
+            data: { data: JSON.stringify(selectItems),fr: 'cart' },
             method: 'GET',
             success: function (res) {
               if (res.data.result == 'OK') {
                 wx.navigateTo({
                   url: '../order_confirm/order_confirm?fr=cart'
                 })
-                /*
-                app.request({
-                  url: comm.parseToURL('order', 'createOrder'),
-                  data: [],
-                  method: 'GET',
-                  success: function (ress) {
-                    if (ress.data.result == 'OK') {
-                      var oid = ress.data.oid
-                      wx.navigateTo({
-                        url: '../order_confirm/order_confirm?fr=cart&oid=' + oid
-                      })
-                    } else {
-                      wx.hideLoading()
-                      wx.showToast({
-                        title: ress.data.errmsg
-                      })
-                    }
-                  }
-                })
-                */
-
               } else if (res.data.errmsg == '2') {
                 wx.navigateTo({
                   url: '../login/login',
@@ -188,6 +129,7 @@ Page({
     let foods = this.data.foods;
     const selected = foods[index].selected;
     foods[index].selected = !selected;
+    app.globalData.carts = foods
     this.setData({
       foods: foods
     });
@@ -243,6 +185,7 @@ Page({
     for (let i = 0; i < foods.length; i++) {
       foods[i].selected = selectAllStatus;
     }
+    app.globalData.carts = foods
     this.setData({
       selectAllStatus: selectAllStatus,
       foods: foods

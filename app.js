@@ -91,6 +91,7 @@ App({
     userInfo: null,
     APISESSID: null,
     carts: [],
+    selectCarts: [],
     cuser: [],
     hadlogin: false,
     hadInLoginPage: false
