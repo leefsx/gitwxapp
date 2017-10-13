@@ -11,6 +11,7 @@ Page({
    */
   data: {
     carts:[],
+    selectCarts:[],
     total_price:0,//实付价格
     nowtime: '',
     oid: '',
@@ -114,6 +115,7 @@ Page({
     }
     var index_time = this.data.index_time
     var delivery_time = this.data.delivery_time
+    var selectCarts = this.data.selectCarts
     var carts = this.data.carts
     var order_data = {
       delivery_date: this.data.date,
@@ -135,7 +137,7 @@ Page({
     app.request({
       url: comm.parseToURL('order', 'createOrder'),
       data: {
-        cart: JSON.stringify(carts),
+        cart: JSON.stringify(selectCarts),
         order_data: JSON.stringify(order_data),
         fr: that.data.fr
       },
@@ -149,6 +151,13 @@ Page({
             data: { oid: oid },
             success: function () { }
           })
+          var newCarts = []
+          carts.forEach((item)=>{
+            if(!item.selected){
+              newCarts.push(item)
+            }
+          })
+          app.globalData.carts = newCarts
           wx.redirectTo({
             url: '../order_detail/order_detail?oid=' + oid
           })
@@ -345,30 +354,34 @@ Page({
   },
   onLoad: function (options) {
     var carts = app.globalData.carts
+    var selectCarts = app.globalData.selectCarts
     var openid = wx.getStorageSync('openid');
     var total_price = 0
     var now = comm.get_now()
+    console.log(selectCarts)
     if (options.fr == 'buy') {
-      carts = app.globalData.dcarts
+      // carts = app.globalData.dcarts
+      selectCarts = app.globalData.dcarts
     }
-    for (let i = 0; i < carts.length; i++) {
-      total_price += carts[i].num * carts[i].price;
+    for (let i = 0; i < selectCarts.length; i++) {
+      total_price += selectCarts[i].num * selectCarts[i].price;
     }
     this.setData({
       config: config,
       carts: carts,
+      selectCarts: selectCarts,
       fr: options.fr,
       total_price: total_price
     })
     
-    this.showOrderInterface(carts)
+    this.showOrderInterface(selectCarts)
     
   },
-  showOrderInterface(carts) {
+  showOrderInterface(selectCarts) {
     var that = this 
     var total_amount = that.data.total_price
     var fr = that.data.fr
-    var cart = carts
+    var cart = selectCarts
     //var oid = that.data.oid
     app.request({
       url: comm.parseToURL('order', 'showOrderInterface2'),
@@ -446,7 +459,7 @@ Page({
   onShow: function () {
     if (typeof (this.options.fr) =='undefined'){
       wx.switchTab({
-        url: '../user/user',
+        url: '../user_new/user_new',
       })
     }
     let start_date=util.formatTime2(new Date);
