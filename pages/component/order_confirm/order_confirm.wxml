@@ -23,7 +23,7 @@
       </view>
     </picker>
     <view class="delivery-middle border_bottom" wx:if="{{index_mode>0||!dis_key}}">
-      <view wx:if="{{delivery_addr}}" bindtap="addAddr" class="delivery_addr-no-content">
+      <view wx:if="{{delivery_addr || pickupaddrs}}" bindtap="addAddr" class="delivery_addr-no-content">
         <view class="delivery_addr-no-list">
             <image src="../../../image/local.jpg" style="width:50px; heigh:50px;"></image>
             <view wx:if="{{dis_key==1}}">

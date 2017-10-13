@@ -117,6 +117,7 @@ Page({
     var delivery_time = this.data.delivery_time
     var selectCarts = this.data.selectCarts
     var carts = this.data.carts
+    var fr = this.data.fr
     var order_data = {
       delivery_date: this.data.date,
       delivery_time: delivery_time[index_time],
@@ -151,13 +152,16 @@ Page({
             data: { oid: oid },
             success: function () { }
           })
-          var newCarts = []
-          carts.forEach((item)=>{
-            if(!item.selected){
-              newCarts.push(item)
-            }
-          })
-          app.globalData.carts = newCarts
+          if(fr == 'cart') {
+            var newCarts = []
+            carts.forEach((item) => {
+              if (!item.selected) {
+                newCarts.push(item)
+              }
+            })
+            app.globalData.carts = newCarts
+          }
+          
           wx.redirectTo({
             url: '../order_detail/order_detail?oid=' + oid
           })
@@ -216,9 +220,11 @@ Page({
     })
   },
   addAddr(){
-    wx.navigateTo({
-      url: '../address-list/address-list',
-    })
+    if (!this.data.dis_key || this.data.dis_key > 1){
+      wx.navigateTo({
+        url: '../address-list/address-list',
+      })
+    }
   },
   bindInvoiceChange(e){
     this.setData({
