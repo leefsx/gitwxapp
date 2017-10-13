@@ -53,7 +53,8 @@ Page({
               disass: disass,
               oid: oid,
               dis_title: res.data.dis_title,
-              trade_status: res.data.trade_status
+              trade_status: res.data.trade_status,
+              pickupaddrs: res.data.pickupaddrs
             })
             if (res.data.address) {
               that.setData({
