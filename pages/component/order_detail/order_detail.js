@@ -295,8 +295,8 @@ Page({
           })
         } else {
           var err = res.data.errmsg || '请求失败'
-          wx.showToast({
-            title: err
+          wx.showModal({
+            content: err
           })
         }
       }

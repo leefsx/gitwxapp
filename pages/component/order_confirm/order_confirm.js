@@ -161,10 +161,60 @@ Page({
             })
             app.globalData.carts = newCarts
           }
-          
-          wx.redirectTo({
-            url: '../order_detail/order_detail?oid=' + oid
+          app.request({
+            url: comm.parseToURL('order', 'dopayment'),
+            data: {
+              oid: oid,
+              method: 'POST',
+              mark: 'new'
+            },
+            success: function (res) {
+              if (res.data.result == 'OK') {
+                if (res.data.wxPrice > 0) {
+                  var temdata = { 'oid': oid, 'openid': openid, 'mark': 'new' }
+                  //wx pay
+                  app.request({
+                    url: comm.parseToURL('order', 'getprepay_id'),
+                    data: {
+                      data: JSON.stringify(temdata),
+                      method: 'POST'
+                    },
+                    success: function (res) {
+                      if (res.data.result == 'OK') {
+                        app.globalData.carts = []
+                        res.data.oid = oid
+                        comm.pay(res.data)
+                      } else {
+                        var err = res.data.errmsg || '支付失败'
+                        wx.showToast({
+                          title: err
+                        })
+                      }
+                    }
+                  })
+                } else {
+                  app.globalData.carts = []
+                  wx.showToast({
+                    title: '支付成功！',
+                    icon: 'success',
+                    duration: 2500
+                  })
+                  wx.redirectTo({
+                    url: '../order_detail/order_detail?oid=' + oid,
+                  })
+                }
+              } else {
+                var err = res.data.errmsg || '支付失败'
+                wx.showToast({
+                  title: err
+                })
+                return false;
+              }
+            }
           })
+          //wx.redirectTo({
+          //  url: '../order_detail/order_detail?oid=' + oid
+          //})
         } else if (ress.data.errmsg == '2') {
           wx.showToast({
             title: '请先登录'
@@ -317,6 +367,14 @@ Page({
       if (lastPrice > 0){
         if (integral_money > lastPrice) {
           integral_money = lastPrice
+          val = integral_money * proportion
+          if (val % 1 != 0) {
+            wx.showModal({
+              title: '',
+              content: '使用积分数量只能为整数'
+            })
+            return false
+          }
           total_price = 0
         }else{
           total_price = lastPrice - integral_money
@@ -330,10 +388,9 @@ Page({
         integral: val
       })
     }else{
-      wx.showToast({
-        title: '使用积分数量不可小于1',
-        icon: 'loading',
-        duration: 2500
+      wx.showModal({
+        title: '',
+        content: '使用积分数量不可小于1'
       })
     }
   
@@ -351,7 +408,7 @@ Page({
       val = lastPrice
     }
     total_price = lastPrice - val
-    
+
     this.setData({
       index_balance: val,
       total_price: total_price.toFixed(2),
