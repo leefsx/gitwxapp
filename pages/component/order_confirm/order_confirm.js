@@ -310,7 +310,7 @@ Page({
     if (val > (lastPrice * proportion)){
       val = lastPrice * proportion
     }
-    
+
     if (val >= 1 || val == 0){
       integral_money = val / proportion
       lastPrice = lastPrice - balance - yhjprice
@@ -345,7 +345,7 @@ Page({
     var balance = this.data.balance
     var yhjprice = this.data.yhjprice
     var lastPrice = this.data.lastPrice
-    var val = balance_mode[e.detail.value]
+    var val = Number(balance_mode[e.detail.value])
     lastPrice = lastPrice - integral_money - yhjprice
     if (val > lastPrice){
       val = lastPrice
@@ -364,7 +364,7 @@ Page({
     var openid = wx.getStorageSync('openid');
     var total_price = 0
     var now = comm.get_now()
-    console.log(selectCarts)
+    
     if (options.fr == 'buy') {
       // carts = app.globalData.dcarts
       selectCarts = app.globalData.dcarts
@@ -421,13 +421,31 @@ Page({
           }
           if (ujfdata.account_points < 1) ujfdata.account_points = 0
           var integral_mode = that.data.integral_mode
-          for (var i = 10; i <= ujfdata.account_points; i += 10) {
-            integral_mode.push(i)
+          if (ujfdata.account_points < 1) {
+            integral_mode.push(ujfdata.account_points)
+          }else if (ujfdata.account_points < 10){
+            for (var i = 1; i <= ujfdata.account_points; i += 1) {
+              integral_mode.push(i)
+            }
+          }else{
+            for (var i = 10; i <= ujfdata.account_points; i += 10) {
+              integral_mode.push(i)
+            }
           }
+          
           var balance_mode = that.data.balance_mode
-          for (var i = 10; i <= ujfdata.account_money; i += 10) {
-            balance_mode.push(i)
+          if (ujfdata.account_money < 1) {
+            balance_mode.push(ujfdata.account_money)
+          }else if (ujfdata.account_money < 10){
+            for (var i = 1; i <= ujfdata.account_money; i += 1) {
+              balance_mode.push(i)
+            }
+          }else{
+            for (var i = 10; i <= ujfdata.account_money; i += 10) {
+              balance_mode.push(i)
+            }
           }
+          
           var delivery_addr = true
           if(res.data.delivery.length == 0){
             delivery_addr = false

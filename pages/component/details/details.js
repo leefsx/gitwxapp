@@ -379,6 +379,7 @@ Page({
         success: function (cuser) {
           var that = this
           if (cuser == false) {
+            wx.hideLoading()
             wx.showToast({
               title: '请先登录'
             })
@@ -387,6 +388,7 @@ Page({
             })
           } else {
             app.globalData.dcarts = carts
+            wx.hideLoading()
             wx.navigateTo({
               url: '../order_confirm/order_confirm?fr=buy'
             })
