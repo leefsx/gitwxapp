@@ -45,7 +45,7 @@ Page({
     prevnext: []
   },
   onLoad() {
-    
+
   },
   onShow: function () {
     this.getProductsFromServer(6, 1),
@@ -439,9 +439,13 @@ Page({
     }
   },
   calling(){
-    wx.makePhoneCall({
-      phoneNumber: config.hotline_no
-    })
+    var hotline_no = config.hotline_no
+    if(hotline_no){
+      var hotline = hotline_no.replace(/[\-\_\,\!\|\~\`\(\)\*\{\}\:\;\"\L\<\>\?]/g, '');
+      wx.makePhoneCall({
+        phoneNumber: hotline
+      })
+    }
   }
 
 })
