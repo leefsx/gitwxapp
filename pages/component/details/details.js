@@ -534,6 +534,11 @@ Page({
       title: config.website_name +' '+ this.data.detail_data['name'],
       path: 'pages/component/details/details?id=' + this.data.product_id
     }
+  },
+  calling() {
+    wx.makePhoneCall({
+      phoneNumber: config.hotline_no
+    })
   }
 
 })

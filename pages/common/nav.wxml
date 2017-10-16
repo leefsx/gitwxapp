@@ -7,7 +7,7 @@
       
       <view class="top-tele">
         <image mode="aspectFit" src="{{config.hotline_logo}}"></image>
-        <view>
+        <view bindtap='calling'>
           <text>免费服务热线</text>
           <text class="medium_font">{{config.hotline_no}}</text>
         </view>

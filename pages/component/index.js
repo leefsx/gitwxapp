@@ -437,6 +437,11 @@ Page({
       title: config.website_name,
       path: 'pages/component/index'
     }
+  },
+  calling(){
+    wx.makePhoneCall({
+      phoneNumber: config.hotline_no
+    })
   }
 
 })
