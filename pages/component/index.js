@@ -64,7 +64,9 @@ Page({
           'index_middle_title': config.index_middle_title,
           'logourl': config.logourl,
           'customer_service': config.customer_service,
-          'customer_service_bgcolor': config.customer_service_bgcolor
+          'customer_service_bgcolor': config.customer_service_bgcolor,
+          'shopping_cart': config.shopping_cart,
+          'shopping_cart_bgcolor': config.shopping_cart_bgcolor
         },
         index_autoplay_imgurl: config.index_autoplay_imgurl,
         index_middle_imgurl: config.index_middle_imgurl,

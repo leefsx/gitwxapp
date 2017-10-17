@@ -181,7 +181,7 @@ Page({
                     },
                     success: function (res) {
                       if (res.data.result == 'OK') {
-                        app.globalData.carts = []
+                        // app.globalData.carts = []
                         res.data.oid = oid
                         comm.pay(res.data)
                       } else {
@@ -193,7 +193,7 @@ Page({
                     }
                   })
                 } else {
-                  app.globalData.carts = []
+                  // app.globalData.carts = []
                   wx.showToast({
                     title: '支付成功！',
                     icon: 'success',
