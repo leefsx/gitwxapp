@@ -86,9 +86,7 @@ function pay(param) {
     paySign: param.paySign,
     success: function (res) {
       // success  
-      wx.navigateTo({
-        url: '../order_detail/order_detail?oid='+param.oid,
-      })
+      
        
     },
     fail: function (res) {
@@ -101,7 +99,9 @@ function pay(param) {
     },
     complete: function () {
       // complete  
-      console.log("pay complete")
+      wx.navigateTo({
+        url: '../order_detail/order_detail?oid=' + param.oid,
+      })
     }
   })
 }
