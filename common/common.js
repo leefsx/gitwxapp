@@ -93,9 +93,9 @@ function pay(param) {
       // fail  
       console.log("支付失败")
       console.log(res)
-      wx.navigateTo({
-        url: '../order_detail/order_detail?oid=' + param.oid,
-      })
+      // wx.redirectTo({
+      //   url: '../order_detail/order_detail?oid=' + param.oid,
+      // })
     },
     complete: function () {
       // complete  

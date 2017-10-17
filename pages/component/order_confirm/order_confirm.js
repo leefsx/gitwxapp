@@ -144,7 +144,7 @@ Page({
       },
       method: 'GET',
       success: function (ress) {
-        wx.hideLoading()
+        
         if (ress.data.result == 'OK') {
           var oid = ress.data.oid
           app.request({
@@ -170,6 +170,7 @@ Page({
             },
             success: function (res) {
               if (res.data.result == 'OK') {
+                wx.hideLoading()
                 if (res.data.wxPrice > 0) {
                   var temdata = { 'oid': oid, 'openid': openid, 'mark': 'new' }
                   //wx pay
@@ -180,6 +181,7 @@ Page({
                       method: 'POST'
                     },
                     success: function (res) {
+                      
                       if (res.data.result == 'OK') {
                         // app.globalData.carts = []
                         res.data.oid = oid
