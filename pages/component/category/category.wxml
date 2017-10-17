@@ -28,12 +28,12 @@
           <text class="right-item-view-title medium_font color">￥{{item.price}}</text>
           <text class="right-item-view-title small_font">{{item.intro}}</text>
         </view>
-        <view class="directAddCart" data-id="{{item.id}}" catchtap="directAddCart">
+        <view wx:if="{{config.shopping_cart == 1}}" style="background-color:{{config.shopping_cart_bgcolor}}" class="directAddCart" data-id="{{item.id}}" catchtap="directAddCart">
           <image src="/image/shop-cart.png"></image>
         </view>
       </navigator>
       <template is="prompt" data="{{prompt}}"></template>
-      <view class="end font_small color2" wx-if="IsAllEnd">已到达最底部</view>
+      <!-- <view class="end font_small color2" wx-if="IsAllEnd">已到达最底部</view> -->
     </scroll-view>
   </view>
 
