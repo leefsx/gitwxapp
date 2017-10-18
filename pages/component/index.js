@@ -45,7 +45,6 @@ Page({
     prevnext: []
   },
   onLoad() {
-
   },
   onShow: function () {
     this.getProductsFromServer(6, 1),
