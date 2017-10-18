@@ -1,12 +1,12 @@
 <template name="nav">
     <view class="topbar color">
       <view class="topbar-title">
-        <image mode="aspectFit" src="{{config.logo}}" data-index="0" data-type="logourl" bindtap="toCategory"></image>
+        <image mode="aspectFit" wx:if="{{config.logo}}" src="{{config.logo}}" data-index="0" data-type="logourl" bindtap="toCategory"></image>
         <text>{{config.website_name}}</text>
       </view>
       
       <view class="top-tele">
-        <image mode="aspectFit" src="{{config.hotline_logo}}"></image>
+        <image mode="aspectFit"  wx:if="{{config.hotline_logo}}" src="{{config.hotline_logo}}"></image>
         <view bindtap='calling'>
           <text>免费服务热线</text>
           <text class="medium_font">{{config.hotline_no}}</text>
