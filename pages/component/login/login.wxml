@@ -1,6 +1,6 @@
 <import src="../../common/contact.wxml" />
 <view class="container">
-  <template wx:if="{{config.customer_service===1}}" is="contact" data="{{config}}"/>
+  <template wx:if="{{config.customer_service==='1'}}" is="contact" data="{{config}}"/>
   <view class="loginbox">
     <view class="usermotto">
       <view class="inline-block">
